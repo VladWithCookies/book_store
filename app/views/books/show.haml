@@ -1,0 +1,55 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %a.navbar-brand{:href => "/"} The Bookstore
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{:href => "/"}
+            HOME
+            %span.sr-only (current)
+        %li.active
+          %a{:href => "/books"} SHOP
+      %span.glyphicon.glyphicon-shopping-cart.cart CART: (EMPTY)
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            %a{:href => "#"} Settings
+          %li
+            %a{:href => "#"} Orders
+          %li= link_to "Logout", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Sign up", new_user_registration_path
+          %li= link_to "Login", new_user_session_path
+.wrapper
+  .header 
+    =@book.title
+  .col-md-3
+    .book-cover
+      %img{:src => "#{@book.image}", :alt => ""}
+  .col-md-9
+    .row
+      .col-md-9
+        .price= "$#{@book.price}"
+      .col-md-3
+        %form.order-form{:action => ""}
+          %input.form-control{:type => "text", "value" => 1}
+          %button.btn.btn-default ADD TO CART
+    .book-decription= @book.description
+  .col-md-12
+    .reviews
+      %h4 Reviews
+      = link_to "Add review for this book", add_rating_book_path
+      -@ratings.each do |rating|
+        .rating
+          -rating.rating.times do 
+            %span.glyphicon.glyphicon-star          
+          .rating-title
+            =rating.title
+          .rating-date
+            =rating.created_at
+          .rating-author
+            ="by #{rating.user.email}"
+          .rating-text
+            =rating.text
+

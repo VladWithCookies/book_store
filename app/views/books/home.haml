@@ -1,0 +1,52 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %a.navbar-brand{:href => "/"} The Bookstore
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "/"}
+            HOME
+            %span.sr-only (current)
+        %li
+          %a{:href => "/books"} SHOP
+      %span.glyphicon.glyphicon-shopping-cart.cart CART: (EMPTY)
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            %a{:href => "#"} Settings
+          %li
+            %a{:href => "#"} Orders
+          %li= link_to "Logout", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Sign up", new_user_registration_path
+          %li= link_to "Login", new_user_session_path
+#carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+  .carousel-inner{:role => "listbox"}
+    .item.active
+      .item-title
+        %span Booktitle
+        by
+        %a{:href => ""} Name Lastname
+      %img{:alt => "...", :src => "https://unsplash.it/1024/400/?random"}/
+      .carousel-caption
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet ipsum nec nibh pretium, nec accumsan nibh imperdiet. Sed tristique tellus et eros elementum tempus. Nunc quis est eu libero imperdiet dictum. Aenean eu ante id tortor euismod malesuada et vitae nisi. Aliquam varius vehicula orci, sit amet rhoncus eros ultrices ac. Praesent faucibus condimentum lectus, vel commodo lorem. Vestibulum dignissim dapibus eros, sed tincidunt ante eleifend vitae. Etiam eu ullamcorper velit. Donec a nisi vitae quam fermentum faucibus sit amet et augue. Ut eu egestas eros, ut suscipit sem. Donec congue mattis leo. Praesent nibh mauris, laoreet non ante quis, ullamcorper semper lorem.
+        .order-form
+          %form{:action => ""}
+            %label{:for => ""} $49.99
+            %input.form-control{:type => "text", "value" => 1}
+            %button.btn.btn-default ADD TO CART
+  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+    %span.sr-only Next
+%h3.greeting
+  Welcome to our amazing Bookstore!
+  %br/
+  Choose anything you wish, we'll ship it anywhere!

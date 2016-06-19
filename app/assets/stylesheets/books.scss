@@ -1,0 +1,117 @@
+.carousel {
+  margin: 5% 10%;
+  .order-form {
+    margin: 15px 0;
+  }
+}
+
+.carousel-control.left, .carousel-control.right {
+  background-image: none;
+}
+
+.greeting {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.cart {
+  line-height: 50px;
+  margin-left: 25%;
+}
+
+.item-title {
+  span {
+    font-size: 2em;
+  }
+  a {
+    font-size: 1.2em;
+  }
+}
+
+.header {
+  position: relative;
+  left: 15px;
+  font-size: 2em;
+}
+
+.category-header {
+  margin-top: 0;
+}
+
+.thumbnail {
+  border-radius: 0;
+  img {
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  a:hover {
+    color: #000;
+  }
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+.book-cover {
+  img {
+    width: 100%;
+  }
+}
+
+.wrapper {
+  margin: 50px 5%;
+}
+
+.price {
+  font-size: 1.5em;
+}
+
+.order-form {
+  input {
+    width: 35px;
+    display: inline-block;
+  }
+
+  label {
+    position: relative;
+    top: 3px;
+    font-size: 1.5em;
+  }
+
+  button {
+    position: relative;
+    top: -1px;
+  }
+}
+
+.reviews {
+  margin-top: 30px;
+  h4 {
+    display: inline-block;
+  }
+}
+
+.book-decription {
+  position: relative;
+  top: 10px;
+}
+
+.rating {
+  margin-bottom: 30px;
+  .rating-title, .rating-date {
+    display: inline-block;
+  }
+  .rating-title {
+    font-size: 1.5em;
+  }
+}
