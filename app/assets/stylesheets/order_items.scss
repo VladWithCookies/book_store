@@ -1,0 +1,24 @@
+.order-items-buttons {
+  margin-top: 50px;
+}
+
+.table {
+  img {
+    height: 100px;
+    margin: 10px;
+  }
+}
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+  vertical-align: middle;
+}
+
+.sub-total {
+  text-align: right;
+  border-top: 2px dashed #000;
+  padding-top: 15px;
+}
+
+.right {
+  float: right;
+}

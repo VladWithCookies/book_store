@@ -1,0 +1,39 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  .row
+    .col-md-2
+      %h3 Checkout
+    .col-md-10
+      %ul.nav.nav-pills
+        %li.active{:role => "presentation"}
+          %a{:href => "/checkout/address"} ADDRESS
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/delivery"} DELIVERY
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/payment"} PAYMENT
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/confirm"} CONFIRM
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/complete"} COMPLETE
+
+  .row
+    .address-form
+      .col-md-4
+        %h4 BILLING ADDRESS
+        =form_for @billing_address, url: {action: "address_confirm"}do |f|
+          =f.text_field :firstname, placeholder: "Firstname"
+          =f.text_field :lastname, placeholder: "Lastname"
+          =f.text_field :address, placeholder: "Street address"
+          =f.text_field :city, placeholder: "City"
+          =f.select :country, @countries
+          =f.text_field :zipcode, placeholder: "Zip"
+          =f.telephone_field :phone, placeholder: "Phone"
+          %button.btn.btn-default SAVE AND CONTINUE
+      .col-md-4
+        %h4 SHIPPING ADDRESS
+        %input{:type => "checkbox", checked: true} 
+        %span Use billing address
+      .col-md-4
+        %h4 ORDER SUMMARY
+        .total= "ITEM TOTAL: #{current_order.item_total}$"  

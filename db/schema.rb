@@ -11,23 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615110223) do
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.string   "author_type"
-    t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
+ActiveRecord::Schema.define(version: 20160624131321) do
 
   create_table "addresses", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "address"
     t.string   "zipcode"
     t.string   "city"
@@ -35,23 +23,6 @@ ActiveRecord::Schema.define(version: 20160615110223) do
     t.string   "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "authors", force: :cascade do |t|
@@ -80,14 +51,6 @@ ActiveRecord::Schema.define(version: 20160615110223) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "books_authors", id: false, force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "author_id"
-    t.index ["author_id"], name: "index_books_authors_on_author_id"
-    t.index ["book_id", "author_id"], name: "index_books_authors_on_book_id_and_author_id"
-    t.index ["book_id"], name: "index_books_authors_on_book_id"
-  end
-
   create_table "books_categories", id: false, force: :cascade do |t|
     t.integer "book_id"
     t.integer "category_id"
@@ -102,11 +65,17 @@ ActiveRecord::Schema.define(version: 20160615110223) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "credit_cards", force: :cascade do |t|
-    t.integer  "number"
+    t.string   "number"
     t.string   "cvv"
-    t.date     "expiration_month"
-    t.date     "expiration_year"
+    t.string   "expiration_month"
+    t.string   "expiration_year"
     t.string   "firstname"
     t.string   "lastname"
     t.integer  "user_id"
@@ -127,7 +96,9 @@ ActiveRecord::Schema.define(version: 20160615110223) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total_price"
+    t.decimal  "order_total"
+    t.decimal  "shipping"
+    t.decimal  "item_total"
     t.date     "completed_date"
     t.string   "state"
     t.integer  "user_id"

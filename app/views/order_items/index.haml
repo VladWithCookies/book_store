@@ -1,0 +1,47 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  %table.table
+    %th BOOK
+    %th PRICE
+    %th QTY
+    %th TOTAL
+    %th
+    
+    - @order_items.each do |order_item|
+      %tr
+        %td 
+          %table
+            %tr
+              %td
+                %img{:src => "#{order_item.book.image}", :alt => ""}
+              %td
+                %h4= order_item.book.title
+                %p= order_item.book.description
+        %td
+          %h4
+            ="#{order_item.book.price}$"
+        %td
+          =hidden_field(:book_id, value: order_item.book.id)
+          //=number_field(:quantity, class: "form-control", min: 1, value: order_item.quantity)
+          %h4=order_item.quantity
+        %td
+          %h4
+            ="#{order_item.price}$"
+        %td
+          =link_to "Remove", order_item_path(order_item), method: "delete"
+
+  .sub-total="SUBTOTAL: #{@order.item_total}$" 
+  %br
+
+  .order-items-buttons
+    =link_to "EMPTY CART", cart_empty_path, method: "delete", class: "btn btn-default btn-default"
+    
+    %a{:href => "/books", :class => "btn btn-default btn-default"}
+      CONTINUE SHOPPING
+
+    %span.right
+      %a{:href => "#", :class => "btn btn-default btn-default"}
+        UPDATE
+      %a{:href => "/checkout/address", :class => "btn btn-default btn-default"}
+        CHECKOUT

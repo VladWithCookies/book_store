@@ -1,0 +1,30 @@
+= render "layouts/nav_bar"
+.wrapper
+  .row
+    .col-md-2
+      %h3 Checkout
+    .col-md-10
+      %ul.nav.nav-pills
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/address"} ADDRESS
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/delivery"} DELIVERY
+        %li.active{:role => "presentation"}
+          %a{:href => "/checkout/payment"} PAYMENT
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/confirm"} CONFIRM
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/complete"} COMPLETE
+
+  .payment-form
+    %row
+      %col-md-8
+        %h3 CREDIT CARD
+        =form_for @credit_card, url: { action: "payment_confirm" } do |f|
+          =f.hidden_field :user_id, value: current_user.id
+          =f.text_field :number, placeholder: "Card number"
+          %p Expiration date:
+          =f.select :expiration_month, Date::MONTHNAMES[1..12]
+          =f.select :expiration_year, Time.now.year.. 8.years.from_now.year
+          =f.text_field :cvv, placeholder: "Card code" 
+          %button.btn.btn-default SAVE AND CONTINUE

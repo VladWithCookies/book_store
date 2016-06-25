@@ -16,7 +16,8 @@
 
 .cart {
   line-height: 50px;
-  margin-left: 25%;
+  position: relative;
+  left: 300px;
 }
 
 .item-title {
@@ -28,9 +29,12 @@
   }
 }
 
-.header {
+.header, .breadcrumbs {
   position: relative;
   left: 15px;
+}
+
+.header {
   font-size: 2em;
 }
 
@@ -56,10 +60,14 @@
 
 .navbar {
   border-radius: 0;
+  a{
+    color: #000;
+  }
 }
 
 .pagination-container {
   text-align: center;
+  margin-top: 100px;
 }
 
 .book-cover {
@@ -78,7 +86,7 @@
 
 .order-form {
   input {
-    width: 35px;
+    width: 60px;
     display: inline-block;
   }
 

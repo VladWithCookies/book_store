@@ -1,26 +1,5 @@
-%nav.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      %a.navbar-brand{:href => "/"} The Bookstore
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          %a{:href => "/"}
-            HOME
-            %span.sr-only (current)
-        %li.active
-          %a{:href => "/books"} SHOP
-      %span.glyphicon.glyphicon-shopping-cart.cart CART: (EMPTY)
-      %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          %li
-            %a{:href => "#"} Settings
-          %li
-            %a{:href => "#"} Orders
-          %li= link_to "Logout", destroy_user_session_path, method: :delete
-        - else
-          %li= link_to "Sign up", new_user_registration_path
-          %li= link_to "Login", new_user_session_path
+= render "layouts/nav_bar"
+
 .wrapper
   .header 
     =@book.title
@@ -32,9 +11,12 @@
       .col-md-9
         .price= "$#{@book.price}"
       .col-md-3
-        %form.order-form{:action => ""}
-          %input.form-control{:type => "text", "value" => 1}
-          %button.btn.btn-default ADD TO CART
+        .order-form
+          =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
+            =f.hidden_field(:book_id, value: @book.id)
+            =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
+            %button.btn.btn-default ADD TO CART
+
     .book-decription= @book.description
   .col-md-12
     .reviews

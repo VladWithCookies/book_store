@@ -1,0 +1,91 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  %h3= "Order #{@order.id}"
+  .confirm
+    .row
+      .col-md-3
+        %table
+          %b Shipping address
+          %tr
+            %td= "#{ @shipping_address.firstname } #{ @shipping_address.lastname }"
+          %tr
+            %td= @shipping_address.address
+          %tr
+            %td= @shipping_address.city
+          %tr
+            %td= @shipping_address.country
+          %tr
+            %td= "Phone #{@shipping_address.phone}"
+
+      .col-md-3
+        %table
+          %b Billing address
+          %tr
+            %td= "#{ @billing_address.firstname } #{ @billing_address.lastname }"
+          %tr
+            %td= @billing_address.address
+          %tr
+            %td= @billing_address.city
+          %tr
+            %td= @billing_address.country
+          %tr
+            %td= "Phone #{@billing_address.phone}"
+
+      .col-md-3 
+        %table 
+          %b Shipment
+          %tr
+            %td
+              - case @order.shipping
+                - when 5
+                  ="UPS Ground"
+                - when 10
+                  ="UPS Two Day"
+                - when 10
+                  ="Ups One Day"
+
+      .col-md-3 
+        %table 
+          %b Payment Information
+          %tr
+            %td= "** ** ** #{@credit_card.cvv.last(4)}"
+          %tr
+            %td= "#{@credit_card.expiration_month}/#{@credit_card.expiration_year}"
+
+    %table.table.order-table
+      %th
+        BOOK
+      %th
+        PRICE
+      %th
+        QTY
+      %th
+        TOTAL
+
+      - @order.order_items.each do |order_item|
+        %tr
+          %td 
+            %table
+              %tr
+                %td
+                  %img{:src => "#{order_item.book.image}", :alt => ""}
+                %td
+                  %h4= order_item.book.title
+                  %p= order_item.book.description
+          %td
+            %h4="#{order_item.book.price}$"
+          %td
+            %h4=order_item.quantity
+          %td
+            %h4="#{order_item.price}$"
+
+    .sub-total
+      %p="SUBTOTAL: #{@order.item_total}$" 
+      %p="SHIPPING: #{@order.shipping}$"
+    .order-total
+      %p="ORDER TOTAL: #{@order.order_total}$"
+
+
+    %a{:href => "/books", :class => "btn btn-default btn-default"}
+      GO BACK TO STORE

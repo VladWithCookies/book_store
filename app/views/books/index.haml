@@ -1,33 +1,21 @@
-%nav.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      %a.navbar-brand{:href => "/"} The Bookstore
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          %a{:href => "/"}
-            HOME
-            %span.sr-only (current)
-        %li.active
-          %a{:href => "/books"} SHOP
-      %span.glyphicon.glyphicon-shopping-cart.cart CART: (EMPTY)
-      %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          %li
-            %a{:href => "#"} Settings
-          %li
-            %a{:href => "#"} Orders
-          %li= link_to "Logout", destroy_user_session_path, method: :delete
-        - else
-          %li= link_to "Sign up", new_user_registration_path
-          %li= link_to "Login", new_user_session_path
+= render "layouts/nav_bar"
 
 .wrapper
-  .header SHOP
+  - if @category_title 
+    .breadcrumbs
+      %a{:href => "/"} Home
+      >>
+      %a{:href => "/books"} Shop
+      >>
+      = @category_title
+    .header= "CATEGORIES - #{@category_title}" 
+  - else
+    .header SHOP
+
   .row
     .col-md-9
-      .col-md-4
-        -@books.each do |book|
+      -@books.each do |book|
+        .col-md-4
           .thumbnail
             = link_to book_path(book) do
               %img{:src => "#{book.image}", :alt => ""}
@@ -37,8 +25,8 @@
     .col-md-3
       %h4.category-header SHOP BY CATEGORIES
       .list-group
-        - @categories.each do |category|
-          %a.list-group-item{:href => ""}= category.title
+        - @categories.each do |category|         
+          %a.list-group-item{:href => "/categories/#{category.title}"}= category.title
 
   .pagination-container
     %ul.pagination

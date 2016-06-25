@@ -1,0 +1,65 @@
+h3 {
+  margin-top: 8px;
+}
+
+.address-form {
+  input, button, select {
+    margin-top: 20px;
+  }
+
+  button, select {
+    display: block;
+  }
+
+  .total {
+    margin-top: 30px;
+  }
+
+  span {
+    position: relative;
+    top: -3px;
+  }
+}
+
+.delivery-form {
+  label {
+    position: relative;
+    top: -3px;
+
+  }
+
+  button {
+    margin-top: 20px;
+  }
+}
+
+.order-summary td {
+  padding-right: 15px;
+ }
+
+ .payment-form {
+    input {
+      display: block;
+    }
+
+    input, p, button {
+      margin-top: 20px;
+    }
+ }
+
+ .payment-form, .delivery-form, .address-form {
+    margin-top: 35px;
+ }
+
+ .confirm {
+  .order-table {
+    margin-top: 50px;
+  }
+  .order-total {
+    float: right;
+    text-align: right;
+    width: 100%;
+    border-top: 2px dashed #000;
+    padding-top: 15px;
+  }
+ }

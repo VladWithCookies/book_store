@@ -10,17 +10,19 @@
             %span.sr-only (current)
         %li
           %a{:href => "/books"} SHOP
-      %span.glyphicon.glyphicon-shopping-cart.cart CART: (EMPTY)
+      %a{:href => "/cart"}
+        %span.glyphicon.glyphicon-shopping-cart.cart="CART: #{current_order.item_total}$" || "EMPTY"
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            %a{:href => "#"} Settings
+            %a{:href => "/users/edit"} Settings
           %li
             %a{:href => "#"} Orders
           %li= link_to "Logout", destroy_user_session_path, method: :delete
         - else
           %li= link_to "Sign up", new_user_registration_path
           %li= link_to "Login", new_user_session_path
+
 #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
   %ol.carousel-indicators
     %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}

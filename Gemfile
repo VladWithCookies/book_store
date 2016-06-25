@@ -31,6 +31,9 @@ end
 
 group :development, :test do
   gem "pry", ">= 0.9"
+  gem "rspec-rails", ">= 2.14"
+  gem "factory_girl_rails", ">= 4.2"
+  gem "ffaker"
 end
 
 group :test do
@@ -38,7 +41,6 @@ group :test do
   gem "coveralls"
   gem "database_cleaner", [">= 1.2", "!= 1.4.0", "!= 1.5.0"]
   gem "dragonfly", "~> 1.0"
-  gem "factory_girl", ">= 4.2"
   gem "generator_spec", ">= 0.8"
   gem "launchy", ">= 2.2"
   gem "mini_magick", ">= 3.4"
@@ -46,9 +48,9 @@ group :test do
   gem "poltergeist", "~> 1.5"
   gem "pundit"
   gem "rack-cache", :require => "rack/cache"
-  gem "rspec-rails", ">= 2.14"
   gem "simplecov", ">= 0.9", :require => false
   gem "timecop", ">= 0.5"
+  gem "shoulda-matchers", "~> 3.1"
 
   platforms :ruby_19 do
     gem "tins", "~> 1.6.0", :require => false

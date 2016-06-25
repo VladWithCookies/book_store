@@ -1,0 +1,46 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  .row
+    .col-md-2
+      %h3 Checkout
+    .col-md-10
+      %ul.nav.nav-pills
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/address"} ADDRESS
+        %li.active{:role => "presentation"}
+          %a{:href => "/checkout/delivery"} DELIVERY
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/payment"} PAYMENT
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/confirm"} CONFIRM
+        %li.disabled{:role => "presentation"}
+          %a{:href => "/checkout/complete"} COMPLETE
+
+  .row
+    .col-md-8
+      .delivery-form
+        =form_tag "/checkout/delivery", method: "post" do
+          =radio_button_tag :shipping_price, 5, active: true
+          %label UPS Ground +$5.00
+          %br
+          =radio_button_tag :shipping_price, 10
+          %label UPS Two Day +$10.00
+          %br
+          =radio_button_tag :shipping_price, 15
+          %label UPS One Day +$15.00
+          %br
+          %button.btn.btn-default SAVE AND CONTINUE
+    .col-md-4
+      .order-summary
+        %h2 ORDER SUMMARY
+        %table
+          %tr
+            %td ITEM TOTAL:
+            %td="$#{current_order.item_total}"
+          %tr
+            %td SHIPPING:
+            %td="$#{current_order.shipping}"
+          %tr
+            %td ORDER TOTAL:
+            %td="$#{current_order.order_total}"
