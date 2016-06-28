@@ -3,10 +3,18 @@
   .order-form {
     margin: 15px 0;
   }
+  .carousel-inner {
+    height: 500px;
+  }
 }
 
 .carousel-control.left, .carousel-control.right {
   background-image: none;
+}
+
+.item img {
+  max-height: 400px;
+  width: 100%;
 }
 
 .greeting {
@@ -85,6 +93,7 @@
 }
 
 .order-form {
+  text-align: center;
   input {
     width: 60px;
     display: inline-block;

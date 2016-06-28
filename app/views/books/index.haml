@@ -29,14 +29,7 @@
           %a.list-group-item{:href => "/categories/#{category.title}"}= category.title
 
   .pagination-container
-    %ul.pagination
-      %li.active 
-        %a{:href => ""} 1
-      %li 
-        %a{:href => ""} 2
-      %li 
-        %a{:href => ""} Next
-      %li 
-        %a{:href => ""} Last 
+    = paginate @books, :theme => 'twitter-bootstrap-3'
+
 
 

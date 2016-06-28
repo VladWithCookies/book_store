@@ -1,0 +1,84 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  %h3 Orders
+  - if @order.order_items.count > 0
+    .orders-in-progress
+      %h4 IN PROGRESS
+      %table.table
+        %th BOOK
+        %th PRICE
+        %th QTY
+        %th TOTAL
+        
+        - @order.order_items.each do |order_item|
+          %tr
+            %td 
+              %table
+                %tr
+                  %td
+                    %img{:src => "#{order_item.book.image}", :alt => ""}
+                  %td
+                    %h4= order_item.book.title
+                    %p= order_item.book.description
+            %td
+              %h4
+                ="#{order_item.book.price}$"
+            %td
+              =hidden_field(:book_id, value: order_item.book.id)
+              %h4=order_item.quantity
+            %td
+              %h4
+                ="#{order_item.price}$"
+
+    .sub-total="SUBTOTAL: #{@order.item_total}$"
+    %a{:href => "/cart", :class => "btn btn-default btn-default"}
+      GO TO CART
+
+  - if @orders_processing.count > 0
+    .orders-processing
+      %h4 WATING FOR PROCESSING
+      %table.table
+        %th NUMBER
+        %th COMPLETED AT
+        %th TOTAL
+        %th
+        - @orders_processing.each do |order|
+          %tr
+            %td= order.id
+            %td= order.completed_date
+            %td= "$#{order.order_total}"
+            %td
+              =link_to "View", order_path(order)
+
+  - if @orders_delivery.count > 0
+    .orders-delivery
+      %h4 IN DELIVERY
+      %table.table
+        %th NUMBER
+        %th COMPLETED AT
+        %th TOTAL
+        %th
+        - @orders_delivery.each do |order|
+          %tr
+            %td= order.id
+            %td= order.completed_date
+            %td= "$#{order.order_total}"
+            %td
+              =link_to "View", order_path(order)
+
+  - if @orders_delivered.count > 0
+    .orders-delivered
+      %h4 DELIVERED
+      %table.table
+        %th NUMBER
+        %th COMPLETED AT
+        %th TOTAL
+        %th
+        - @orders_delivered.each do |order|
+          %tr
+            %td= order.id
+            %td= order.completed_date
+            %td= "$#{order.order_total}"
+            %td
+              =link_to "View", order_path(order)

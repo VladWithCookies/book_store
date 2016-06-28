@@ -10,4 +10,5 @@ class OrderItem < ApplicationRecord
     total = book.price * quantity
     update_columns(price: total)
   end
+
 end

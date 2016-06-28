@@ -21,7 +21,7 @@
     .address-form
       .col-md-4
         %h4 BILLING ADDRESS
-        =form_for @billing_address, url: {action: "address_confirm"}do |f|
+        =form_for @billing_address, url: {action: "address_confirm"} do |f|
           =f.text_field :firstname, placeholder: "Firstname"
           =f.text_field :lastname, placeholder: "Lastname"
           =f.text_field :address, placeholder: "Street address"

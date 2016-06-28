@@ -1,0 +1,8 @@
+= render "layouts/nav_bar"
+  
+.wrapper
+  %a{:href => "/orders"} &laquo;Back to orders
+  %br
+  %h2.order-id= "Order #{@order.id}"
+  %span= @order.state
+  = render "layouts/order_table"

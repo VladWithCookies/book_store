@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   
   resources :ratings
+  resources :orders
   resources :order_items
 
   get "categories/:category" => "categories#category"

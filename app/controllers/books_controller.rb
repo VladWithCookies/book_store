@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.page(params[:page]).per(12  )
     @categories = Category.all
   end
 
@@ -16,6 +16,7 @@ class BooksController < ApplicationController
   end
 
   def home
-
+    @items = Book.most_popular(5)
+    @order_item = OrderItem.new
   end
 end

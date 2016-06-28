@@ -53,39 +53,7 @@
           %tr
             %td= "#{@credit_card.expiration_month}/#{@credit_card.expiration_year}"
 
-    %table.table.order-table
-      %th
-        BOOK
-      %th
-        PRICE
-      %th
-        QTY
-      %th
-        TOTAL
-
-      - @order.order_items.each do |order_item|
-        %tr
-          %td 
-            %table
-              %tr
-                %td
-                  %img{:src => "#{order_item.book.image}", :alt => ""}
-                %td
-                  %h4= order_item.book.title
-                  %p= order_item.book.description
-          %td
-            %h4="#{order_item.book.price}$"
-          %td
-            %h4=order_item.quantity
-          %td
-            %h4="#{order_item.price}$"
-
-    .sub-total
-      %p="SUBTOTAL: #{@order.item_total}$" 
-      %p="SHIPPING: #{@order.shipping}$"
-    .order-total
-      %p="ORDER TOTAL: #{@order.order_total}$"
-
+    =render "layouts/order_table"
 
     %a{:href => "/books", :class => "btn btn-default btn-default"}
       GO BACK TO STORE

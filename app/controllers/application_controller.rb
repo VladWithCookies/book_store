@@ -5,11 +5,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order 
-    if session[:order_id].nil?
-      @current_order = Order.create(user_id: current_user.id)
+    @current_order = Order.find_by(id: session[:order_id])
+    if @current_order.nil?
+      @current_order = Order.create(user: current_user)
       session[:order_id] = @current_order.id
-    else
-      @current_order = Order.find(session[:order_id])
+    elsif current_user && @current_order.user.nil?
+      @current_order.update(user: current_user)
     end
     @current_order
   end

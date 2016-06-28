@@ -60,6 +60,7 @@ end
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml', '~> 4.0.5'
 gem 'haml-rails'
-
 gem 'rails_admin', github: 'sferik/rails_admin'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 

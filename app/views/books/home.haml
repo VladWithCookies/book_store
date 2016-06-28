@@ -17,31 +17,56 @@
           %li
             %a{:href => "/users/edit"} Settings
           %li
-            %a{:href => "#"} Orders
+            %a{:href => "/orders"} Orders
           %li= link_to "Logout", destroy_user_session_path, method: :delete
         - else
           %li= link_to "Sign up", new_user_registration_path
           %li= link_to "Login", new_user_session_path
 
 #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-  %ol.carousel-indicators
-    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
-    %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
-    %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
   .carousel-inner{:role => "listbox"}
     .item.active
       .item-title
-        %span Booktitle
+        %span= @items[0].book.title
         by
-        %a{:href => ""} Name Lastname
-      %img{:alt => "...", :src => "https://unsplash.it/1024/400/?random"}/
-      .carousel-caption
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet ipsum nec nibh pretium, nec accumsan nibh imperdiet. Sed tristique tellus et eros elementum tempus. Nunc quis est eu libero imperdiet dictum. Aenean eu ante id tortor euismod malesuada et vitae nisi. Aliquam varius vehicula orci, sit amet rhoncus eros ultrices ac. Praesent faucibus condimentum lectus, vel commodo lorem. Vestibulum dignissim dapibus eros, sed tincidunt ante eleifend vitae. Etiam eu ullamcorper velit. Donec a nisi vitae quam fermentum faucibus sit amet et augue. Ut eu egestas eros, ut suscipit sem. Donec congue mattis leo. Praesent nibh mauris, laoreet non ante quis, ullamcorper semper lorem.
+        %a{:href => ""}
+          - @items[0].book.authors.each do |a|
+            =a.firstname
+            =a.lastname
+      .row
+        .col-md-3
+          %img{:alt => "...", :src => "#{@items[0].book.image}"}
+        .col-md-9
+          .book-description= @items[0].book.description
+      .order-form
+        =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
+          %span.price="$#{@items[0].book.price}"
+          =f.hidden_field(:book_id, value: @items[0].book.id)
+          =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
+          %button.btn.btn-default ADD TO CART
+
+    - @items.shift
+    - @items.each do |i|
+      .item
+        .item-title
+          %span= i.book.title
+          by
+          %a{:href => ""}
+            - i.book.authors.each do |a|
+              =a.firstname
+              =a.lastname
+        .row
+          .col-md-3
+            %img{:alt => "...", :src => "#{i.book.image}"}
+          .col-md-9
+            .book-description= i.book.description
         .order-form
-          %form{:action => ""}
-            %label{:for => ""} $49.99
-            %input.form-control{:type => "text", "value" => 1}
+          =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
+            %span.price="$#{i.book.price}"
+            =f.hidden_field(:book_id, value: i.book.id)
+            =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
             %button.btn.btn-default ADD TO CART
+
   %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
     %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
     %span.sr-only Previous
@@ -50,5 +75,5 @@
     %span.sr-only Next
 %h3.greeting
   Welcome to our amazing Bookstore!
-  %br/
+  %br
   Choose anything you wish, we'll ship it anywhere!
