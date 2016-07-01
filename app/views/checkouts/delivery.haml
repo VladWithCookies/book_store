@@ -37,10 +37,10 @@
         %table
           %tr
             %td ITEM TOTAL:
-            %td="$#{current_order.item_total}"
+            %td=number_to_currency(current_order.item_total)
           %tr
             %td SHIPPING:
-            %td="$#{current_order.shipping}"
+            %td=number_to_currency(current_order.shipping)
           %tr
             %td ORDER TOTAL:
-            %td="$#{current_order.order_total}"
+            %td=number_to_currency(current_order.order_total)

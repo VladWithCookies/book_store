@@ -63,4 +63,7 @@ gem 'haml-rails'
 gem 'rails_admin', github: 'sferik/rails_admin'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'activemodel-serializers-xml'
+gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'i18n'
 

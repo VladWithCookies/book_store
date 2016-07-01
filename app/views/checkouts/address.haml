@@ -21,7 +21,7 @@
     .address-form
       .col-md-4
         %h4 BILLING ADDRESS
-        =form_for @billing_address, url: {action: "address_confirm"} do |f|
+        =form_for @address, url: {action: "address_confirm"} do |f|
           =f.text_field :firstname, placeholder: "Firstname"
           =f.text_field :lastname, placeholder: "Lastname"
           =f.text_field :address, placeholder: "Street address"
@@ -36,4 +36,4 @@
         %span Use billing address
       .col-md-4
         %h4 ORDER SUMMARY
-        .total= "ITEM TOTAL: #{current_order.item_total}$"  
+        .total= "ITEM TOTAL: #{number_to_currency(current_order.item_total)}"  

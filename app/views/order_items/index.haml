@@ -20,18 +20,17 @@
                 %p= order_item.book.description
         %td
           %h4
-            ="#{order_item.book.price}$"
+            =number_to_currency(order_item.book.price)
         %td
           =hidden_field(:book_id, value: order_item.book.id)
-          //=number_field(:quantity, class: "form-control", min: 1, value: order_item.quantity)
           %h4=order_item.quantity
         %td
           %h4
-            ="#{order_item.price}$"
+            =number_to_currency(order_item.price)
         %td
           =link_to "Remove", order_item_path(order_item), method: "delete"
 
-  .sub-total="SUBTOTAL: #{@order.item_total}$" 
+  .sub-total="SUBTOTAL: #{number_to_currency(@order.item_total)}" 
   %br
 
   .order-items-buttons

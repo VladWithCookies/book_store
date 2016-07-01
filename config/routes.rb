@@ -4,14 +4,20 @@ Rails.application.routes.draw do
 
   get "/" => "books#home"
   root "books#home"
-
-  resources :books do
-    get :add_rating, on: :member
-  end
   
   resources :ratings
   resources :orders
   resources :order_items
+
+  resources :books do
+    get :add_rating, on: :member
+  end
+
+  resources :profiles do 
+    patch :update_password, on: :member
+    post :update_billing, on: :member
+    post :update_shipping, on: :member
+  end
 
   get "categories/:category" => "categories#category"
 
@@ -29,4 +35,5 @@ Rails.application.routes.draw do
 
   get "/checkout/confirm"   => "checkouts#confirm"
   get "/checkout/complete"  => "checkouts#complete"
+
 end

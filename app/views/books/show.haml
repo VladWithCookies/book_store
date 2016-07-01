@@ -9,7 +9,7 @@
   .col-md-9
     .row
       .col-md-9
-        .price= "$#{@book.price}"
+        .price= number_to_currency(@book.price)
       .col-md-3
         .order-form
           =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|

@@ -1,6 +1,6 @@
 class CheckoutsController < ApplicationController
   def address
-    @billing_address = Address.new
+    @address = Address.new
     @countries = Country.pluck(:name)
   end
 
@@ -31,9 +31,9 @@ class CheckoutsController < ApplicationController
 
   def confirm
     @order = current_order
-    @billing_address = @order.billing_address
-    @shipping_address = @order.shipping_address
-    @credit_card = @order.credit_card
+    @billing_address = @order.billing_address.decorate
+    @shipping_address = @order.shipping_address.decorate
+    @credit_card =  @order.credit_card.decorate
   end
 
   def complete

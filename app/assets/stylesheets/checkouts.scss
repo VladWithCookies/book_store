@@ -2,9 +2,10 @@ h3 {
   margin-top: 8px;
 }
 
-.address-form {
+.address-form, .email-form, .password-form, .remove-acc-form {
   input, button, select {
-    margin-top: 20px;
+    margin-bottom: 15px;
+    display: block;
   }
 
   button, select {
@@ -19,6 +20,10 @@ h3 {
     position: relative;
     top: -3px;
   }
+}
+
+.email-form, .password-form, .remove-acc-form {
+  margin-top: 50px;
 }
 
 .delivery-form {

@@ -23,62 +23,24 @@
                     %p= order_item.book.description
             %td
               %h4
-                ="#{order_item.book.price}$"
+                =number_to_currency(order_item.book.price)
             %td
               =hidden_field(:book_id, value: order_item.book.id)
               %h4=order_item.quantity
             %td
               %h4
-                ="#{order_item.price}$"
+                =number_to_currency(order_item.price)
 
-    .sub-total="SUBTOTAL: #{@order.item_total}$"
+    .sub-total="SUBTOTAL: #{number_to_currency(@order.item_total)}"
     %a{:href => "/cart", :class => "btn btn-default btn-default"}
       GO TO CART
 
+
   - if @orders_processing.count > 0
-    .orders-processing
-      %h4 WATING FOR PROCESSING
-      %table.table
-        %th NUMBER
-        %th COMPLETED AT
-        %th TOTAL
-        %th
-        - @orders_processing.each do |order|
-          %tr
-            %td= order.id
-            %td= order.completed_date
-            %td= "$#{order.order_total}"
-            %td
-              =link_to "View", order_path(order)
+    =render "order_info",  orders: @orders_processing
 
   - if @orders_delivery.count > 0
-    .orders-delivery
-      %h4 IN DELIVERY
-      %table.table
-        %th NUMBER
-        %th COMPLETED AT
-        %th TOTAL
-        %th
-        - @orders_delivery.each do |order|
-          %tr
-            %td= order.id
-            %td= order.completed_date
-            %td= "$#{order.order_total}"
-            %td
-              =link_to "View", order_path(order)
+    =render "order_info",  orders: @orders_delivery
 
   - if @orders_delivered.count > 0
-    .orders-delivered
-      %h4 DELIVERED
-      %table.table
-        %th NUMBER
-        %th COMPLETED AT
-        %th TOTAL
-        %th
-        - @orders_delivered.each do |order|
-          %tr
-            %td= order.id
-            %td= order.completed_date
-            %td= "$#{order.order_total}"
-            %td
-              =link_to "View", order_path(order)
+    =render "order_info",  orders: @orders_delivered

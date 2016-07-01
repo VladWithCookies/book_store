@@ -11,11 +11,15 @@
         %li.active
           %a{:href => "/books"} SHOP
       %a{:href => "/cart"}    
-        %span.glyphicon.glyphicon-shopping-cart.cart="CART: #{current_order.item_total}$" || "EMPTY"
+        %span.glyphicon.glyphicon-shopping-cart.cart
+          - if current_order.item_total
+            ="CART: #{number_to_currency(current_order.item_total)}"
+          -else
+            ="CART: (EMPTY)"
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            %a{:href => "/users/edit"} Settings
+            = link_to "Settings", edit_profile_path(current_user)
           %li
             %a{:href => "/orders"} Orders
           %li= link_to "Logout", destroy_user_session_path, method: :delete

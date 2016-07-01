@@ -1,0 +1,13 @@
+.order-info
+  %h4 WATING FOR PROCESSING
+  %table.table
+    %th NUMBER
+    %th COMPLETED AT
+    %th TOTAL
+    %th
+    - orders.each do |order|
+      %tr
+        %td= order.id
+        %td= order.completed_date
+        %td= number_to_currency(order.order_total)
+        %td= link_to "View", order_path(order)

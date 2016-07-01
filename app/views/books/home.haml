@@ -11,11 +11,15 @@
         %li
           %a{:href => "/books"} SHOP
       %a{:href => "/cart"}
-        %span.glyphicon.glyphicon-shopping-cart.cart="CART: #{current_order.item_total}$" || "EMPTY"
+        %span.glyphicon.glyphicon-shopping-cart.cart
+          - if current_order.item_total
+            ="CART: #{number_to_currency(current_order.item_total)}"
+          -else
+            ="CART: (EMPTY)"
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            %a{:href => "/users/edit"} Settings
+            = link_to "Settings", edit_profile_path(current_user)
           %li
             %a{:href => "/orders"} Orders
           %li= link_to "Logout", destroy_user_session_path, method: :delete
@@ -38,9 +42,10 @@
           %img{:alt => "...", :src => "#{@items[0].book.image}"}
         .col-md-9
           .book-description= @items[0].book.description
+
       .order-form
         =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
-          %span.price="$#{@items[0].book.price}"
+          %span.price= number_to_currency(@items[0].book.price)
           =f.hidden_field(:book_id, value: @items[0].book.id)
           =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
           %button.btn.btn-default ADD TO CART
@@ -62,7 +67,7 @@
             .book-description= i.book.description
         .order-form
           =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
-            %span.price="$#{i.book.price}"
+            %span.price= number_to_currency(i.book.price)
             =f.hidden_field(:book_id, value: i.book.id)
             =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
             %button.btn.btn-default ADD TO CART

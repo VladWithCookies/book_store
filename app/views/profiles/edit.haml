@@ -1,0 +1,36 @@
+= render "layouts/nav_bar"
+.wrapper
+  .row
+    .col-md-6
+      .address-form
+        %h2 BILLING ADDRESS
+        =form_for @billing_address, url: { action: :update_billing } do |f|
+          =render "layouts/address_form", f: f
+
+    .col-md-6
+      .address-form
+        %h2 SHIPPING ADDRESS
+        =form_for @shipping_address, url: { action: :update_shipping } do |f|
+          =render "layouts/address_form", f: f
+  .row
+    .col-md-6
+      .email-form
+        %h2 EMAIL
+        =form_for @user, url: { action: :update } do |f|
+          =f.email_field :email
+          %button.btn.btn-default SAVE
+
+    .col-md-6
+      .password-form
+        %h2 PASSWORD
+        =form_for @user, url: { controller: :profiles, action: :update_password } do |f|
+          =f.label :old_password
+          =f.password_field :current_password
+          =f.label :new_password
+          =f.password_field :password
+          %button.btn.btn-default SAVE
+
+  .remove-acc-form
+    %h2 REMOVE ACCOUNT
+    = button_to("Cancel my account", registration_path(@user), 
+                  class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete)
