@@ -5,7 +5,7 @@ describe Order do
   let(:book) { FactoryGirl.create(:book) }
 
   context "validations" do
-    [:total_price, :completed_date, :state].each do |field|
+    [:state].each do |field|
       it "is invalid without #{field}" do
         is_expected.to validate_presence_of(field)
       end
@@ -24,16 +24,24 @@ describe Order do
     end
   end
 
-  context "#add" do
-    it "adds new book to order items" do
-      expect { subject.add(book, 1) }.to change(subject.order_items, :count).by(1)
+  context ".add_item" do
+    it "add new order_item  to order" do
+      subject.add_item(book.id, 1)
+      expect(subject.order_items.count).to eq(1)
     end
   end
 
-  context "#total_price" do
-    it "return total price of order" do
+  context ".get_item_total" do 
+    it "calculate and update price of order" do
       FactoryGirl.create_list(:order_item, 4, order: subject)
-      expect(subject.get_total_price).to eq(10)
+      expect(subject.get_item_total).to eq(120)
     end
   end
+
+  context ".get_order_total" do 
+    it "calculate and update price of order include delivery" do
+      expect(subject.get_order_total).to eq(50)
+    end
+  end
+  
 end

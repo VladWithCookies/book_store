@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :order do
-    total_price 49.99 
+    order_total 50 
+    shipping  5
+    item_total 45
     completed_date FFaker::Time.date 
     state 'in progress'
     user

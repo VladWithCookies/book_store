@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Book do 
-  subject { FactoryGirl.create(:book) }
+  subject { FactoryGirl.create(:book)}
 
   context "validations" do
     [:title, :price, :in_stock].each do |field|
@@ -12,17 +12,22 @@ describe Book do
   end
 
   context "associations" do
-    it "has many order ratings" do 
-      should have_many(:ratings)
+    [:ratings, :order_items].each do |entity|
+      it "has many #{entity}" do 
+        should have_many(entity)
+      end
     end
 
     it "has and belongs to many authors" do 
-      should have_and_belong_to_many(:books).join_table('authors_books')
+      should have_and_belong_to_many(:authors)
     end
 
     it "has and belongs to many categories" do 
-      should have_and_belong_to_many(:books).join_table('books_categories')
+      should have_and_belong_to_many(:categories)
     end
   end
 
+  context ".most_popular" do
+    it "return most popular books"
+  end
 end

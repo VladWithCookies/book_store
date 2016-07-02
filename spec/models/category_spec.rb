@@ -15,7 +15,7 @@ describe Category do
 
   context "associations" do
     it "has many and belongs to books" do 
-      should have_and_belong_to_many(:books).join_table('books_categories')
+      should have_and_belong_to_many(:books)
     end
   end
 end

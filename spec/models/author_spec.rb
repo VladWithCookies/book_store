@@ -13,7 +13,7 @@ describe Author do
 
   context "associations" do
     it "has and belongs to many books" do 
-      should have_and_belong_to_many(:books).join_table('authors_books')
+      should have_and_belong_to_many(:books)
     end
   end
 end

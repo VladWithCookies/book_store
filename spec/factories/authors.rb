@@ -3,5 +3,6 @@ FactoryGirl.define do
     firstname   FFaker::Name.first_name
     lastname    FFaker::Name.last_name 
     description FFaker::Lorem.paragraphs 
+    #book { FactoryGirl.create(:book) }
   end
 end

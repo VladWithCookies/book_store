@@ -17,7 +17,11 @@ describe OrderItem do
         should belong_to(x)
       end
     end
-
   end
 
+  context ".update_price" do
+    it "update price of order_item" do  
+      expect(subject.update_price).to eq(30)
+    end
+  end
 end
