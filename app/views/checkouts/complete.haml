@@ -8,7 +8,7 @@
         %table
           %b Shipping address
           %tr
-            %td= "#{ @shipping_address.firstname } #{ @shipping_address.lastname }"
+            %td= @shipping_address.full_name
           %tr
             %td= @shipping_address.address
           %tr
@@ -22,7 +22,7 @@
         %table
           %b Billing address
           %tr
-            %td= "#{ @billing_address.firstname } #{ @billing_address.lastname }"
+            %td= @billing_address.full_name
           %tr
             %td= @billing_address.address
           %tr
@@ -49,9 +49,9 @@
         %table 
           %b Payment Information
           %tr
-            %td= "** ** ** #{@credit_card.cvv.last(4)}"
+            %td= @credit_card.cvv_hidden
           %tr
-            %td= "#{@credit_card.expiration_month}/#{@credit_card.expiration_year}"
+            %td= @credit_card.expiration_date
 
     =render "layouts/order_table"
 
