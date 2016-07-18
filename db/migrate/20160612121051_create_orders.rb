@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration[5.0]
       t.decimal :order_total
       t.decimal :shipping
       t.decimal :item_total
+      t.decimal :discount
       t.date :completed_date
       t.string :state
       t.belongs_to :user, index: true

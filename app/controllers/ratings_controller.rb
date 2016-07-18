@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
   def create
-    @book = Book.find(rating_params[:book_id])
+    @book = Book.find_by(id: rating_params[:book_id])
     @rating = Rating.new(rating_params)   
     redirect_to @book if @rating.save
   end

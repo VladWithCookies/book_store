@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :category do
-    title FFaker::Product.product
+    sequence(:title) { |n| "title#{n}"}
   end
 end

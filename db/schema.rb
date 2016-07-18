@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624131321) do
+ActiveRecord::Schema.define(version: 20160716174736) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "firstname"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20160624131321) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code"
+    t.date     "expires_at"
+    t.date     "starts_at"
+    t.decimal  "discount",   default: "0.0"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "credit_cards", force: :cascade do |t|
     t.string   "number"
     t.string   "cvv"
@@ -99,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160624131321) do
     t.decimal  "order_total"
     t.decimal  "shipping"
     t.decimal  "item_total"
+    t.decimal  "discount"
     t.date     "completed_date"
     t.string   "state"
     t.integer  "user_id"
@@ -136,6 +146,9 @@ ActiveRecord::Schema.define(version: 20160624131321) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "provider"
+    t.string   "url"
+    t.string   "uid"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
     t.datetime "created_at",                          null: false

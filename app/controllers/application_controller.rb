@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   def current_order 
     @current_order = Order.find_by(id: session[:order_id])
+    set_current_order
+  end
+
+  def set_current_order
     if @current_order.nil?
       @current_order = Order.create(user: current_user)
       session[:order_id] = @current_order.id

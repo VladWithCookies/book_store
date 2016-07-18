@@ -5,13 +5,13 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
-    @ratings = Rating.where(book_id: params[:id])
+    @book = Book.find_by(id: params[:id])
+    @ratings = Rating.book_ratings(params[:id])
     @order_item = OrderItem.new
   end
 
   def add_rating 
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
     @rating = Rating.new
   end
 
@@ -19,4 +19,5 @@ class BooksController < ApplicationController
     @items = Book.most_popular(3)
     @order_item = OrderItem.new
   end
+
 end

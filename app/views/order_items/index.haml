@@ -39,7 +39,9 @@
       CONTINUE SHOPPING
 
     %span.right
-      %a{:href => "#", :class => "btn btn-default btn-default"}
-        UPDATE
+      =form_for @coupon, url: { action: "add_coupon" } do |f|
+        =f.text_field :code, placeholder: "COUPON CODE"
+        %button.btn.btn-default UPDATE
+
       %a{:href => "/checkout/address", :class => "btn btn-default btn-default"}
         CHECKOUT

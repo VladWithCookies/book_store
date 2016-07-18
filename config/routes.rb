@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  namespace :users do
+    get 'omniauth_callbacks/facebook'
+  end
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   get "/" => "books#home"
   root "books#home"
   
@@ -36,4 +39,5 @@ Rails.application.routes.draw do
   get "/checkout/confirm"   => "checkouts#confirm"
   get "/checkout/complete"  => "checkouts#complete"
 
+  post "/add_coupon" => "order_items#add_coupon"
 end

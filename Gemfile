@@ -11,15 +11,6 @@ source "https://rubygems.org"
 group :active_record do
   gem "paper_trail", "~> 3.0"
 
-  platforms :jruby do
-    gem "activerecord-jdbcmysql-adapter", ">= 1.2"
-    gem "jdbc-mysql", ">= 5.1"
-    gem "activerecord-jdbcpostgresql-adapter", ">= 1.2"
-    gem "jdbc-postgres", ">= 9.2"
-    gem "activerecord-jdbcsqlite3-adapter", ">= 1.3.0.beta1"
-    gem "jdbc-sqlite3", ">= 3.7"
-  end
-
   platforms :ruby, :mswin, :mingw do
     gem "sqlite3", ">= 1.3"
   end
@@ -51,10 +42,7 @@ group :test do
   gem "simplecov", ">= 0.9", :require => false
   gem "timecop", ">= 0.5"
   gem "shoulda-matchers", "~> 3.1"
-
-  platforms :ruby_19 do
-    gem "tins", "~> 1.6.0", :require => false
-  end
+  gem "rails-controller-testing"
 end
 
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -66,4 +54,5 @@ gem 'bootstrap-kaminari-views'
 gem 'activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'i18n'
-
+gem 'omniauth'
+gem 'omniauth-facebook'

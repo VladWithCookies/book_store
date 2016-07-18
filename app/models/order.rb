@@ -3,6 +3,7 @@
   belongs_to :credit_card
   belongs_to :billing_address, class_name: 'Address'
   belongs_to :shipping_address, class_name: 'Address'
+  has_many :coupons
   has_many :order_items
 
   validates :state, presence: true
@@ -16,8 +17,17 @@
     self.state ||= 'in progress'  
   end
 
+  def add_coupon(code)
+    coupon = Coupon.find_by(code: code)
+    if coupon && !coupon.expired?
+      self.discount += coupon.discount
+      self.save
+      coupon.delete
+    end
+  end
+
   def add_item(book_id, quantity)
-    book = Book.find(book_id)
+    book = Book.find_by(id: book_id)
     order_item = order_items.find_by(book_id: book_id)
     if order_item
       order_item.quantity += quantity
@@ -29,7 +39,7 @@
   end
 
   def get_item_total
-    total = order_items.inject(0) { |sum, item| sum + item.price }
+    total = order_items.inject(0) { |sum, item| sum + item.price } - discount
     update_columns(item_total: total)
     total
   end
@@ -39,4 +49,5 @@
     update_columns(order_total: total)
     total
   end
+    
 end
