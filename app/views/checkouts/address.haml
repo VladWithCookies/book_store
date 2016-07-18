@@ -19,9 +19,9 @@
 
   .row
     .address-form
-      .col-md-4
-        %h4 BILLING ADDRESS
-        =form_for @address, url: {action: "address_confirm"} do |f|
+      =form_for @address, url: {action: "address_confirm"} do |f|
+        .col-md-4
+          %h4 BILLING ADDRESS  
           =f.text_field :firstname, placeholder: "Firstname"
           =f.text_field :lastname, placeholder: "Lastname"
           =f.text_field :address, placeholder: "Street address"
@@ -30,10 +30,10 @@
           =f.text_field :zipcode, placeholder: "Zip"
           =f.telephone_field :phone, placeholder: "Phone"
           %button.btn.btn-default SAVE AND CONTINUE
-      .col-md-4
-        %h4 SHIPPING ADDRESS
-        %input{:type => "checkbox", checked: true} 
-        %span Use billing address
-      .col-md-4
-        %h4 ORDER SUMMARY
-        .total= "ITEM TOTAL: #{number_to_currency(current_order.item_total)}"  
+        .col-md-4
+          %h4 SHIPPING ADDRESS
+          =check_box_tag :use_billing, 1, true
+          %span Use billing address
+        .col-md-4
+          %h4 ORDER SUMMARY
+          .total= "ITEM TOTAL: #{number_to_currency(current_order.item_total)}"  

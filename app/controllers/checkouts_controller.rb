@@ -6,7 +6,11 @@ class CheckoutsController < ApplicationController
 
   def address_confirm
     @billing_address = Address.create(address_params)
-    current_order.update(billing_address: @billing_address, shipping_address: @billing_address) #!!!
+    if params[:use_billing]
+      current_order.update(billing_address: @billing_address, shipping_address: @billing_address)
+    else
+      current_order.update(billing_address: @billing_address, shipping_address: current_user.shipping_address)
+    end
     redirect_to "/checkout/delivery"
   end
 
