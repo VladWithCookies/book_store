@@ -4,13 +4,13 @@
     .col-md-6
       .address-form
         %h2 BILLING ADDRESS
-        =form_for @billing_address, url: { action: :update_billing } do |f|
+        =form_for @address_form, url: { action: :update_billing } do |f|
           =render "layouts/address_form", f: f
 
     .col-md-6
       .address-form
         %h2 SHIPPING ADDRESS
-        =form_for @shipping_address, url: { action: :update_shipping } do |f|
+        =form_for @address_form, url: { action: :update_shipping } do |f|
           =render "layouts/address_form", f: f
   .row
     .col-md-6

@@ -19,7 +19,7 @@
 
   .row
     .address-form
-      =form_for @address, url: {action: "address_confirm"} do |f|
+      =form_for @address_form, url: {action: "address_confirm"} do |f|
         .col-md-4
           %h4 BILLING ADDRESS  
           =f.text_field :firstname, placeholder: "Firstname"

@@ -4,7 +4,8 @@ FactoryGirl.define do
     shipping  5
     item_total 45
     completed_date FFaker::Time.date 
-    state 'in progress'
+    state 'in_progress'
+    discount 0
     user
     credit_card
     association :billing_address, factory: :address

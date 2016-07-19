@@ -2,8 +2,7 @@ class ProfilesController < ApplicationController
   before_action :set_user
 
   def edit
-    @billing_address = Address.new
-    @shipping_address = Address.new
+    @address_form = AddressForm.new(Address.new)
     @countries = Country.pluck(:name)
   end
 

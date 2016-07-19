@@ -37,11 +37,12 @@
           - @items[0].book.authors.each do |a|
             =a.firstname
             =a.lastname
-      .row
-        .col-md-3
-          %img{:alt => "...", :src => "#{@items[0].book.image}"}
-        .col-md-9
-          .book-description= @items[0].book.description
+      %a{:href => "books/#{@items[0].book.id}"}
+        .row
+          .col-md-3
+            %img{:alt => "...", :src => "#{@items[0].book.image}"}
+          .col-md-9
+            .book-description= @items[0].book.description
 
       .order-form
         =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|

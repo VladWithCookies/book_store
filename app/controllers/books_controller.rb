@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  load_and_authorize_resource only: [:add_rating]
+
   def index
     @books = Book.page(params[:page]).per(12)
     @categories = Category.all

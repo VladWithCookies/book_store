@@ -22,6 +22,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :provider
       t.string :url
       t.string :uid
+      t.string :role, null: false, default: "user"
 
       ## Confirmable
       # t.string   :confirmation_token

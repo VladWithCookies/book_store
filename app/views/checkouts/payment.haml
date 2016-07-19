@@ -20,7 +20,7 @@
     %row
       %col-md-8
         %h3 CREDIT CARD
-        =form_for @credit_card, url: { action: "payment_confirm" } do |f|
+        =form_for @credit_card_form, url: { action: "payment_confirm" } do |f|
           =f.hidden_field :user_id, value: current_user.id
           =f.text_field :number, placeholder: "Card number"
           %p Expiration date:

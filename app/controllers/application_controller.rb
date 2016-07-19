@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     @current_order
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to new_user_session_path
+  end
+  
 end
