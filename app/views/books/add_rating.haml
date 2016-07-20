@@ -1,4 +1,3 @@
-
 .wrapper
   New review for
   =link_to @book.title, book_path(@book)
@@ -6,9 +5,13 @@
   =form_for @rating do |f|
     =f.hidden_field(:user_id, value: current_user.id )
     =f.hidden_field(:book_id, value: @book.id)
-    =f.number_field(:rating, in: 1..5)
+    =f.number_field(:rating, in: 1..5, value: 5)
+    %br
+    =f.label :title, 'Review title'
     %br
     =f.text_field :title
+    %br
+    =f.label :text, 'Review text'
     %br
     =f.text_area(:text, cols: 80, rows: 10)
     %br

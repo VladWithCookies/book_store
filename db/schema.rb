@@ -132,10 +132,11 @@ ActiveRecord::Schema.define(version: 20160719102944) do
     t.string   "title"
     t.text     "text"
     t.integer  "rating"
+    t.boolean  "approval",   default: false
     t.integer  "user_id"
     t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["book_id"], name: "index_ratings_on_book_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end

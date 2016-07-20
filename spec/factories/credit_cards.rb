@@ -5,7 +5,7 @@ FactoryGirl.define do
     cvv              FFaker::String.from_regexp("^[0-9]{3, 4}$")
     expiration_month FFaker::Time.date
     expiration_year  2016
-    number           42
+    number           12345678910
     user
   end
 end

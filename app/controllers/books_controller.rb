@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   load_and_authorize_resource only: [:add_rating]
-
+  
   def index
     @books = Book.page(params[:page]).per(12)
     @categories = Category.all
@@ -8,7 +8,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by(id: params[:id])
-    @ratings = Rating.book_ratings(params[:id])
+    @ratings = Rating.where(book_id: params[:id], approval: true)
     @order_item = OrderItem.new
   end
 
