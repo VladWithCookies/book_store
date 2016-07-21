@@ -1,0 +1,5 @@
+.wrapper
+  - flash.each do |key, value|
+    %div{:class => "alert alert-#{key.to_s == 'notice' ? 'success' : 'danger'}"}
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      = content_tag :div, value, :id => "flash_#{key}"

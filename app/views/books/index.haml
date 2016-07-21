@@ -1,6 +1,7 @@
 = render "layouts/nav_bar"
 
 .wrapper
+  = render "layouts/notices"
   - if @category_title 
     .breadcrumbs
       %a{:href => "/"} Home

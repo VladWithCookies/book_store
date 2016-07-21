@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
   def update_password
     @user.update_with_password(user_params)
     sign_in @user, bypass: true
+    flash[:notice] = "Password was successfully updated!"
   end
 
   def update_billing
@@ -21,6 +22,7 @@ class ProfilesController < ApplicationController
     else 
       @user.update(billing_address: create_address)
     end
+    flash[:notice] = "Billing address was successfully updated!"
   end
 
   def update_shipping
@@ -29,6 +31,7 @@ class ProfilesController < ApplicationController
     else 
       @user.update(shipping_address: create_address)
     end
+    flash[:notice] = "Shipping address was successfully updated!"
   end
 
   private 
