@@ -59,4 +59,5 @@ gem 'omniauth-facebook'
 gem 'cancan'
 gem 'aasm'
 gem 'reform-rails'
+gem 'capistrano'
 
