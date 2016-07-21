@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrderItemsController, :type => :controller do
   let!(:order_item) { FactoryGirl.create(:order_item) }
+  let!(:book) { FactoryGirl.create(:book) }
 
   describe "GET #index" do
     before { get :index }
@@ -29,6 +30,14 @@ RSpec.describe OrderItemsController, :type => :controller do
     it 'redirect to cart_path' do
       delete :destroy, params: { id: order_item.id }
       expect(response).to redirect_to(cart_path)
+    end
+  end
+
+  describe "POST #create" do
+    it "add new order item to db" do
+      expect {
+        post :create, params: { order_item: { book_id: book, quantity: 1} }
+      }.to change(OrderItem, :count).by(1)
     end
   end
 

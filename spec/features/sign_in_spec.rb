@@ -5,11 +5,7 @@ feature 'sign in' do
   given!(:user) { FactoryGirl.create(:user) }
 
   scenario 'existing user want to sign in' do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
-
+    sign_in(user)
     expect(page).to have_content('Logout')
   end
 
@@ -23,10 +19,7 @@ feature 'sign in' do
   end
 
   scenario 'user logout' do 
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in(user)
 
     click_on('Logout')
     expect(page).to have_content('Login')

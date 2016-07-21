@@ -3,7 +3,7 @@ FactoryGirl.define do
     title  FFaker::Lorem.phrase
     text   FFaker::Lorem.paragraph
     rating 5
-    book
+    book 
     user
   end
 end

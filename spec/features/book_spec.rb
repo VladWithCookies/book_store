@@ -21,13 +21,8 @@ feature 'book' do
     expect(page).to have_content(book.title)
   end
 
-  scenario 'authenticated user can add review' do
-    
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
-
+  scenario 'authenticated user can add review' do   
+    sign_in(user)
     visit(book_path(book))
 
     click_on('Add review for this book')
