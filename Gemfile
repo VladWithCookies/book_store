@@ -12,7 +12,7 @@ group :active_record do
   gem "paper_trail", "~> 3.0"
 
   platforms :ruby, :mswin, :mingw do
-    gem "sqlite3", ">= 1.3"
+    gem "pg"
   end
 end
 
