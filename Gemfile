@@ -11,7 +11,7 @@ source "https://rubygems.org"
 group :active_record do
   gem "paper_trail", "~> 3.0"
 
-  platforms :ruby, :mswin, :mingw do
+  platforms :ruby do
     gem "pg"
   end
 end
