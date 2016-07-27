@@ -19,7 +19,6 @@
     state :in_queue
     state :in_delivery
     state :delivered
-    state :canceled
 
     event :place_order do
       transitions from: :in_progress, to: :in_queue

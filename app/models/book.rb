@@ -4,6 +4,8 @@ class Book < ApplicationRecord
   has_many :ratings
   has_many :order_items
 
+  mount_uploader :image, ImageUploader
+
   validates :title, :price, :in_stock, presence: true
 
   def self.most_popular(n)

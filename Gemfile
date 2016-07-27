@@ -8,6 +8,9 @@ source "https://rubygems.org"
   gem "remotipart", :github => "mshibuya/remotipart"
   gem "capybara", :github => "jnicklas/capybara", :group => :test
 
+  gem 'therubyracer'
+  gem 'uglifier'
+
 group :active_record do
   gem "paper_trail", "~> 3.0"
 
@@ -28,9 +31,8 @@ group :development, :test do
 end
 
 group :test do
-  gem "carrierwave", ">= 0.8"
   gem "coveralls"
-  gem "database_cleaner", [">= 1.2", "!= 1.4.0", "!= 1.5.0"]
+  #gem "database_cleaner", [">= 1.2", "!= 1.4.0", "!= 1.5.0"]
   gem "dragonfly", "~> 1.0"
   gem "generator_spec", ">= 0.8"
   gem "launchy", ">= 2.2"
@@ -61,3 +63,5 @@ gem 'aasm'
 gem 'reform-rails'
 gem 'capistrano'
 
+gem "carrierwave", ">= 0.8"
+gem 'cloudinary'

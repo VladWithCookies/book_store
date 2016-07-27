@@ -17,7 +17,7 @@
               %img{:src => "#{order_item.book.image}", :alt => ""}
             %td
               %h4= order_item.book.title
-              %p= order_item.book.description
+              %p= order_item.book.short_description
       %td
         %h4="#{number_to_currency(order_item.book.price)}"
       %td

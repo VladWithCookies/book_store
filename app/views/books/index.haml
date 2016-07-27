@@ -16,11 +16,11 @@
   .row
     .col-md-9
       -@books.each do |book|
-        .col-md-4
+        .col-md-4.col-sm-6
           .thumbnail
             = link_to book_path(book) do
               %img{:src => "#{book.image}", :alt => ""}
-                %h3= book.title
+                %h4= book.title
                 %b= "$#{book.price}"
 
     .col-md-3

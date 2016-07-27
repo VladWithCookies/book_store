@@ -4,3 +4,25 @@
 @import "order_items.scss";
 @import "checkouts.scss";
 @import "orders.scss";
+
+.border-form-div {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 100px auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}
+
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  font-size: 14px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}

@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def category
     @category_title = params[:category]
-    @books = find_books_by_category(@category_title).page(params[:page]).per(12)
+    @books = find_books_by_category(@category_title).page(params[:page]).per(6)
     @categories = Category.all
     render 'books/index'
   end

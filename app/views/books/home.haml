@@ -54,27 +54,29 @@
             =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
             %button.btn.btn-default ADD TO CART
 
-    - @items.shift
-    - @items.each do |i|
-      .item
-        .item-title
-          %span= i.book.title
-          by
-          %a{:href => ""}
-            - i.book.authors.each do |a|
-              =a.firstname
-              =a.lastname
-        .row
-          .col-md-3
-            %img{:alt => "...", :src => "#{i.book.image}"}
-          .col-md-9
-            .book-description= i.book.description
-        .order-form
-          =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
-            %span.price= number_to_currency(i.book.price)
-            =f.hidden_field(:book_id, value: i.book.id)
-            =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
-            %button.btn.btn-default ADD TO CART
+      - @items.shift
+      - @items.each do |i|
+        .item
+          .item-title
+            %span= i.book.title
+            by
+            %a{:href => ""}
+              - i.book.authors.each do |a|
+                =a.firstname
+                =a.lastname
+          %a{:href => "books/#{i.book.id}"}
+            .row
+              .col-md-3
+                %img{:alt => "...", :src => "#{i.book.image}"}
+              .col-md-9
+                .book-description= i.book.description
+
+          .order-form
+            =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
+              %span.price= number_to_currency(i.book.price)
+              =f.hidden_field(:book_id, value: i.book.id)
+              =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
+              %button.btn.btn-default ADD TO CART
 
     %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
       %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}

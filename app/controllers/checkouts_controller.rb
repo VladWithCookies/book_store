@@ -54,7 +54,7 @@ class CheckoutsController < ApplicationController
 
   private 
     def address_params
-      params.require(:address).permit(:firstname, :lastname, :address, :city, :country, :zipcode, :phone)
+      params.require(:address).permit(:firstname, :lastname, :street, :city, :country, :zipcode, :phone)
     end
 
     def credit_card_params 
