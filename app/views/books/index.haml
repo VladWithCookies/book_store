@@ -4,14 +4,15 @@
   = render "layouts/notices"
   - if @category_title 
     .breadcrumbs
-      %a{:href => "/"} Home
+      =link_to t("breadcrumbs.home"), root_path
       >>
-      %a{:href => "/books"} Shop
+      =link_to t("breadcrumbs.shop"), books_path
       >>
       = @category_title
     .header= "CATEGORIES - #{@category_title}" 
   - else
-    .header SHOP
+    .header
+      =t("header.shop")
 
   .row
     .col-md-9
@@ -24,7 +25,8 @@
                 %b= "$#{book.price}"
 
     .col-md-3
-      %h4.category-header SHOP BY CATEGORIES
+      %h4.category-header 
+        =t("header.shop_by_categories")
       .list-group
         - @categories.each do |category|         
           %a.list-group-item{:href => "/categories/#{category.title}"}= category.title

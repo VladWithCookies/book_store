@@ -19,6 +19,7 @@
     state :in_queue
     state :in_delivery
     state :delivered
+    state :canceled
 
     event :place_order do
       transitions from: :in_progress, to: :in_queue
@@ -32,11 +33,10 @@
 
   def add_coupon(code)
     coupon = Coupon.find_by(code: code)
-    if coupon && !coupon.expired?
-      self.discount += coupon.discount
-      self.save
-      coupon.delete
-    end
+    return unless coupon && !coupon.is_valid?
+    self.discount += coupon.discount
+    coupon.update(used: true)
+    self.save
   end
 
   def add_item(book_id, quantity)

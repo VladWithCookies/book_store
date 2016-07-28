@@ -6,7 +6,7 @@
     .row
       .col-md-3
         %table
-          %b Shipping address
+          %b= t('text.shipping')
           %tr
             %td= @shipping_address.full_name
           %tr
@@ -20,7 +20,7 @@
 
       .col-md-3
         %table
-          %b Billing address
+          %b= t('text.billing')
           %tr
             %td= @billing_address.full_name
           %tr
@@ -34,7 +34,7 @@
 
       .col-md-3 
         %table 
-          %b Shipment
+          %b= t('text.shipment')
           %tr
             %td
               - case @order.shipping
@@ -47,7 +47,7 @@
 
       .col-md-3 
         %table 
-          %b Payment Information
+          %b= t('text.payment_info')
           %tr
             %td= @credit_card.cvv_hidden
           %tr
@@ -56,4 +56,4 @@
     =render "layouts/order_table"
 
     %a{:href => "/books", :class => "btn btn-default btn-default"}
-      GO BACK TO STORE
+      =t('button.go_back')

@@ -5,27 +5,26 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
-          %a{:href => "/"}
-            HOME
-            %span.sr-only (current)
+          =link_to t('navbar.home'), root_path
+          %span.sr-only (current)
         %li
-          %a{:href => "/books"} SHOP
+          =link_to t('navbar.shop'), books_path
       %a{:href => "/cart"}
         %span.glyphicon.glyphicon-shopping-cart.cart
           - if current_order.item_total
-            ="CART: #{number_to_currency(current_order.item_total)}"
+            ="#{t('navbar.cart')}: #{number_to_currency(current_order.item_total)}"
           -else
-            ="CART: (EMPTY)"
+            = t('navbar.cart_empty')
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to "Settings", edit_profile_path(current_user)
+            = link_to t('navbar.settings'), edit_profile_path(current_user)
           %li
-            %a{:href => "/orders"} Orders
-          %li= link_to "Logout", destroy_user_session_path, method: :delete
+            =link_to t('navbar.orders'), orders_path
+          %li= link_to t('navbar.logout'), destroy_user_session_path, method: :delete
         - else
-          %li= link_to "Sign up", new_user_registration_path
-          %li= link_to "Login", new_user_session_path
+          %li= link_to t('navbar.signup'), new_user_registration_path
+          %li= link_to t('navbar.login'), new_user_session_path
 
 = render "layouts/notices"
 
@@ -52,7 +51,8 @@
             %span.price= number_to_currency(@items[0].book.price)
             =f.hidden_field(:book_id, value: @items[0].book.id)
             =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
-            %button.btn.btn-default ADD TO CART
+            %button.btn.btn-default 
+              =t('button.add_to_cart')
 
       - @items.shift
       - @items.each do |i|
@@ -76,7 +76,8 @@
               %span.price= number_to_currency(i.book.price)
               =f.hidden_field(:book_id, value: i.book.id)
               =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
-              %button.btn.btn-default ADD TO CART
+              %button.btn.btn-default
+                =t('button.add_to_cart')
 
     %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
       %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
@@ -84,7 +85,3 @@
     %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
       %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
       %span.sr-only Next
-  %h3.greeting
-    Welcome to our amazing Bookstore!
-    %br
-    Choose anything you wish, we'll ship it anywhere!

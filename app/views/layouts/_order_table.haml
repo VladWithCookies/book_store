@@ -1,12 +1,12 @@
 %table.table.order-table
   %th
-    BOOK
+    =t('th.book')
   %th
-    PRICE
+    =t('th.price')
   %th
-    QTY
+    =t('th.qty')
   %th
-    TOTAL
+    =t('th.total')
 
   - @order.order_items.each do |order_item|
     %tr
@@ -26,7 +26,7 @@
         %h4="#{number_to_currency(order_item.price)}"
 
 .sub-total
-  %p="SUBTOTAL: #{number_to_currency(@order.item_total)}" 
-  %p="SHIPPING: #{number_to_currency(@order.shipping)}"
+  %p="#{t('th.item_total')}: #{number_to_currency(@order.item_total)}" 
+  %p="#{t('th.shipping')}: #{number_to_currency(@order.shipping)}"
 .order-total
-  %p="ORDER TOTAL: #{number_to_currency(@order.order_total)}"
+  %p="#{t('th.total')}: #{number_to_currency(@order.order_total)}"

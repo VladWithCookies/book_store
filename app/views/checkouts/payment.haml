@@ -2,29 +2,29 @@
 .wrapper
   .row
     .col-md-2
-      %h3 Checkout
+      %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
         %li{:role => "presentation"}
-          %a{:href => "/checkout/address"} ADDRESS
+          %a{:href => "/checkout/address"}= t('pills.address')
         %li{:role => "presentation"}
-          %a{:href => "/checkout/delivery"} DELIVERY
+          %a{:href => "/checkout/delivery"}= t('pills.delivery')
         %li.active{:role => "presentation"}
-          %a{:href => "/checkout/payment"} PAYMENT
+          %a{:href => "/checkout/payment"}= t('pills.payment')
         %li.disabled{:role => "presentation"}
-          %a{:href => ""} CONFIRM
+          %a{:href => ""}= t('pills.confirm')
         %li.disabled{:role => "presentation"}
-          %a{:href => ""} COMPLETE
+          %a{:href => ""}= t('pills.complete')
 
   .payment-form
     %row
       %col-md-8
-        %h3 CREDIT CARD
+        %h3= t('header.credit_card')
         =form_for @credit_card_form, url: { action: "payment_confirm" } do |f|
           =f.hidden_field :user_id, value: current_user.id
-          =f.text_field :number, placeholder: "Card number"
-          %p Expiration date:
+          =f.text_field :number, placeholder: t('placeholder.card_number')
+          %p= "#{t('text.expiration_date')}:"
           =f.select :expiration_month, Date::MONTHNAMES[1..12]
           =f.select :expiration_year, Time.now.year.. 8.years.from_now.year
-          =f.text_field :cvv, placeholder: "Card code" 
-          %button.btn.btn-default SAVE AND CONTINUE
+          =f.text_field :cvv, placeholder: t('placeholder.card_code') 
+          %button.btn.btn-default= t('button.save_and_continue')

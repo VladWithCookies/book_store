@@ -16,13 +16,15 @@
           =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
             =f.hidden_field(:book_id, value: @book.id)
             =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
-            %button.btn.btn-default ADD TO CART
+            %button.btn.btn-default 
+              =t('button.add_to_cart')
 
     .book-decription= @book.description
   .col-md-12
     .reviews
-      %h4 Reviews
-      = link_to "Add review for this book", add_rating_book_path
+      %h4
+        =t('header.reviews')
+      = link_to t('text.add_review'), add_rating_book_path
       -@ratings.each do |rating|
         .rating
           -rating.rating.times do 

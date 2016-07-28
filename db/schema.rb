@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160719102944) do
     t.date     "expires_at"
     t.date     "starts_at"
     t.decimal  "discount",   default: "0.0"
+    t.boolean  "used",       default: false
     t.integer  "order_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false

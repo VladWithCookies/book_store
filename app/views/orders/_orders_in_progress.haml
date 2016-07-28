@@ -1,0 +1,27 @@
+.orders-in-progress
+  %h4= t('header.in_progress')
+  %table.table
+    %th= t('th.book')
+    %th= t('th.price')
+    %th= t('th.qty')
+    %th= t('th.total')
+        
+    - @order.order_items.each do |order_item|
+      %tr
+        %td 
+          %table
+            %tr
+              %td
+                %img{:src => "#{order_item.book.image}", :alt => ""}
+                %td
+                  %h4= order_item.book.title
+                  %p= order_item.book.description
+        %td
+          %h4
+            =number_to_currency(order_item.book.price)
+        %td
+          =hidden_field(:book_id, value: order_item.book.id)
+          %h4=order_item.quantity
+        %td
+          %h4
+            =number_to_currency(order_item.price)

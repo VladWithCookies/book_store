@@ -40,4 +40,6 @@ Rails.application.routes.draw do
   get "/checkout/complete"  => "checkouts#complete"
 
   post "/add_coupon" => "order_items#add_coupon"
+
+  post "update_all" => "order_items#update_all"
 end

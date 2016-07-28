@@ -1,46 +1,26 @@
 = render "layouts/nav_bar"
 
 .wrapper
-  %h3 Orders
+  %h3= t('header.orders')
   - if @order.order_items.count > 0
-    .orders-in-progress
-      %h4 IN PROGRESS
-      %table.table
-        %th BOOK
-        %th PRICE
-        %th QTY
-        %th TOTAL
-        
-        - @order.order_items.each do |order_item|
-          %tr
-            %td 
-              %table
-                %tr
-                  %td
-                    %img{:src => "#{order_item.book.image}", :alt => ""}
-                  %td
-                    %h4= order_item.book.title
-                    %p= order_item.book.description
-            %td
-              %h4
-                =number_to_currency(order_item.book.price)
-            %td
-              =hidden_field(:book_id, value: order_item.book.id)
-              %h4=order_item.quantity
-            %td
-              %h4
-                =number_to_currency(order_item.price)
+    =render('orders_in_progress')
 
-    .sub-total="SUBTOTAL: #{number_to_currency(@order.item_total)}"
+    .sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}"
     %a{:href => "/cart", :class => "btn btn-default btn-default"}
-      GO TO CART
+      =t('button.go_to_cart')
 
 
   - if @orders_processing.count > 0
-    =render "order_info",  orders: @orders_processing
+    .order-info
+      %h4= t('header.wating_for_processing')
+      =render "order_info",  orders: @orders_processing
 
   - if @orders_delivery.count > 0
-    =render "order_info",  orders: @orders_delivery
+    .order-info
+      %h4= t('header.in_delivery')
+      =render "order_info",  orders: @orders_delivery
 
   - if @orders_delivered.count > 0
-    =render "order_info",  orders: @orders_delivered
+    .order-info
+      %h4= t('header.delivered')
+      =render "order_info",  orders: @orders_delivered

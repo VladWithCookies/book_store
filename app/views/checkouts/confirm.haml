@@ -3,26 +3,26 @@
 .wrapper
   .row
     .col-md-2
-      %h3 Checkout
+      %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
         %li{:role => "presentation"}
-          %a{:href => "/checkout/address"} ADDRESS
+          %a{:href => "/checkout/address"}= t('pills.address')
         %li{:role => "presentation"}
-          %a{:href => "/checkout/delivery"} DELIVERY
+          %a{:href => "/checkout/delivery"}= t('pills.delivery')
         %li{:role => "presentation"}
-          %a{:href => "/checkout/payment"} PAYMENT
+          %a{:href => "/checkout/payment"}= t('pills.payment')
         %li.active{:role => "presentation"}
-          %a{:href => "/checkout/confirm"} CONFIRM
+          %a{:href => "/checkout/confirm"}= t('pills.confirm')
         %li.disabled{:role => "presentation"}
-          %a{:href => "/checkout/complete"} COMPLETE
+          %a{:href => ""}= t('pills.complete')
   
-  %h3 CONFIRM
+  %h3= t('header.confirm')
   .confirm
     .row
       .col-md-3
         %table
-          %b Shipping address
+          %b= t('text.shipping')
           %a{:href => "/checkout/address"} (edit)
           %tr
             %td= @shipping_address.full_name
@@ -37,7 +37,7 @@
 
       .col-md-3
         %table
-          %b Billing address
+          %b= t('text.billing')
           %a{:href => "/checkout/address"} (edit)
           %tr
             %td= @billing_address.full_name
@@ -52,7 +52,7 @@
 
       .col-md-3 
         %table 
-          %b Shipment
+          %b= t('text.shipment')
           %a{:href => "/checkout/delivery"} (edit)
           %tr
             %td
@@ -66,7 +66,7 @@
 
       .col-md-3 
         %table 
-          %b Payment Information
+          %b= t('text.payment_info')
           %a{:href => "/checkout/payment"} (edit)
           %tr
             %td= @credit_card.cvv_hidden
@@ -77,4 +77,4 @@
 
 
     %a{:href => "/checkout/complete", :class => "btn btn-default btn-default"}
-      PLACE ORDER
+      =t('button.place_order')

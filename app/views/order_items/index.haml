@@ -2,49 +2,46 @@
 = render "layouts/notices"
 
 .wrapper
-  %table.table
-    %th BOOK
-    %th PRICE
-    %th QTY
-    %th TOTAL
-    %th  
-    - @order_items.each do |order_item|
-      %tr
-        %td 
-          %table
-            %tr
-              %td
-                %img{:src => "#{order_item.book.image}", :alt => ""}
-              %td
-                %h4= order_item.book.title
-                %p= order_item.book.description
-        %td
-          %h4
-            =number_to_currency(order_item.book.price)
-        %td
-          =hidden_field(:book_id, value: order_item.book.id)
-          %h4=order_item.quantity
-        %td
-          %h4
-            =number_to_currency(order_item.price)
-        %td
-          =link_to "Remove", order_item_path(order_item), method: "delete"
+  =form_tag(update_all_path, :controller => 'order_items', action: :update_all, method: :post) do
+    %table.table
+      %th= t('th.book')
+      %th= t('th.price')
+      %th= t('th.qty')
+      %th= t('th.total')
+      %th  
+      - @order_items.each do |order_item|
+        %tr
+          %td 
+            %table
+              %tr
+                %td
+                  %img{:src => "#{order_item.book.image}", :alt => ""}
+                %td
+                  %h4= order_item.book.title
+                  %p= order_item.book.description
+          %td
+            %h4= number_to_currency(order_item.book.price)
+          %td
+            =number_field_tag('quantity['+order_item.id.to_s+']', order_item.quantity, {:min => 1, :class => 'form-control'})
+          %td
+            %h4= number_to_currency(order_item.price)
 
-  .sub-total="SUBTOTAL: #{number_to_currency(@order.item_total)}" 
-  %br
+          %td
+            =link_to t('button.remove'), order_item_path(order_item), method: "delete"
 
-  .order-items-buttons
-    =link_to "EMPTY CART", cart_empty_path, method: "delete", class: "btn btn-default btn-default"
-    
-    %a{:href => "/books", :class => "btn btn-default btn-default"}
-      CONTINUE SHOPPING
-    
-    %span.right
-      %a{:href => "/checkout/address", :class => "btn btn-default btn-default"}
-        CHECKOUT
+    .sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
+    %br
 
-    %span.right
-      =form_for @coupon, url: { action: "add_coupon" } do |f|
-        =f.text_field :code, placeholder: "COUPON CODE"
-        %button.btn.btn-default UPDATE
-   
+    .order-items-buttons
+      =link_to t('button.empty_cart'), cart_empty_path, method: "delete", class: "btn btn-default btn-default"
+      
+      %a{:href => "/books", :class => "btn btn-default btn-default"}
+        =t('button.continue')
+      
+      %span.right
+        %a{:href => "/checkout/address", :class => "btn btn-default btn-default"}
+          =t('button.checkout')
+
+      %span.right 
+        =text_field_tag :coupon_code, nil, placeholder: t('placeholder.coupon_code')
+        %button.btn.btn-default= t('button.update') 

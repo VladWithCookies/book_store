@@ -4,12 +4,10 @@ class Ability
   def initialize(user)
     can :read, :all
 
-    if user && user.role == "admin"
+    if user && user.admin?
       can :access, :rails_admin
       can :manage, :all
-    end
-
-    if user && user.role == "user"  
+    elsif user
       can :add_rating, Book
       can :manage, Checkout
     end

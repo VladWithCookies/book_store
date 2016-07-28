@@ -5,24 +5,24 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
-          %a{:href => "/"}
-            HOME
-            %span.sr-only (current)
+          =link_to t('navbar.home'), root_path
+          %span.sr-only (current)
         %li.active
-          %a{:href => "/books"} SHOP
-      %a{:href => "/cart"}    
+          =link_to t('navbar.shop'), books_path
+      %a{:href => "/cart"}
         %span.glyphicon.glyphicon-shopping-cart.cart
           - if current_order.item_total
-            ="CART: #{number_to_currency(current_order.item_total)}"
+            ="#{t('navbar.cart')}: #{number_to_currency(current_order.item_total)}"
           -else
-            ="CART: (EMPTY)"
+            = t('navbar.cart_empty')
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to "Settings", edit_profile_path(current_user)
+            = link_to t('navbar.settings'), edit_profile_path(current_user)
           %li
-            %a{:href => "/orders"} Orders
-          %li= link_to "Logout", destroy_user_session_path, method: :delete
+            %a{:href => "/orders"}
+              =t('navbar.orders')
+          %li= link_to t('navbar.logout'), destroy_user_session_path, method: :delete
         - else
-          %li= link_to "Sign up", new_user_registration_path
-          %li= link_to "Login", new_user_session_path
+          %li= link_to t('navbar.signup'), new_user_registration_path
+          %li= link_to t('navbar.login'), new_user_session_path

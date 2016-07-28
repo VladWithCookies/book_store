@@ -4,8 +4,9 @@ class OrderItem < ApplicationRecord
   
   validates :price, :quantity, presence: true
 
-  after_update :update_price
-  after_create :update_price
+  after_commit :update_price
+
+  scope :from_order, -> (id) { where(order_id: id) }
 
   def update_price
     total = book.price * quantity

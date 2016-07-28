@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_path
+    if current_user
+      redirect_to '/'
+    else
+      redirect_to new_user_session_path
+    end
   end
   
 end

@@ -3,19 +3,19 @@
 .wrapper
   .row
     .col-md-2
-      %h3 Checkout
+      %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
         %li{:role => "presentation"}
-          %a{:href => "/checkout/address"} ADDRESS
+          %a{:href => "/checkout/address"}= t('pills.address')
         %li.active{:role => "presentation"}
-          %a{:href => "/checkout/delivery"} DELIVERY
+          %a{:href => "/checkout/delivery"}= t('pills.delivery')
         %li.disabled{:role => "presentation"}
-          %a{:href => "/checkout/payment"} PAYMENT
+          %a{:href => ""}= t('pills.payment')
         %li.disabled{:role => "presentation"}
-          %a{:href => "/checkout/confirm"} CONFIRM
+          %a{:href => ""}= t('pills.confirm')
         %li.disabled{:role => "presentation"}
-          %a{:href => "/checkout/complete"} COMPLETE
+          %a{:href => ""}= t('pills.complete')
 
   .row
     .col-md-8
@@ -30,17 +30,17 @@
           =radio_button_tag :shipping_price, 15
           %label UPS One Day +$15.00
           %br
-          %button.btn.btn-default SAVE AND CONTINUE
+          %button.btn.btn-default= t('button.save_and_continue')
     .col-md-4
       .order-summary
-        %h2 ORDER SUMMARY
+        %h2= t('header.order_summary')
         %table
           %tr
-            %td ITEM TOTAL:
+            %td= "#{t('th.item_total')}:"
             %td=number_to_currency(current_order.item_total)
           %tr
-            %td SHIPPING:
+            %td= "#{t('th.shipping')}:"
             %td=number_to_currency(current_order.shipping)
           %tr
-            %td ORDER TOTAL:
+            %td= "#{t('th.total')}:"
             %td=number_to_currency(current_order.order_total)
