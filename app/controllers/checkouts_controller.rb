@@ -21,7 +21,7 @@ class CheckoutsController < ApplicationController
     if @address_form.validate(address_params)
       redirect_to "/checkout/delivery" 
     else
-      redirect_to "/checkout/address", danger: "All fields is required!"
+      redirect_to "/checkout/address", danger: "All fields are required!"
     end
   end
 

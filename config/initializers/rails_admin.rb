@@ -54,7 +54,7 @@ RailsAdmin.config do |config|
 
       field :state, :enum do
         enum do
-          bindings[:object].aasm.states(:permitted => true).map(&:name)
+          bindings[:object].aasm.states(permitted: true).map(&:name)
         end
       end
     end
