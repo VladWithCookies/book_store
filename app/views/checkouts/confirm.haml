@@ -1,0 +1,80 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  .row
+    .col-md-2
+      %h3= t('header.checkout')
+    .col-md-10
+      %ul.nav.nav-pills
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/address"}= t('pills.address')
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/delivery"}= t('pills.delivery')
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/payment"}= t('pills.payment')
+        %li.active{:role => "presentation"}
+          %a{:href => "/checkout/confirm"}= t('pills.confirm')
+        %li.disabled{:role => "presentation"}
+          %a{:href => ""}= t('pills.complete')
+  
+  %h3= t('header.confirm')
+  .confirm
+    .row
+      .col-md-3
+        %table
+          %b= t('text.shipping')
+          %a{:href => "/checkout/address"} (edit)
+          %tr
+            %td= @shipping_address.full_name
+          %tr
+            %td= @shipping_address.street
+          %tr
+            %td= @shipping_address.city
+          %tr
+            %td= @shipping_address.country
+          %tr
+            %td= "Phone #{@shipping_address.phone}"
+
+      .col-md-3
+        %table
+          %b= t('text.billing')
+          %a{:href => "/checkout/address"} (edit)
+          %tr
+            %td= @billing_address.full_name
+          %tr
+            %td= @billing_address.street
+          %tr
+            %td= @billing_address.city
+          %tr
+            %td= @billing_address.country
+          %tr
+            %td= "Phone #{@billing_address.phone}"
+
+      .col-md-3 
+        %table 
+          %b= t('text.shipment')
+          %a{:href => "/checkout/delivery"} (edit)
+          %tr
+            %td
+              - case @order.shipping
+                - when 5
+                  ="UPS Ground"
+                - when 10
+                  ="UPS Two Day"
+                - when 10
+                  ="Ups One Day"
+
+      .col-md-3 
+        %table 
+          %b= t('text.payment_info')
+          %a{:href => "/checkout/payment"} (edit)
+          %tr
+            %td= @credit_card.cvv_hidden
+          %tr
+            %td= @credit_card.expiration_date
+
+    = render "layouts/order_table"
+
+
+    %a{:href => "/checkout/complete", :class => "btn btn-default btn-default"}
+      =t('button.place_order')

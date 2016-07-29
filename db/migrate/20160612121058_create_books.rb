@@ -4,6 +4,7 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :image
       t.text :description
+      t.text :short_description
       t.decimal :price
       t.integer :in_stock
       t.timestamps

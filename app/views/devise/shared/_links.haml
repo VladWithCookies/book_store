@@ -1,0 +1,10 @@
+- if controller_name != 'sessions'
+  = link_to t('button.login'), new_session_path(resource_name)
+  %br
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  = link_to t('button.signup'), new_registration_path(resource_name)
+  %br
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    = link_to "#{t('button.sign_with')} #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
+    %br

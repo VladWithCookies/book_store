@@ -1,0 +1,19 @@
+%table.table
+  %th= t('th.book')
+  %th= t('th.price')
+  %th= t('th.qty')
+  %th= t('th.total')
+  %th  
+  - @order_items.each do |order_item|
+    %tr
+      %td 
+        %table
+          =render('order_item', collection: @order.order_items, locals: { f: f})     
+      %td
+        %h4
+          =number_to_currency(order_item.price)
+      %td
+        =link_to t('button.remove'), order_item_path(order_item), method: "delete"
+
+.sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
+%br

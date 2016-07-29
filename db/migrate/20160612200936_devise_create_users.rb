@@ -19,6 +19,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
+      t.string :provider
+      t.string :url
+      t.string :uid
+      t.string :role, null: false, default: "user"
+
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at
@@ -29,8 +34,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
-
+      t.belongs_to :billing_address, index: true
+      t.belongs_to :shipping_address, index: true
+      
       t.timestamps null: false
     end
 

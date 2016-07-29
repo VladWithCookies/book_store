@@ -1,0 +1,59 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  %h3= "Order #{@order.id}"
+  .confirm
+    .row
+      .col-md-3
+        %table
+          %b= t('text.shipping')
+          %tr
+            %td= @shipping_address.full_name
+          %tr
+            %td= @shipping_address.street
+          %tr
+            %td= @shipping_address.city
+          %tr
+            %td= @shipping_address.country
+          %tr
+            %td= "Phone #{@shipping_address.phone}"
+
+      .col-md-3
+        %table
+          %b= t('text.billing')
+          %tr
+            %td= @billing_address.full_name
+          %tr
+            %td= @billing_address.street
+          %tr
+            %td= @billing_address.city
+          %tr
+            %td= @billing_address.country
+          %tr
+            %td= "Phone #{@billing_address.phone}"
+
+      .col-md-3 
+        %table 
+          %b= t('text.shipment')
+          %tr
+            %td
+              - case @order.shipping
+                - when 5
+                  ="UPS Ground"
+                - when 10
+                  ="UPS Two Day"
+                - when 10
+                  ="Ups One Day"
+
+      .col-md-3 
+        %table 
+          %b= t('text.payment_info')
+          %tr
+            %td= @credit_card.cvv_hidden
+          %tr
+            %td= @credit_card.expiration_date
+
+    =render "layouts/order_table"
+
+    %a{:href => "/books", :class => "btn btn-default btn-default"}
+      =t('button.go_back')

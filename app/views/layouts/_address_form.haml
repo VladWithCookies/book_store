@@ -1,0 +1,8 @@
+=f.text_field :firstname, placeholder: t('placeholder.firstname')
+=f.text_field :lastname, placeholder: t('placeholder.lastname')
+=f.text_field :street, placeholder: t('placeholder.street')
+=f.text_field :city, placeholder: t('placeholder.city')
+=f.select :country, @countries
+=f.text_field :zipcode, placeholder: "Zip"
+=f.telephone_field :phone, placeholder: t('placeholder.phone')
+%button.btn.btn-default= t('button.save')

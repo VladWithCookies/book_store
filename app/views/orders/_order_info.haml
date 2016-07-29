@@ -1,0 +1,11 @@
+%table.table
+  %th= t('th.number')
+  %th= t('th.completed_at')
+  %th= t('th.total')
+  %th
+  - orders.each do |order|
+    %tr
+      %td= order.id
+      %td= order.completed_date
+      %td= number_to_currency(order.order_total)
+      %td= link_to t('button.view'), order_path(order)

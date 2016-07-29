@@ -1,0 +1,31 @@
+%table.table
+  %th= t('th.book')
+  %th= t('th.price')
+  %th= t('th.qty')
+  %th= t('th.total')
+  %th  
+  - @order_items.each do |order_item|
+    %tr
+      %td 
+        %table
+          %tr
+            %td
+              %img{:src => "#{order_item.book.image}", :alt => ""}
+            %td
+              %h4= order_item.book.title
+              %p= order_item.book.description
+      %td
+        %h4
+          =number_to_currency(order_item.book.price)
+      %td
+
+        =hidden_field(:book_id, value: order_item.book.id)
+        %h4=order_item.quantity
+      %td
+        %h4
+          =number_to_currency(order_item.price)
+      %td
+        =link_to t('button.remove'), order_item_path(order_item), method: "delete"
+
+.sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
+%br

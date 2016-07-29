@@ -1,23 +1,105 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  navbar:
+    home: "HOME"
+    shop: "SHOP"
+    cart: "CART"
+    signup: "Sign up"
+    login: "Log in"
+    logout: "Logout"
+    settings: "Settings"
+    orders: "Orders"
+    cart_empty: "CART: (EMPTY)"
+
+  button:
+    add_to_cart: "ADD TO CART"
+    cancel: "Cancel"
+    remove: "Remove"
+    empty_cart: "EMPTY CART"
+    continue: "CONTINUE SHOPPING"
+    update: "UPDATE"
+    checkout: "CHECKOUT"
+    save_and_continue: "SAVE AND CONTINUE"
+    place_order: "PLACE ORDER"
+    go_back: "GO BACK TO STORE"
+    go_to_cart: "GO BACK TO CART"
+    view: "View"
+    back_to_orders: "Back to orders"
+    save: "SAVE"
+    cancel_acc: "Cancel my account"
+    login: "Log in"
+    signup: "Sign up"
+    sign_with: "Sign in with"
+    remember_me: "Remember me"
+    
+  label:
+    review_text: "Review text"
+    new_passwrod: "New password"
+    old_password: "Old password"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Password confirmation"
+  
+  header:
+    shop: "SHOP"
+    shop_by_categories: "SHOP BY CATEGORIES"
+    reviews: "Reviews"
+    checkout: "Checkout"
+    billing_address: "BILLING ADDRESS"
+    shipping_address: "SHIPPING ADDRESS"
+    order_summary: "ORDER SUMMARY"
+    credit_card: "CREDIT CARD"
+    confirm: "CONFIRM"
+    wating_for_processing: "WATING FOR PROCESSING"
+    orders: "Orders"
+    in_progress: "IN PROGRESS"
+    in_delivery: "IN DELIVERY"
+    delivered: "DELIVERED"
+    order: "Order"
+    email: "EMAIL"
+    password: "PASSWORD"
+    remove: "REMOVE"
+    signup: "Sign up"
+    login: "Log in"
+
+  breadcrumbs:
+    shop: "Shop"
+    home: "Home"
+
+  text:
+    review: "New review for"
+    add_review: "Add review for this book"
+    use_billing_address: "Use billing address"
+    expiration_date: "Expiration date"
+    shipment: "Shipment"
+    billing: "Billing address"
+    shipping: "Shipping address"
+    payment_info: "Payment information"
+    min_char: "characters minimum"
+
+  th:
+    book: "BOOK"
+    price: "PRICE"
+    qty: "QTY"
+    total: "TOTAL"
+    shipping: "SHIPPING"
+    item_total: "ITEM TOTAL"
+    number: "NUMBER"
+    completed_at: "COMPLETED AT"
+
+
+  placeholder:
+    coupon_code: "COUPON CODE"
+    firstname: "Firstname"
+    lastname: "Lastname"
+    street: "Street address"
+    city: "City"
+    phone: "Phone"
+    card_number: "Card number"
+    card_code: "Card code"
+
+  pills:
+    address: "ADDRESS"
+    delivery: "DELIVERY"
+    payment: "PAYMENT"
+    confirm: "CONFIRM"
+    complete: "COMPLETE"

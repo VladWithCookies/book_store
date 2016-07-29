@@ -1,0 +1,46 @@
+= render "layouts/nav_bar"
+
+.wrapper
+  .row
+    .col-md-2
+      %h3= t('header.checkout')
+    .col-md-10
+      %ul.nav.nav-pills
+        %li{:role => "presentation"}
+          %a{:href => "/checkout/address"}= t('pills.address')
+        %li.active{:role => "presentation"}
+          %a{:href => "/checkout/delivery"}= t('pills.delivery')
+        %li.disabled{:role => "presentation"}
+          %a{:href => ""}= t('pills.payment')
+        %li.disabled{:role => "presentation"}
+          %a{:href => ""}= t('pills.confirm')
+        %li.disabled{:role => "presentation"}
+          %a{:href => ""}= t('pills.complete')
+
+  .row
+    .col-md-8
+      .delivery-form
+        =form_tag "/checkout/delivery", method: "post" do
+          =radio_button_tag :shipping_price, 5, active: true
+          %label UPS Ground +$5.00
+          %br
+          =radio_button_tag :shipping_price, 10
+          %label UPS Two Day +$10.00
+          %br
+          =radio_button_tag :shipping_price, 15
+          %label UPS One Day +$15.00
+          %br
+          %button.btn.btn-default= t('button.save_and_continue')
+    .col-md-4
+      .order-summary
+        %h2= t('header.order_summary')
+        %table
+          %tr
+            %td= "#{t('th.item_total')}:"
+            %td=number_to_currency(current_order.item_total)
+          %tr
+            %td= "#{t('th.shipping')}:"
+            %td=number_to_currency(current_order.shipping)
+          %tr
+            %td= "#{t('th.total')}:"
+            %td=number_to_currency(current_order.order_total)

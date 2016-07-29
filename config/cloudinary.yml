@@ -1,0 +1,15 @@
+---
+development:
+  cloud_name: dluf3l4ys
+  api_key: '973195179265949'
+  api_secret: _f-AI3FsOOu3XWezJIA9AQQmgXk
+
+production:
+  cloud_name: dluf3l4ys
+  api_key: '973195179265949'
+  api_secret: _f-AI3FsOOu3XWezJIA9AQQmgXk
+  
+test:
+  cloud_name: dluf3l4ys
+  api_key: '973195179265949'
+  api_secret: _f-AI3FsOOu3XWezJIA9AQQmgXk

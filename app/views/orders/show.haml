@@ -1,0 +1,8 @@
+= render "layouts/nav_bar"
+  
+.wrapper
+  %a{:href => "/orders"}= "<< #{t('button.back_to_orders')}"
+  %br
+  %h2.order-id= "#{t('header.order')} #{@order.id}"
+  %span= @order.state
+  = render "layouts/order_table"
