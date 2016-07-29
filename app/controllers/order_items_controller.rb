@@ -33,12 +33,12 @@ class OrderItemsController < ApplicationController
     redirect_to order_items_path
   end
 
-  def add_coupon
-    current_order.add_coupon(params[:coupon_code])
-  end
-
   private 
     def get_order
       @order = current_order
+    end
+
+    def add_coupon
+      current_order.add_coupon(params[:coupon_code])
     end
 end

@@ -13,5 +13,5 @@ class OrderItem < ApplicationRecord
     update_columns(price: total)
     total
   end
-
+  
 end

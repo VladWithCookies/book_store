@@ -1,6 +1,8 @@
 class CheckoutsController < ApplicationController
   load_and_authorize_resource
-  
+  before_filter :check_address, only: [:payment, :confirm]
+  before_filter :check_card, only: [:confirm]
+
   def address
     @countries = Country.pluck(:name)
     @address_form = AddressForm.new(Address.new)
@@ -16,10 +18,14 @@ class CheckoutsController < ApplicationController
       current_order.update(billing_address: @billing_address, shipping_address: current_user.shipping_address)
     end
 
-    redirect_to "/checkout/delivery" if @address_form.validate(address_params)
+    if @address_form.validate(address_params)
+      redirect_to "/checkout/delivery" 
+    else
+      redirect_to "/checkout/address", danger: "All fields is required!"
+    end
   end
 
-  def delivery_confirm 
+  def delivery_confirm
     current_order.update(shipping: params[:shipping_price])
     redirect_to "/checkout/payment"
   end
@@ -32,7 +38,12 @@ class CheckoutsController < ApplicationController
     @credit_card_form = CreditCardForm.new(CreditCard.new)
     @credit_card = CreditCard.create(credit_card_params)
     current_order.update(credit_card: @credit_card)
-    redirect_to "/checkout/confirm" if @credit_card_form.validate(credit_card_params)
+
+    if @credit_card_form.validate(credit_card_params)
+      redirect_to "/checkout/confirm"
+    else
+      redirect_to "/checkout/payment", danger: "All fields is required!"
+    end
   end
 
   def confirm
@@ -59,5 +70,13 @@ class CheckoutsController < ApplicationController
 
     def credit_card_params 
       params.require(:credit_card).permit(:number, :cvv, :expiration_year, :expiration_month, :user_id)
+    end
+
+    def check_address
+      redirect_to '/checkout/address' unless current_order.billing_address && current_order.shipping_address 
+    end
+
+    def check_card 
+      redirect_to '/checkout/payment' unless current_order.credit_card
     end
 end

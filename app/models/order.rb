@@ -1,5 +1,6 @@
-  class Order < ApplicationRecord
+class Order < ApplicationRecord
   include AASM
+  extend Enumerize
 
   belongs_to :user
   belongs_to :credit_card
@@ -14,7 +15,7 @@
   after_update :get_item_total
   after_update :get_order_total
 
-  aasm column: :state, whiny_transitions: false do
+  aasm column: :state do
     state :in_progress, initial: true
     state :in_queue
     state :in_delivery
@@ -22,9 +23,24 @@
     state :canceled
 
     event :place_order do
-      transitions from: :in_progress, to: :in_queue
+      transitions to: :in_queue, from: :in_progress
     end
+
+    event :ship do
+      transitions to: :in_delivery, from: :in_queue
+    end
+    
+    event :complete do
+      transitions to: :delivered, from: :in_delivery
+    end
+
+    event :cancel do
+      transitions to: :canceled, from: :in_queue
+    end
+
   end
+
+  enumerize :state, in: aasm.states
 
   def init 
     self.shipping ||= 5

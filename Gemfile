@@ -62,6 +62,6 @@ gem 'cancan'
 gem 'aasm'
 gem 'reform-rails'
 gem 'capistrano'
-
 gem "carrierwave", ">= 0.8"
 gem 'cloudinary'
+gem 'enumerize'
