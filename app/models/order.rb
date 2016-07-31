@@ -78,5 +78,9 @@ class Order < ApplicationRecord
     update_columns(order_total: total)
     total
   end
-    
+
+  def self.which_is(state)
+    where(user: current_user, state: state)
+  end
+
 end

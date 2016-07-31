@@ -9,11 +9,5 @@ class Book < ApplicationRecord
   validates :title, :price, :in_stock, presence: true
 
   scope :books_by_category, -> (category_title) { includes(:categories).where("categories.title" => category_title)
-                                                                       .references(:categories) }
-                                                                       
-  def self.most_popular(n)
-    OrderItem.select('book_id')
-             .group(:book_id)
-             .order('sum(order_items.quantity) DESC').last(n)
-  end
+                                                                       .references(:categories) }                                                                    
 end

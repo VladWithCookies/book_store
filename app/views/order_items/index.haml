@@ -10,24 +10,7 @@
       %th= t('th.total')
       %th  
       - @order_items.each do |order_item|
-        %tr
-          %td 
-            %table
-              %tr
-                %td
-                  %img{:src => "#{order_item.book.image}", :alt => ""}
-                %td
-                  %h4= order_item.book.title
-                  %p= order_item.book.description
-          %td
-            %h4= number_to_currency(order_item.book.price)
-          %td
-            =number_field_tag('quantity['+order_item.id.to_s+']', order_item.quantity, {min: 1, class: 'form-control'})
-          %td
-            %h4= number_to_currency(order_item.price)
-
-          %td
-            =link_to t('button.remove'), order_item_path(order_item), method: "delete"
+        =render 'order_item', order_item: order_item
 
     .sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
     %br

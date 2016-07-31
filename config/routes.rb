@@ -12,14 +12,17 @@ Rails.application.routes.draw do
   resources :orders
   resources :order_items
 
+  resources :addresses do
+    post :update_billing, on: :member
+    post :update_shipping, on: :member
+  end
+
   resources :books do
     get :add_rating, on: :member
   end
 
   resources :profiles do 
     patch :update_password, on: :member
-    post :update_billing, on: :member
-    post :update_shipping, on: :member
   end
 
   get "categories/:category" => "categories#category"

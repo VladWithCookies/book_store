@@ -18,7 +18,7 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to t('navbar.settings'), edit_profile_path(current_user)
+            = link_to t('navbar.settings'), edit_address_path(current_user)
           %li
             %a{:href => "/orders"}
               =t('navbar.orders')

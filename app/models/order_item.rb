@@ -13,5 +13,11 @@ class OrderItem < ApplicationRecord
     update_columns(price: total)
     total
   end
+
+  def self.most_popular(n)
+    OrderItem.select('book_id')
+             .group(:book_id)
+             .order('sum(order_items.quantity) DESC').last(n)
+  end
   
 end
