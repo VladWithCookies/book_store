@@ -7,21 +7,24 @@ feature 'checkout' do
   given!(:country) { FactoryGirl.create(:country) }
   given!(:credit_card) { FactoryGirl.create(:credit_card) }
 
-  scenario 'user can fill billing and shipping address' do
+  background do  
     sign_in user
     add_to_cart(book)
     click_on('CHECKOUT')
+  end
 
+  scenario 'user fill billing and shipping address' do
     fill_in_address(country)
     click_on('SAVE AND CONTINUE')
     expect(page).to have_current_path('/checkout/delivery')
   end
 
-  scenario 'user can fill credit card info' do
-    sign_in user
-    add_to_cart(book)
-    click_on('CHECKOUT')
+  scenario 'user fill invalid billing and shipping address' do
+    click_on('SAVE AND CONTINUE')
+    expect(page).to have_content("All fields are required!")
+  end
 
+  scenario 'user fill credit card info' do
     fill_in_address(country)
     click_on('SAVE AND CONTINUE')
     click_on('SAVE AND CONTINUE')
@@ -30,5 +33,46 @@ feature 'checkout' do
     click_on('SAVE AND CONTINUE')
 
     expect(page).to have_current_path('/checkout/confirm')
+  end
+
+  scenario 'user fill invalid credit card info' do
+    fill_in_address(country)
+    click_on('SAVE AND CONTINUE')
+    click_on('SAVE AND CONTINUE')
+
+    click_on('SAVE AND CONTINUE')
+
+    expect(page).to have_content("All fields are required!")
+  end
+
+  scenario 'user choose shipment method' do 
+    fill_in_address(country)
+    click_on('SAVE AND CONTINUE')
+    click_on('SAVE AND CONTINUE')
+
+    expect(page).to have_current_path('/checkout/payment')
+  end
+
+  scenario 'user confirm checkout' do
+    fill_in_address(country)
+    click_on('SAVE AND CONTINUE')
+    click_on('SAVE AND CONTINUE')
+
+    fill_in_credit_card(credit_card)
+    click_on('SAVE AND CONTINUE')
+
+    expect(page).to have_current_path('/checkout/confirm')
+  end
+
+  scenario 'user place order' do 
+    fill_in_address(country)
+    click_on('SAVE AND CONTINUE')
+    click_on('SAVE AND CONTINUE')
+    fill_in_credit_card(credit_card)
+    click_on('SAVE AND CONTINUE')
+
+    click_on('PLACE ORDER')
+
+    expect(page).to have_current_path('/checkout/complete')
   end
 end

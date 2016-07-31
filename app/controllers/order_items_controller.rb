@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   before_filter :get_order, only: [:index, :create, :update_all]
-
+  
   def index
     @order_items = @order.order_items
     @coupon = Coupon.new

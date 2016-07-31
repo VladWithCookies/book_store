@@ -8,7 +8,5 @@ FactoryGirl.define do
     discount 0
     user
     credit_card
-    association :billing_address, factory: :address
-    association :shipping_address, factory: :address
   end
 end

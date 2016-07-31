@@ -3,7 +3,24 @@ require 'rails_helper'
 RSpec.describe CheckoutsController, :type => :controller do
   let!(:address) { FactoryGirl.create(:address) }
   let!(:credit_card) { FactoryGirl.create(:credit_card) }
+  let!(:order) { FactoryGirl.create(:order)}
   sign_in_user
+
+  describe "GET #address" do
+    before { get :address }
+
+    it "render address view" do
+      expect(response).to render_template :address
+    end
+  end
+
+  describe "GET #delivery" do
+    before { get :delivery }
+
+    it "render delivery view" do
+      expect(response).to render_template :delivery
+    end
+  end
 
   describe "POST #address_confirm" do 
     it "save address to db" do

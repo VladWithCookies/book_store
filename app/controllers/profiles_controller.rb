@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
     @user.update_with_password(user_params)
     sign_in @user, bypass: true
     flash[:notice] = "Password was successfully updated!"
+    redirect_to edit_profile_path
   end
 
   def update_billing
@@ -22,7 +23,13 @@ class ProfilesController < ApplicationController
     else 
       @user.update(billing_address: create_address)
     end
-    flash[:notice] = "Billing address was successfully updated!"
+
+    if @user.billing_address.valid?
+      flash[:notice] = "Billing address was successfully updated!"
+    else
+      flash[:error] = "All fields are required!"
+    end
+    redirect_to edit_profile_path(@user)
   end
 
   def update_shipping
@@ -31,7 +38,13 @@ class ProfilesController < ApplicationController
     else 
       @user.update(shipping_address: create_address)
     end
-    flash[:notice] = "Shipping address was successfully updated!"
+
+    if @user.shipping_address.valid?
+      flash[:notice] = "Shipping address was successfully updated!"
+    else 
+      flash[:error] = "All fields are required!"
+    end
+    redirect_to edit_profile_path(@user)
   end
 
   private 
@@ -40,7 +53,7 @@ class ProfilesController < ApplicationController
     end
 
     def address_params
-      params.require(:address).permit(:firstname, :lastname, :address, :city, :country, :zipcode, :phone)
+      params.require(:address).permit(:firstname, :lastname, :street, :city, :country, :zipcode, :phone)
     end
 
     def set_user

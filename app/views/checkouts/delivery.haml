@@ -22,13 +22,13 @@
       .delivery-form
         =form_tag "/checkout/delivery", method: "post" do
           =radio_button_tag :shipping_price, 5, active: true
-          %label UPS Ground +$5.00
+          =label :shipping_price, 'UPS Ground +$5.00'
           %br
           =radio_button_tag :shipping_price, 10
-          %label UPS Two Day +$10.00
+          =label :shipping_price, 'UPS Two Day +$10.00'
           %br
           =radio_button_tag :shipping_price, 15
-          %label UPS One Day +$15.00
+          =label :shipping_price, 'UPS One Day +$15.00'
           %br
           %button.btn.btn-default= t('button.save_and_continue')
     .col-md-4

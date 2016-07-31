@@ -4,5 +4,4 @@ class AddressDecorator < Draper::Decorator
   def full_name
     "#{object.firstname} #{object.lastname}"
   end
-
 end

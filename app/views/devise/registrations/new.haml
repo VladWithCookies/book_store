@@ -3,18 +3,18 @@
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = devise_error_messages!
     .field
-      = f.label t('label.email')
+      = f.label :email, t('label.email')
       %br/
       = f.email_field :email, autofocus: true
     .field
-      = f.label t('label.password')
+      = f.label :password, t('label.password')
       - if @minimum_password_length
         %em
           (#{@minimum_password_length} #{t('text.min_char')})
       %br/
       = f.password_field :password, autocomplete: "off"
     .field
-      = f.label t('label.password_confirmation')
+      = f.label :password_confirmation, t('label.password_confirmation')
       %br/
       = f.password_field :password_confirmation, autocomplete: "off"
     .actions

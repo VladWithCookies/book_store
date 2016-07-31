@@ -42,7 +42,7 @@ class CheckoutsController < ApplicationController
     if @credit_card_form.validate(credit_card_params)
       redirect_to "/checkout/confirm"
     else
-      redirect_to "/checkout/payment", danger: "All fields is required!"
+      redirect_to "/checkout/payment", danger: "All fields are required!"
     end
   end
 

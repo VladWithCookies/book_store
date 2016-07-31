@@ -18,6 +18,10 @@ RSpec.describe OrderItemsController, :type => :controller do
     it "assigns @coupon" do 
       expect(assigns(:coupon)).to be_a_new(Coupon)
     end
+
+    it "render index view" do
+      expect(response).to render_template :index
+    end
   end
 
   describe "DELETE #destroy" do
@@ -38,6 +42,11 @@ RSpec.describe OrderItemsController, :type => :controller do
       expect {
         post :create, params: { order_item: { book_id: book, quantity: 1} }
       }.to change(OrderItem, :count).by(1)
+    end
+
+    it 'redirect to cart_path' do
+      post :create, params: { order_item: { book_id: book, quantity: 1} }
+      expect(response).to redirect_to(cart_path)
     end
   end
 

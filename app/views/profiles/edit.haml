@@ -26,9 +26,9 @@
       .password-form
         %h2= t('header.password')
         =form_for @user, url: { controller: :profiles, action: :update_password } do |f|
-          =f.label t('label.old_password')
+          =f.label :current_password, t('label.old_password')
           =f.password_field :current_password
-          =f.label t('label.new_password')
+          =f.label :password, t('label.new_password')
           =f.password_field :password
           %button.btn.btn-default= t('button.save')
 

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  devise_for :users, :controllers => { omniauth_callbacks: "callbacks" }
   get "/" => "books#home"
   root "books#home"
   
