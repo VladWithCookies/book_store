@@ -79,8 +79,8 @@ class Order < ApplicationRecord
     total
   end
 
-  def self.which_is(state)
-    where(user: current_user, state: state)
+  def self.which(state, user)
+    where(user: user, state: state)
   end
 
 end

@@ -30,6 +30,7 @@ ru:
     signup: "Зарегистрироваться"
     sign_with: "Войти через"
     remember_me: "Запомнит меня "
+    lang: "ЯЗЫК"
 
   label:
     review_text: "Текст отзыва"

@@ -30,6 +30,7 @@ en:
     signup: "Sign up"
     sign_with: "Sign in with"
     remember_me: "Remember me"
+    lang: "LANGUAGE"
     
   label:
     review_text: "Review text"
