@@ -25,6 +25,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update_all
+    return if @order.order_items.empty?
     params[:quantity].each do |item_id, quantity|
       @order.order_items.find_by_id(item_id).update(:quantity => quantity)
     end
@@ -40,5 +41,6 @@ class OrderItemsController < ApplicationController
 
     def add_coupon
       current_order.add_coupon(params[:coupon_code])
+      flash[:notice] = t('notices.coupon_added')
     end
 end

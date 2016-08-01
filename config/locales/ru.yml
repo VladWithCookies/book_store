@@ -111,6 +111,7 @@ ru:
     fields_required: "Все поля нужно заполнить!"
     password_update: "Пароль успешно обновлен!"
     email_update: "Електронная почта успешно обновлена!"
+    coupon_added: "Купон заюзан!"
 
   devise:
     sessions:

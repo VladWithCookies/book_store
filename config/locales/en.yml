@@ -112,3 +112,4 @@ en:
     fields_required: "All fields are required!"
     password_update: "Password was successfully updated!"
     email_update: "Emial was successfully updated!"
+    coupon_added: "Coupon added!"
