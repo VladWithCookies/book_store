@@ -19,15 +19,15 @@ class CheckoutsController < ApplicationController
     end
 
     if @address_form.validate(address_params)
-      redirect_to "/checkout/delivery" 
+      redirect_to checkout_delivery_path 
     else
-      redirect_to "/checkout/address", danger: "All fields are required!"
+      redirect_to checkout_address_path, danger: "All fields are required!"
     end
   end
 
   def delivery_confirm
     current_order.update(shipping: params[:shipping_price])
-    redirect_to "/checkout/payment"
+    redirect_to checkout_payment_path
   end
 
   def payment
@@ -40,9 +40,9 @@ class CheckoutsController < ApplicationController
     current_order.update(credit_card: @credit_card)
 
     if @credit_card_form.validate(credit_card_params)
-      redirect_to "/checkout/confirm"
+      redirect_to checkout_confirm_path
     else
-      redirect_to "/checkout/payment", danger: "All fields are required!"
+      redirect_to checkout_payment_path, danger: "All fields are required!"
     end
   end
 
@@ -73,10 +73,10 @@ class CheckoutsController < ApplicationController
     end
 
     def check_address
-      redirect_to '/checkout/address' unless current_order.billing_address && current_order.shipping_address 
+      redirect_to checkout_address_path unless current_order.billing_address && current_order.shipping_address 
     end
 
     def check_card 
-      redirect_to '/checkout/payment' unless current_order.credit_card
+      redirect_to checkout_payment_path unless current_order.credit_card
     end
 end
