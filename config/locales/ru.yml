@@ -103,3 +103,22 @@ ru:
     payment: "ОПЛАТА"
     confirm: "ПОДТВЕРДИТЬ"
     complete: "ЗАКОНЧИТЬ"
+
+  notices:
+    rating_create: "Отзыв оставлен и ждет одобрения админа!"
+    billing_update: "Адрес оплаты успешно обновлен!"
+    shipping_update: "Адрес доставки успешно обновлен!"
+    fields_required: "Все поля нужно заполнить!"
+    password_update: "Пароль успешно обновлен!"
+    email_update: "Електронная почта успешно обновлена!"
+
+  devise:
+    sessions:
+      user:
+        signed_out: "Вы вылогинились!"
+        signed_in: "Вы залогинились!"
+        signed_up: "Вы зарегались!"
+
+    registrations:
+      user:
+        destroyed: "Вы удалили свой аккаунт"

@@ -14,9 +14,9 @@ class AddressesController < ApplicationController
     end
 
     if @user.billing_address.valid?
-      flash[:notice] = "Billing address was successfully updated!"
+      flash[:notice] = t('notices.billing_update')
     else
-      flash[:error] = "All fields are required!"
+      flash[:error] = t('notices.fields_required')
     end
     redirect_to edit_address_path(@user)
   end
@@ -29,9 +29,9 @@ class AddressesController < ApplicationController
     end
 
     if @user.shipping_address.valid?
-      flash[:notice] = "Shipping address was successfully updated!"
+      flash[:notice] = t('notices.shipping_update')
     else 
-      flash[:error] = "All fields are required!"
+      flash[:error] = t('notices.fields_required')
     end
     redirect_to edit_address_path(@user)
   end

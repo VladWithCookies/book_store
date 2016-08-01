@@ -21,7 +21,7 @@ class CheckoutsController < ApplicationController
     if @address_form.validate(address_params)
       redirect_to checkout_delivery_path 
     else
-      redirect_to checkout_address_path, danger: "All fields are required!"
+      redirect_to checkout_address_path, danger: t('notices.fields_required')
     end
   end
 
@@ -42,7 +42,7 @@ class CheckoutsController < ApplicationController
     if @credit_card_form.validate(credit_card_params)
       redirect_to checkout_confirm_path
     else
-      redirect_to checkout_payment_path, danger: "All fields are required!"
+      redirect_to checkout_payment_path, danger: t('notices.fields_required')
     end
   end
 
