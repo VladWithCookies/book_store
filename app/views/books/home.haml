@@ -49,7 +49,7 @@
             - @items[0].book.authors.each do |a|
               =a.firstname
               =a.lastname
-        %a{:href => "books/#{@items[0].book.id}"}
+        %a{href: book_path(@items[0].book.id) }
           .row
             .col-md-3
               %img{:alt => "...", :src => "#{@items[0].book.image}"}

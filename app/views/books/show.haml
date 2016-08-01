@@ -14,10 +14,13 @@
       .col-md-3
         .order-form
           =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
-            =f.hidden_field(:book_id, value: @book.id)
-            =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
-            %button.btn.btn-default 
-              =t('button.add_to_cart')
+            .row
+              .col-md-4
+                =f.hidden_field(:book_id, value: @book.id)
+                =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
+              .col-md-8
+                %button.btn.btn-default 
+                  =t('button.add_to_cart')
 
     .book-decription= @book.description
   .col-md-12
