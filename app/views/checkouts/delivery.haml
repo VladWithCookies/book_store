@@ -6,16 +6,16 @@
       %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
-        %li{:role => "presentation"}
-          %a{:href => checkout_address_path}= t('pills.address')
-        %li.active{:role => "presentation"}
-          %a{:href => ""}= t('pills.delivery')
+        %li{ role: "presentation"}
+          %a{ href: checkout_address_path}= t('pills.address')
+        %li.active{ role: "presentation"}
+          %a{ href: ""}= t('pills.delivery')
+        %li.disabled{ role: "presentation"}
+          %a{ href: ""}= t('pills.payment')
+        %li.disabled{ role: "presentation"}
+          %a{ href: ""}= t('pills.confirm')
         %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.payment')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.confirm')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.complete')
+          %a{ href: ""}= t('pills.complete')
 
   .row
     .col-md-8

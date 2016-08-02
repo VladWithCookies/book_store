@@ -7,13 +7,13 @@
       .address-form
         %h2= t('header.billing_address')
         =form_for @address_form, url: { action: :update_billing } do |f|
-          =render "layouts/address_form", f: f
+          =render "layouts/address_form", f: f, address: @user.billing_address
 
     .col-md-6
       .address-form
         %h2= t('header.shipping_address')
         =form_for @address_form, url: { action: :update_shipping } do |f|
-          =render "layouts/address_form", f: f
+          =render "layouts/address_form", f: f, address: @user.shipping_address
   .row
     .col-md-6
       .email-form

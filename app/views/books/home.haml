@@ -10,7 +10,7 @@
         %li
           =link_to t('navbar.shop'), books_path
         %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %a.dropdown-toggle{"aria-expanded": "false", "aria-haspopup": "true", "data-toggle": "dropdown", href: "#", role: "button"}
             =t('button.lang')
             %span.caret
           %ul.dropdown-menu
@@ -39,20 +39,20 @@
 = render "layouts/notices"
 
 - if @items.count > 0
-  #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-    .carousel-inner{:role => "listbox"}
+  #carousel-example-generic.carousel.slide{"data-ride": "carousel"}
+    .carousel-inner{role: "listbox"}
       .item.active
         .item-title
           %span= @items[0].book.title
           by
-          %a{:href => ""}
+          %a{href: ""}
             - @items[0].book.authors.each do |a|
               =a.firstname
               =a.lastname
         %a{href: book_path(@items[0].book.id) }
           .row
             .col-md-3
-              %img{:alt => "...", :src => "#{@items[0].book.image}"}
+              %img{alt: "...", src: "#{@items[0].book.image}"}
             .col-md-9
               .book-description= @items[0].book.description
 
@@ -77,7 +77,7 @@
           %a{href: book_path(i.book.id)}
             .row
               .col-md-3
-                %img{:alt => "...", :src => "#{i.book.image}"}
+                %img{alt: "...", src: "#{i.book.image}"}
               .col-md-9
                 .book-description= i.book.description
 
@@ -89,9 +89,9 @@
               %button.btn.btn-default
                 =t('button.add_to_cart')
 
-    %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
-      %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+    %a.left.carousel-control{"data-slide": "prev", href: "#carousel-example-generic", role: "button"}
+      %span.glyphicon.glyphicon-chevron-left{"aria-hidden": "true"}
       %span.sr-only Previous
-    %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
-      %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+    %a.right.carousel-control{"data-slide": "next", href: "#carousel-example-generic", role: "button"}
+      %span.glyphicon.glyphicon-chevron-right
       %span.sr-only Next

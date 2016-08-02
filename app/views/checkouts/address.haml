@@ -7,30 +7,23 @@
       %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
-        %li.active{:role => "presentation"}
-          %a{:href => "" }= t('pills.address')
-        %li.disabled{:role => "presentation"}
-          %a{:href => "" }= t('pills.delivery')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.payment')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.confirm')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.complete')
+        %li.active{ role: "presentation" }
+          %a{ href: "" }= t('pills.address')
+        %li.disabled{ role: "presentation"}
+          %a{ href: "" }= t('pills.delivery')
+        %li.disabled{ role: "presentation"}
+          %a{ href: ""}= t('pills.payment')
+        %li.disabled{ role: "presentation" }
+          %a{ href: ""}= t('pills.confirm')
+        %li.disabled{ role: "presentation"}
+          %a{ href: ""}= t('pills.complete')
 
   .row
     .address-form
       =form_for @address_form, url: {action: "address_confirm"} do |f|
         .col-md-4
           %h4= t('header.billing_address')  
-          =f.text_field :firstname, placeholder: t('placeholder.firstname')
-          =f.text_field :lastname, placeholder: t('placeholder.lastname')
-          =f.text_field :street, placeholder: t('placeholder.street')
-          =f.text_field :city, placeholder: t('placeholder.city')
-          =f.select :country, @countries
-          =f.text_field :zipcode, placeholder: "Zip"
-          =f.telephone_field :phone, placeholder: t('placeholder.phone')
-          %button.btn.btn-default= t('button.save_and_continue')
+          = render 'layouts/address_form', f: f, address: current_user.billing_address
         .col-md-4
           %h4= t('header.shipping_address')
           =check_box_tag :use_billing, 1, true

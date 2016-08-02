@@ -6,7 +6,7 @@
     =render('orders_in_progress')
 
     .sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}"
-    %a{:href => "/cart", :class => "btn btn-default btn-default"}
+    %a{ href: "/cart", class: "btn btn-default btn-default"}
       =t('button.go_to_cart')
 
 
