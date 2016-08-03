@@ -31,7 +31,7 @@ ru:
     sign_with: "Войти через"
     remember_me: "Запомнит меня "
     lang: "ЯЗЫК"
-
+    admin: "Админочка"
   label:
     review_text: "Текст отзыва"
     new_password: "Новый пароль"

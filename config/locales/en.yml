@@ -31,6 +31,7 @@ en:
     sign_with: "Sign in with"
     remember_me: "Remember me"
     lang: "LANGUAGE"
+    admin: "Admin"
     
   label:
     review_text: "Review text"
