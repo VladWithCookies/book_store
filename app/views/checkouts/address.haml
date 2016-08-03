@@ -27,7 +27,7 @@
         .col-md-4
           %h4= t('header.shipping_address')
           =check_box_tag :use_billing, 1, true
-          %span= t('text.use_billing_address')
+          %label= t('text.use_billing_address')
         .col-md-4
           %h4= t('header.order_summary')
           .total= "#{t('th.total')}: #{number_to_currency(current_order.item_total)}"  

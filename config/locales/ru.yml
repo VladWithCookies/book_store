@@ -112,6 +112,7 @@ ru:
     password_update: "Пароль успешно обновлен!"
     email_update: "Електронная почта успешно обновлена!"
     coupon_added: "Купон заюзан!"
+    cart_empty: "Корзина пустая!"
 
   devise:
     sessions:

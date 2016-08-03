@@ -34,6 +34,10 @@ RailsAdmin.config do |config|
     list do
       include_fields :id, :email, :billing_address, :shipping_address, :orders
     end
+
+    edit do
+      include_fields :orders
+    end
   end
 
   config.model 'Book' do

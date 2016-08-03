@@ -113,3 +113,4 @@ en:
     password_update: "Password was successfully updated!"
     email_update: "Emial was successfully updated!"
     coupon_added: "Coupon added!"
+    cart_empty: "Cart is empty!"
