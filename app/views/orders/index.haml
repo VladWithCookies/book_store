@@ -4,23 +4,23 @@
   %h3= t('header.orders')
   - if @order.order_items.count > 0
     =render('orders_in_progress')
-
-    .sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}"
+    =render('layouts/sub_total')
+      
     %a{ href: "/cart", class: "btn btn-default btn-default"}
       =t('button.go_to_cart')
 
 
-  - if @orders_processing.count > 0
+  - unless @orders_processing.empty?
     .order-info
       %h4= t('header.wating_for_processing')
       =render "order_info",  orders: @orders_processing
 
-  - if @orders_delivery.count > 0
+  - unless @orders_delivery.empty?
     .order-info
       %h4= t('header.in_delivery')
       =render "order_info",  orders: @orders_delivery
 
-  - if @orders_delivered.count > 0
+  - unless @orders_delivered.empty?
     .order-info
       %h4= t('header.delivered')
       =render "order_info",  orders: @orders_delivered

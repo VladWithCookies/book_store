@@ -1,0 +1,5 @@
+.sub-total
+  ="#{t('th.discount')}: #{number_to_currency(@order.discount)}"
+  %br
+  ="#{t('th.total')}: #{number_to_currency(@order.item_total)}"
+  %br

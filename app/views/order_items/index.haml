@@ -1,5 +1,4 @@
 = render "layouts/nav_bar"
-= render "layouts/notices"
 
 .wrapper
   =form_tag(update_all_path, controller: 'order_items', action: :update_all, method: :post) do
@@ -12,11 +11,7 @@
       - @order_items.each do |order_item|
         =render 'order_item', order_item: order_item
 
-    .sub-total
-      ="#{t('th.discount')}: #{number_to_currency(@order.discount)}"
-      %br
-      ="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
-    %br
+    =render('layouts/sub_total') 
 
     .order-items-buttons
       =link_to t('button.empty_cart'), cart_empty_path, method: "delete", class: "btn btn-default btn-default"
