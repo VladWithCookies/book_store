@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.barrating.min.js
+//= require_tree .
