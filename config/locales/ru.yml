@@ -86,6 +86,7 @@ ru:
     item_total: "КНИГИ ИТОГО"
     number: "НОМЕР"
     completed_at: "ДАТА ОКОНЧАНИЯ"
+    discount: "СКИДКА"
 
   placeholder:
     coupon_code: "КОД КУПОНА"
@@ -113,6 +114,7 @@ ru:
     email_update: "Електронная почта успешно обновлена!"
     coupon_added: "Купон заюзан!"
     cart_empty: "Корзина пустая!"
+    invalid_coupon: "Недействительный купон!"
 
   devise:
     sessions:

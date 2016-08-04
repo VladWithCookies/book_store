@@ -43,6 +43,7 @@ class Order < ApplicationRecord
   enumerize :state, in: aasm.states
 
   def init 
+    self.item_total ||= 0
     self.shipping ||= 5
     self.discount ||= 0
   end
@@ -53,6 +54,7 @@ class Order < ApplicationRecord
     self.discount += coupon.discount
     coupon.update(used: true)
     self.save
+    coupon
   end
 
   def add_item(book_id, quantity)

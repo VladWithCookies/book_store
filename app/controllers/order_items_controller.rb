@@ -39,8 +39,11 @@ class OrderItemsController < ApplicationController
       @order = current_order
     end
 
-    def add_coupon
-      current_order.add_coupon(params[:coupon_code])
-      flash[:notice] = t('notices.coupon_added')
+    def add_coupon      
+      if current_order.add_coupon(params[:coupon_code])
+        flash[:notice] = t('notices.coupon_added') 
+      else
+        flash[:danger] = t('notices.invalid_coupon')
+      end
     end
 end

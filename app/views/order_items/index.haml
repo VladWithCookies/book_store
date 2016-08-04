@@ -12,7 +12,10 @@
       - @order_items.each do |order_item|
         =render 'order_item', order_item: order_item
 
-    .sub-total="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
+    .sub-total
+      ="#{t('th.discount')}: #{number_to_currency(@order.discount)}"
+      %br
+      ="#{t('th.total')}: #{number_to_currency(@order.item_total)}" 
     %br
 
     .order-items-buttons

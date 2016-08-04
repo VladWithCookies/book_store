@@ -87,8 +87,8 @@ en:
     item_total: "ITEM TOTAL"
     number: "NUMBER"
     completed_at: "COMPLETED AT"
-
-
+    discount: "DISCOUNT"
+    
   placeholder:
     coupon_code: "COUPON CODE"
     firstname: "Firstname"
@@ -115,3 +115,4 @@ en:
     email_update: "Emial was successfully updated!"
     coupon_added: "Coupon added!"
     cart_empty: "Cart is empty!"
+    invalid_coupon: "Invalid coupon!"
