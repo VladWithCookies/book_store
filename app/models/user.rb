@@ -14,11 +14,20 @@ class User < ApplicationRecord
   end
   
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email    = auth.info.email
-      user.provider = auth.provider 
-      user.uid      = auth.uid
-      user.save
+    auth_params = {
+      provider: auth.provider,
+      uid: auth.uid,
+      email: auth.info.email
+    }
+
+    user = find_by_email(auth_params[:email])
+
+    if user.present?
+      return nil unless user.save_facebook_data(auth_params)
+      user
+    else
+      auth_params[:password] = Devise.friendly_token[0, 20]
+      User.create(auth_params)
     end
   end
 
