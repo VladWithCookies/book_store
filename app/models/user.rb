@@ -12,7 +12,22 @@ class User < ApplicationRecord
   def admin?
     role == "admin"
   end
-  
+    
+  def is_facebook_account
+    self[:provider].present? && self[:uid].present?
+  end
+
+  def check_facebook(provider, uid)
+    self[:provider] == provider && self[:uid] == uid
+  end
+
+  def save_facebook_data(params)
+    return update(params) unless is_facebook_account
+    return true if check_facebook(params[:provider], params[:uid])
+    errors.add(:base, "#{params[:email]} is attach for another account")
+    false
+  end
+
   def self.from_omniauth(auth)
     auth_params = {
       provider: auth.provider,
