@@ -13,6 +13,7 @@ module Store
     # -- all .rb files in that directory are automatically loaded.
     I18n.available_locales = [:en, :ru]
     config.autoload_paths += %W(#{config.root}/app) 
+    config.serve_static_assets = true
     config.active_record.raise_in_transactional_callbacks = true
     config.generators do |g|
       g.test_framework :rspec
