@@ -7,6 +7,14 @@ default: &default
   password: 123
   timeout: 5000
 
+production: 
+  adapter: postgresql
+  encoding: unicode
+  database: store_production
+  pool: 5
+  username: vlad
+  password: 123
+
 development:
   adapter: postgresql
   encoding: unicode
