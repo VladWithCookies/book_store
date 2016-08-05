@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   end
 
   def show   
-    @ratings = Rating.ratings_for_book(params[:id])
+    @ratings = Rating.ratings_for_book(params[:id]).decorate
     @order_item = OrderItem.new
   end
 

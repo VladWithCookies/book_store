@@ -29,10 +29,10 @@
       = link_to t('text.add_review'), add_rating_book_path
       -@ratings.each do |rating|
         .rating
-          -rating.rating.times do 
+          - rating.rate.times do 
             %span.glyphicon.glyphicon-star          
           .rating-date
-            =rating.created_at
+            =rating.formated_date
           .rating-author
             ="by #{rating.user.email}"
           .rating-text
