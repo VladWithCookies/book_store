@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.barrating.min.js
-//= require_tree .
+//= require_tree ../../../vendor/assets/javascripts/.
