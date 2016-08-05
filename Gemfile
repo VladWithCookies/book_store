@@ -66,4 +66,3 @@ gem "carrierwave", ">= 0.8"
 gem 'cloudinary'
 gem 'enumerize'
 gem 'whenever'
-gem 'rails_12factor'
