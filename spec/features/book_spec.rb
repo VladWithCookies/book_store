@@ -54,7 +54,7 @@ feature 'book' do
   scenario 'non authenticated user cant add review' do   
     visit(book_path(book))
     click_on('Add review for this book')
-    expect(page).to have_current_path(new_user_session_path)
+    expect(page).to have_current_path("/users/sign_in?locale=en")
   end
 
   scenario 'user visit home page' do

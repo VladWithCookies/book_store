@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 require 'capybara/rspec'
 
 feature 'profile' do
@@ -10,14 +10,14 @@ feature 'profile' do
   end
 
   scenario 'user change his address' do
-    visit(edit_profile_path(user))
+    visit(edit_address_path(user))
     fill_in_address(country)
     click_on('SAVE', match: :first)
     expect(page).to have_content("address was successfully updated!")
   end
 
   scenario 'user change his address to invalid' do
-    visit(edit_profile_path(user))
+    visit(edit_address_path(user))
     click_on('SAVE', match: :first)
     expect(page).to have_content("All fields are required!")
   end

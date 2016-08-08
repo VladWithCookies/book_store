@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => { omniauth_callbacks: "callbacks" }
   get "/" => "books#home"
-  scope :path => "/:locale", :locale =>  /en|ru/ do
+  scope path: "/:locale", locale:  /en|ru/, defaults: { locale: 'en' } do
     root "books#home"
 
     resources :ratings

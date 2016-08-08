@@ -19,11 +19,11 @@ feature 'cart' do
     sign_in user
     visit(cart_path)
     click_on('CHECKOUT')
-    expect(page).to have_current_path('/checkout/address')
+    expect(page).to have_current_path('/en/checkout/address')
   end
   
   scenario 'guess user cant make checkout' do
     click_on('CHECKOUT')
-    expect(page).to have_current_path(new_user_session_path)
+    expect(page).to have_current_path("/users/sign_in?locale=en")
   end
 end
