@@ -7,7 +7,7 @@ RSpec.describe CheckoutsController, :type => :controller do
   sign_in_user
 
   describe "GET #address" do
-    before { get :address }
+    before { get :address, { locale: :en } }
 
     it "render address view" do
       expect(response).to render_template :address
@@ -15,7 +15,7 @@ RSpec.describe CheckoutsController, :type => :controller do
   end
 
   describe "GET #delivery" do
-    before { get :delivery }
+    before { get :delivery, { locale: :en } }
 
     it "render delivery view" do
       expect(response).to render_template :delivery
@@ -25,7 +25,7 @@ RSpec.describe CheckoutsController, :type => :controller do
   describe "POST #address_confirm" do 
     it "save address to db" do
       expect {
-        post :address_confirm, params: { address: attributes_for(:address) }
+        post :address_confirm, params: { address: attributes_for(:address), locale: :en }
       }.to change(Address, :count).by(1)
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe CheckoutsController, :type => :controller do
   describe "POST #payment_confirm" do 
     it "save credit card to db" do
       expect {
-        post :payment_confirm, params: { credit_card: attributes_for(:credit_card) }
+        post :payment_confirm, params: { credit_card: attributes_for(:credit_card), locale: :en }
       }.to change(CreditCard, :count).by(1)
     end
   end

@@ -10,7 +10,7 @@ RSpec.describe BooksController, :type => :controller do
   sign_in_user
 
   describe 'GET #index' do 
-    before { get :index }
+    before { get :index, { locale: :en } }
 
     it "return list of books" do 
       expect(assigns(:books)).to match_array(books)
@@ -26,7 +26,7 @@ RSpec.describe BooksController, :type => :controller do
   end
 
   describe 'GET #show' do
-    before { get :show, params: { id: book.id } }
+    before { get :show, params: { id: book.id, locale: :en } }
 
     it 'assigns @book' do
       expect(assigns(:book)).not_to be_nil
@@ -42,7 +42,7 @@ RSpec.describe BooksController, :type => :controller do
   end
 
   describe 'GET #add_rating' do
-    before { get :add_rating, params: { id: book.id } }
+    before { get :add_rating, params: { id: book.id, locale: :en } }
 
     it 'assigns @rating' do
       expect(assigns(:rating)).not_to be_nil
@@ -54,7 +54,7 @@ RSpec.describe BooksController, :type => :controller do
   end
 
   describe 'GET #home' do 
-    before { get :home }
+    before { get :home, { locale: :en } }
 
     it 'render home view' do
       expect(response).to render_template :home

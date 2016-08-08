@@ -4,7 +4,7 @@ RSpec.describe OrdersController, :type => :controller do
   let(:order) { FactoryGirl.create(:order) }
 
   describe "GET #index" do 
-    before { get :index }
+    before { get :index, { locale: :en } }
     
     it "assigns @order" do 
       expect(assigns(:order)).not_to be_nil
@@ -28,7 +28,7 @@ RSpec.describe OrdersController, :type => :controller do
   end
 
   describe "GET #show" do
-    before { get :show, params: { id: order.id } }
+    before { get :show, params: { id: order.id, locale: :en } }
 
     it "assigns @order" do 
       expect(assigns(:order)).not_to be_nil

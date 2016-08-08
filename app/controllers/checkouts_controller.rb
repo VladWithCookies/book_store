@@ -20,7 +20,7 @@ class CheckoutsController < ApplicationController
     if params[:use_billing]
       @order.update(billing_address: @billing_address, shipping_address: @billing_address)
     else
-      @order.update(billing_address: @billing_address, shipping_address: @user.shipping_address)
+      @order.update(billing_address: @billing_address, shipping_address: current_user.shipping_address)
     end
 
     if @address_form.validate(address_params)

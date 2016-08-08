@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe ProfilesController, :type => :controller do
+RSpec.describe AddressesController, :type => :controller do
   let!(:user) { FactoryGirl.create(:user) }
   sign_in_user
 
   describe "GET #edit" do
-    before { get :edit, params: { id: user.id }}
+    before { get :edit, params: { id: user.id, locale: :en }}
 
     it "assigns @address_form" do 
       expect(assigns(:address_form)).not_to be_nil
