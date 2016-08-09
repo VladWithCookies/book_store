@@ -8,6 +8,10 @@ h3 {
     display: block;
   }
 
+  #use_billing {
+    display: inline-block;
+  }
+
   button, select {
     display: block;
   }
@@ -16,7 +20,7 @@ h3 {
     margin-top: 30px;
   }
 
-  span {
+  label {
     position: relative;
     top: -3px;
   }

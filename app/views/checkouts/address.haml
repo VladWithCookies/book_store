@@ -19,14 +19,23 @@
 
   .row
     .address-form
-      =form_for @address_form, url: {action: "address_confirm"} do |f|
+      =form_tag url: { action: "address_confirm"} do
         .col-md-4
           %h4= t('header.billing_address')  
-          = render 'layouts/address_form', f: f, address: current_user.billing_address
+          = fields_for :billing_address do |f|
+            = render 'layouts/address_form', f: f, address: current_user.billing_address
+
         .col-md-4
           %h4= t('header.shipping_address')
           =check_box_tag :use_billing, 1, true
           %label= t('text.use_billing_address')
+
+          =fields_for :shipping_address do |f|
+            = render 'layouts/address_form', f: f, address: current_user.shipping_address
+
         .col-md-4
           %h4= t('header.order_summary')
           .total= "#{t('th.total')}: #{number_to_currency(current_order.item_total)}"  
+
+        .col-md-12
+          %button.btn.btn-default= t('button.save')

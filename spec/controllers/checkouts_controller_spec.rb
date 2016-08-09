@@ -22,7 +22,7 @@ RSpec.describe CheckoutsController, :type => :controller do
     end
   end
 
-  describe "POST #address_confirm" do 
+  describe "POST #address_confirm" do
     it "save address to db" do
       expect {
         post :address_confirm, params: { address: attributes_for(:address), locale: :en }

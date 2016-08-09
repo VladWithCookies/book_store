@@ -5,25 +5,22 @@ class CheckoutsController < ApplicationController
   before_filter :set_order
 
   def address
-    if @order.order_items.empty?  
-      flash[:danger] = t('notices.cart_empty') 
-      redirect_to cart_path
-    end
+    redirect_to cart_path, danger: t('notices.cart_empty') if @order.order_items.empty?   
     @countries = Country.pluck(:name)
     @address_form = AddressForm.new(Address.new)
   end
 
   def address_confirm
-    @billing_address = Address.create(address_params)
-    @address_form = AddressForm.new(Address.new)
+    @billing_address = Address.create(billing_address_params)
+    @shipping_address = Address.create(shipping_address_params)
 
     if params[:use_billing]
       @order.update(billing_address: @billing_address, shipping_address: @billing_address)
     else
-      @order.update(billing_address: @billing_address, shipping_address: current_user.shipping_address)
+      @order.update(billing_address: @billing_address, shipping_address: @shipping_address)
     end
 
-    if @address_form.validate(address_params)
+    if forms_valid?
       redirect_to checkout_delivery_path 
     else
       redirect_to checkout_address_path, danger: t('notices.fields_required')
@@ -61,7 +58,6 @@ class CheckoutsController < ApplicationController
     @billing_address = @order.billing_address.decorate
     @shipping_address = @order.shipping_address.decorate
     @credit_card = @order.credit_card.decorate
-
     @order.place_order!
     session[:order_id] = nil
   end
@@ -71,8 +67,12 @@ class CheckoutsController < ApplicationController
       @order = current_order
     end
 
-    def address_params
-      params.require(:address).permit(:firstname, :lastname, :street, :city, :country, :zipcode, :phone)
+    def billing_address_params
+      params.require(:billing_address).permit(:firstname, :lastname, :street, :city, :country, :zipcode, :phone)
+    end
+
+    def shipping_address_params
+      params.require(:shipping_address).permit(:firstname, :lastname, :street, :city, :country, :zipcode, :phone)
     end
 
     def credit_card_params 
@@ -85,5 +85,10 @@ class CheckoutsController < ApplicationController
 
     def check_card 
       redirect_to checkout_payment_path unless current_order.credit_card
+    end
+
+    def forms_valid? 
+      @address_form = AddressForm.new(Address.new)
+      @address_form.validate(billing_address_params) && @address_form.validate(shipping_address_params)
     end
 end
