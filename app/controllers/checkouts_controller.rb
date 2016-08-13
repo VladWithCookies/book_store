@@ -89,6 +89,10 @@ class CheckoutsController < ApplicationController
 
     def forms_valid? 
       @address_form = AddressForm.new(Address.new)
-      @address_form.validate(billing_address_params) && @address_form.validate(shipping_address_params)
+      if params[:use_billing]
+        @address_form.validate(billing_address_params)
+      else 
+        @address_form.validate(billing_address_params) && @address_form.validate(shipping_address_params)
+      end
     end
 end

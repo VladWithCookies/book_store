@@ -6,14 +6,6 @@ RSpec.describe CheckoutsController, :type => :controller do
   let!(:order) { FactoryGirl.create(:order)}
   sign_in_user
 
-  describe "GET #address" do
-    before { get :address, { locale: :en } }
-
-    it "render address view" do
-      expect(response).to render_template :address
-    end
-  end
-
   describe "GET #delivery" do
     before { get :delivery, { locale: :en } }
 
@@ -25,8 +17,9 @@ RSpec.describe CheckoutsController, :type => :controller do
   describe "POST #address_confirm" do
     it "save address to db" do
       expect {
-        post :address_confirm, params: { address: attributes_for(:address), locale: :en }
-      }.to change(Address, :count).by(1)
+        post :address_confirm, params: { billing_address: attributes_for(:address), 
+                                         shipping_address: attributes_for(:address), locale: :en }
+      }.to change(Address, :count).by(2)
     end
   end
 
