@@ -32,7 +32,7 @@ end
 
 group :test do
   gem "coveralls"
-  gem "database_cleaner", [">= 1.2", "!= 1.4.0", "!= 1.5.0"]
+  #gem "database_cleaner", [">= 1.2", "!= 1.4.0", "!= 1.5.0"]
   gem "dragonfly", "~> 1.0"
   gem "generator_spec", ">= 0.8"
   gem "launchy", ">= 2.2"
