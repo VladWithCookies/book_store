@@ -21,7 +21,7 @@ feature 'checkout' do
 
   scenario 'user fill invalid billing and shipping address' do
     click_on('SAVE')
-    expect(page).to have_content("All fields are required!")
+    expect(page).to have_content("can't be blank")
   end
 
   scenario 'user fill credit card info' do
@@ -42,7 +42,7 @@ feature 'checkout' do
 
     click_on('SAVE AND CONTINUE')
 
-    expect(page).to have_content("All fields are required!")
+    expect(page).to have_content("can't be blank")
   end
 
   scenario 'user choose shipment method' do 

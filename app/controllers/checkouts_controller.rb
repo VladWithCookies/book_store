@@ -23,7 +23,8 @@ class CheckoutsController < ApplicationController
     if forms_valid?
       redirect_to checkout_delivery_path 
     else
-      redirect_to checkout_address_path, danger: t('notices.fields_required')
+      generate_flash
+      redirect_to checkout_address_path
     end
   end
 
@@ -44,7 +45,8 @@ class CheckoutsController < ApplicationController
     if @credit_card_form.validate(credit_card_params)
       redirect_to checkout_confirm_path
     else
-      redirect_to checkout_payment_path, danger: t('notices.fields_required')
+      flash[:error] = @credit_card.errors.full_messages.join(', ')
+      redirect_to checkout_payment_path
     end
   end
 
@@ -93,6 +95,15 @@ class CheckoutsController < ApplicationController
         @address_form.validate(billing_address_params)
       else 
         @address_form.validate(billing_address_params) && @address_form.validate(shipping_address_params)
+      end
+    end
+
+    def generate_flash
+      if params[:use_billing]
+        flash[:error] = @billing_address.errors.full_messages.join(', ')
+      else
+        flash[:error] = [@billing_address.errors.full_messages.join(', '), 
+                         @shipping_address.errors.full_messages.join(', ')]
       end
     end
 end

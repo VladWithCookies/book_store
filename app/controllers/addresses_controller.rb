@@ -16,7 +16,7 @@ class AddressesController < ApplicationController
     if @user.billing_address.valid?
       flash[:notice] = t('notices.billing_update')
     else
-      flash[:error] = t('notices.fields_required')
+      flash[:error] = @user.billing_address.errors.full_messages.join(', ')
     end
     redirect_to edit_address_path(@user)
   end
@@ -31,7 +31,7 @@ class AddressesController < ApplicationController
     if @user.shipping_address.valid?
       flash[:notice] = t('notices.shipping_update')
     else 
-      flash[:error] = t('notices.fields_required')
+      flash[:error] = @user.shipping_address.errors.full_messages.join(', ')
     end
     redirect_to edit_address_path(@user)
   end

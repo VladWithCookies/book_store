@@ -19,6 +19,6 @@ feature 'profile' do
   scenario 'user change his address to invalid' do
     visit(edit_address_path(user))
     click_on('SAVE', match: :first)
-    expect(page).to have_content("All fields are required!")
+    expect(page).to have_content("can't be blank")
   end
 end
