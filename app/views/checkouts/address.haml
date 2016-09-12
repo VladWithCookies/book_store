@@ -31,8 +31,11 @@
       .row
         .col-md-4
         .col-md-4
-          =check_box_tag :use_billing, 1, true
-          %label= t('text.use_billing_address')
+          .checkbox
+            %label
+              =check_box_tag :use_billing, 1, true
+              = t('text.use_billing_address')
+              
         .col-md-4
           = "#{t('th.total')}: #{number_to_currency(current_order.item_total)}"  
 
