@@ -4,7 +4,11 @@
   =f.text_field :street, placeholder: t('placeholder.street')
   =f.text_field :city, placeholder: t('placeholder.city')
   =f.select :country, @countries
+  
+  =f.label :zipcode, "XXXXX-YYYY only digits"
   =f.text_field :zipcode, placeholder: "Zip"
+
+  =f.label :phone, "10-15 digits"
   =f.telephone_field :phone, placeholder: t('placeholder.phone')  
 - else 
   =f.text_field :firstname, placeholder: t('placeholder.firstname'), value: address.firstname 
@@ -12,5 +16,9 @@
   =f.text_field :street, placeholder: t('placeholder.street'), value: address.street
   =f.text_field :city, placeholder: t('placeholder.city'), value: address.city
   =f.select :country, @countries
+
+  =f.label :zipcode, "XXXXX-YYYY only digits"
   =f.text_field :zipcode, placeholder: "Zip", value: address.zipcode
+
+  =f.label :phone, "10-15 digits"
   =f.telephone_field :phone, placeholder: t('placeholder.phone'), value: address.phone 
