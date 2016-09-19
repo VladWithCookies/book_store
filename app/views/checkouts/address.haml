@@ -50,3 +50,9 @@
 
         .col-md-12
           %button.btn.btn-default= t('button.save')
+
+:javascript
+  $('.shipping-form').hide();
+  $('#use_billing').click(function() {
+   $('.shipping-form').toggle(300);
+  });

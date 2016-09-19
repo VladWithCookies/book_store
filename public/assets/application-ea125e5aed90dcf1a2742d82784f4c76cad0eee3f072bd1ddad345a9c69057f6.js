@@ -13952,23 +13952,616 @@ return jQuery;
 
 
 
-!function(t){"function"==typeof define&&define.amd?define(["jquery"],t):"object"==typeof module&&module.exports?module.exports=t(require("jquery")):t(jQuery)}(function(t){var e=function(){function e(){var e=this,n=function(){var n=["br-wrapper"];""!==e.options.theme&&n.push("br-theme-"+e.options.theme),e.$elem.wrap(t("<div />",{"class":n.join(" ")}))},i=function(){e.$elem.unwrap()},a=function(n){return t.isNumeric(n)&&(n=Math.floor(n)),t('option[value="'+n+'"]',e.$elem)},r=function(){var n=e.options.initialRating;return n?a(n):t("option:selected",e.$elem)},o=function(t){var n=e.$elem.data("barrating");return"undefined"!=typeof t?n[t]:n},l=function(t,n){null!==n&&"object"==typeof n?e.$elem.data("barrating",n):e.$elem.data("barrating")[t]=n},s=function(){var t=r(),n=t.val(),i=t.data("html")?t.data("html"):t.text();l(null,{userOptions:e.options,ratingValue:n,ratingText:i,originalRatingValue:n,originalRatingText:i,readOnly:e.options.readonly,ratingMade:!1})},u=function(){e.$elem.removeData("barrating")},d=function(){return o("ratingText")},c=function(){return o("ratingValue")},f=function(){var n=t("<div />",{"class":"br-widget"});return e.$elem.find("option").each(function(){var i,a,r,o;i=t(this).val(),i&&(a=t(this).text(),r=t(this).data("html"),r&&(a=r),o=t("<a />",{href:"#","data-rating-value":i,"data-rating-text":a,html:e.options.showValues?a:""}),n.append(o))}),e.options.showSelectedRating&&n.append(t("<div />",{text:"","class":"br-current-rating"})),e.options.reverse&&n.addClass("br-reverse"),e.options.readonly&&n.addClass("br-readonly"),n},g=function(){return o("userOptions").reverse?"nextAll":"prevAll"},p=function(t){a(t).prop("selected",!0),e.$elem.change()},h=function(){t("option",e.$elem).prop("selected",function(){return this.defaultSelected}),e.$elem.change()},v=function(t){t=t?t:d(),e.options.showSelectedRating&&e.$elem.parent().find(".br-current-rating").text(t)},m=function(t){return Math.round(Math.floor(10*t)/10%1*100)},b=function(){e.$widget.find("a").removeClass(function(t,e){return(e.match(/(^|\s)br-\S+/g)||[]).join(" ")})},$=function(){var n,i,a=e.$widget.find('a[data-rating-value="'+c()+'"]'),r=o("userOptions").initialRating,l=t.isNumeric(c())?c():0,s=m(r);if(b(),a.addClass("br-selected br-current")[g()]().addClass("br-selected"),!o("ratingMade")&&t.isNumeric(r)){if(l>=r||!s)return;n=e.$widget.find("a"),i=a.length?a[o("userOptions").reverse?"prev":"next"]():n[o("userOptions").reverse?"last":"first"](),i.addClass("br-fractional"),i.addClass("br-fractional-"+s)}},w=function(t){return e.options.deselectable?e.$elem.find("option:first").val()?!1:c()==t.attr("data-rating-value"):!1},y=function(n){n.on("click.barrating",function(n){var i,a,r=t(this),s=o("userOptions");return n.preventDefault(),i=r.attr("data-rating-value"),a=r.attr("data-rating-text"),w(r)&&(i="",a=""),l("ratingValue",i),l("ratingText",a),l("ratingMade",!0),p(i),v(a),$(),s.onSelect.call(e,c(),d(),n),!1})},x=function(e){e.on("mouseenter.barrating",function(){var e=t(this);b(),e.addClass("br-active")[g()]().addClass("br-active"),v(e.attr("data-rating-text"))})},C=function(t){e.$widget.on("mouseleave.barrating blur.barrating",function(){v(),$()})},O=function(e){e.on("touchstart.barrating",function(e){e.preventDefault(),e.stopPropagation(),t(this).click()})},R=function(t){t.on("click.barrating",function(t){t.preventDefault()})},S=function(t){y(t),e.options.hoverState&&(x(t),C(t))},j=function(t){t.off(".barrating")},M=function(t){var n=e.$widget.find("a");O&&O(n),t?(j(n),R(n)):S(n)};this.show=function(){o()||(n(),s(),e.$widget=f(),e.$widget.insertAfter(e.$elem),$(),v(),M(e.options.readonly),e.$elem.hide())},this.readonly=function(t){"boolean"==typeof t&&o("readOnly")!=t&&(M(t),l("readOnly",t),e.$widget.toggleClass("br-readonly"))},this.set=function(t){var n=o("userOptions");e.$elem.find('option[value="'+t+'"]').val()&&(l("ratingValue",t),l("ratingText",e.$elem.find('option[value="'+t+'"]').text()),l("ratingMade",!0),p(c()),v(d()),$(),n.silent||n.onSelect.call(this,c(),d()))},this.clear=function(){var t=o("userOptions");l("ratingValue",o("originalRatingValue")),l("ratingText",o("originalRatingText")),l("ratingMade",!1),h(),v(d()),$(),t.onClear.call(this,c(),d())},this.destroy=function(){var t=c(),n=d(),a=o("userOptions");j(e.$widget.find("a")),e.$widget.remove(),u(),i(),e.$elem.show(),a.onDestroy.call(this,t,n)}}return e.prototype.init=function(e,n){return this.$elem=t(n),this.options=t.extend({},t.fn.barrating.defaults,e),this.options},e}();t.fn.barrating=function(n,i){return this.each(function(){var a=new e;if(t(this).is("select")||t.error("Sorry, this plugin only works with select fields."),a.hasOwnProperty(n)){if(a.init(i,this),"show"===n)return a.show(i);if(a.$elem.data("barrating"))return a.$widget=t(this).next(".br-widget"),a[n](i)}else{if("object"==typeof n||!n)return i=n,a.init(i,this),a.show();t.error("Method "+n+" does not exist on jQuery.barrating")}})},t.fn.barrating.defaults={theme:"",initialRating:null,showValues:!1,showSelectedRating:!0,deselectable:!0,reverse:!1,readonly:!1,fastClicks:!0,hoverState:!0,silent:!1,onSelect:function(t,e,n){},onClear:function(t,e){},onDestroy:function(t,e){}},t.fn.barrating.BarRating=e});
-//# sourceMappingURL=jquery.barrating.min.js.map
+$(function() {
+  $('select').barrating({
+    theme: 'bootstrap-stars'
+  });
+});
+(function() {
+  var slice = [].slice;
+
+  this.ActionCable = {
+    INTERNAL: {
+      "message_types": {
+        "welcome": "welcome",
+        "ping": "ping",
+        "confirmation": "confirm_subscription",
+        "rejection": "reject_subscription"
+      },
+      "default_mount_path": "/cable",
+      "protocols": ["actioncable-v1-json", "actioncable-unsupported"]
+    },
+    createConsumer: function(url) {
+      var ref;
+      if (url == null) {
+        url = (ref = this.getConfig("url")) != null ? ref : this.INTERNAL.default_mount_path;
+      }
+      return new ActionCable.Consumer(this.createWebSocketURL(url));
+    },
+    getConfig: function(name) {
+      var element;
+      element = document.head.querySelector("meta[name='action-cable-" + name + "']");
+      return element != null ? element.getAttribute("content") : void 0;
+    },
+    createWebSocketURL: function(url) {
+      var a;
+      if (url && !/^wss?:/i.test(url)) {
+        a = document.createElement("a");
+        a.href = url;
+        a.href = a.href;
+        a.protocol = a.protocol.replace("http", "ws");
+        return a.href;
+      } else {
+        return url;
+      }
+    },
+    startDebugging: function() {
+      return this.debugging = true;
+    },
+    stopDebugging: function() {
+      return this.debugging = null;
+    },
+    log: function() {
+      var messages;
+      messages = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      if (this.debugging) {
+        messages.push(Date.now());
+        return console.log.apply(console, ["[ActionCable]"].concat(slice.call(messages)));
+      }
+    }
+  };
+
+}).call(this);
+(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  ActionCable.ConnectionMonitor = (function() {
+    var clamp, now, secondsSince;
+
+    ConnectionMonitor.pollInterval = {
+      min: 3,
+      max: 30
+    };
+
+    ConnectionMonitor.staleThreshold = 6;
+
+    function ConnectionMonitor(connection) {
+      this.connection = connection;
+      this.visibilityDidChange = bind(this.visibilityDidChange, this);
+      this.reconnectAttempts = 0;
+    }
+
+    ConnectionMonitor.prototype.start = function() {
+      if (!this.isRunning()) {
+        this.startedAt = now();
+        delete this.stoppedAt;
+        this.startPolling();
+        document.addEventListener("visibilitychange", this.visibilityDidChange);
+        return ActionCable.log("ConnectionMonitor started. pollInterval = " + (this.getPollInterval()) + " ms");
+      }
+    };
+
+    ConnectionMonitor.prototype.stop = function() {
+      if (this.isRunning()) {
+        this.stoppedAt = now();
+        this.stopPolling();
+        document.removeEventListener("visibilitychange", this.visibilityDidChange);
+        return ActionCable.log("ConnectionMonitor stopped");
+      }
+    };
+
+    ConnectionMonitor.prototype.isRunning = function() {
+      return (this.startedAt != null) && (this.stoppedAt == null);
+    };
+
+    ConnectionMonitor.prototype.recordPing = function() {
+      return this.pingedAt = now();
+    };
+
+    ConnectionMonitor.prototype.recordConnect = function() {
+      this.reconnectAttempts = 0;
+      this.recordPing();
+      delete this.disconnectedAt;
+      return ActionCable.log("ConnectionMonitor recorded connect");
+    };
+
+    ConnectionMonitor.prototype.recordDisconnect = function() {
+      this.disconnectedAt = now();
+      return ActionCable.log("ConnectionMonitor recorded disconnect");
+    };
+
+    ConnectionMonitor.prototype.startPolling = function() {
+      this.stopPolling();
+      return this.poll();
+    };
+
+    ConnectionMonitor.prototype.stopPolling = function() {
+      return clearTimeout(this.pollTimeout);
+    };
+
+    ConnectionMonitor.prototype.poll = function() {
+      return this.pollTimeout = setTimeout((function(_this) {
+        return function() {
+          _this.reconnectIfStale();
+          return _this.poll();
+        };
+      })(this), this.getPollInterval());
+    };
+
+    ConnectionMonitor.prototype.getPollInterval = function() {
+      var interval, max, min, ref;
+      ref = this.constructor.pollInterval, min = ref.min, max = ref.max;
+      interval = 5 * Math.log(this.reconnectAttempts + 1);
+      return Math.round(clamp(interval, min, max) * 1000);
+    };
+
+    ConnectionMonitor.prototype.reconnectIfStale = function() {
+      if (this.connectionIsStale()) {
+        ActionCable.log("ConnectionMonitor detected stale connection. reconnectAttempts = " + this.reconnectAttempts + ", pollInterval = " + (this.getPollInterval()) + " ms, time disconnected = " + (secondsSince(this.disconnectedAt)) + " s, stale threshold = " + this.constructor.staleThreshold + " s");
+        this.reconnectAttempts++;
+        if (this.disconnectedRecently()) {
+          return ActionCable.log("ConnectionMonitor skipping reopening recent disconnect");
+        } else {
+          ActionCable.log("ConnectionMonitor reopening");
+          return this.connection.reopen();
+        }
+      }
+    };
+
+    ConnectionMonitor.prototype.connectionIsStale = function() {
+      var ref;
+      return secondsSince((ref = this.pingedAt) != null ? ref : this.startedAt) > this.constructor.staleThreshold;
+    };
+
+    ConnectionMonitor.prototype.disconnectedRecently = function() {
+      return this.disconnectedAt && secondsSince(this.disconnectedAt) < this.constructor.staleThreshold;
+    };
+
+    ConnectionMonitor.prototype.visibilityDidChange = function() {
+      if (document.visibilityState === "visible") {
+        return setTimeout((function(_this) {
+          return function() {
+            if (_this.connectionIsStale() || !_this.connection.isOpen()) {
+              ActionCable.log("ConnectionMonitor reopening stale connection on visibilitychange. visbilityState = " + document.visibilityState);
+              return _this.connection.reopen();
+            }
+          };
+        })(this), 200);
+      }
+    };
+
+    now = function() {
+      return new Date().getTime();
+    };
+
+    secondsSince = function(time) {
+      return (now() - time) / 1000;
+    };
+
+    clamp = function(number, min, max) {
+      return Math.max(min, Math.min(max, number));
+    };
+
+    return ConnectionMonitor;
+
+  })();
+
+}).call(this);
+(function() {
+  var i, message_types, protocols, ref, supportedProtocols, unsupportedProtocol,
+    slice = [].slice,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  ref = ActionCable.INTERNAL, message_types = ref.message_types, protocols = ref.protocols;
+
+  supportedProtocols = 2 <= protocols.length ? slice.call(protocols, 0, i = protocols.length - 1) : (i = 0, []), unsupportedProtocol = protocols[i++];
+
+  ActionCable.Connection = (function() {
+    Connection.reopenDelay = 500;
+
+    function Connection(consumer) {
+      this.consumer = consumer;
+      this.open = bind(this.open, this);
+      this.subscriptions = this.consumer.subscriptions;
+      this.monitor = new ActionCable.ConnectionMonitor(this);
+      this.disconnected = true;
+    }
+
+    Connection.prototype.send = function(data) {
+      if (this.isOpen()) {
+        this.webSocket.send(JSON.stringify(data));
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    Connection.prototype.open = function() {
+      if (this.isActive()) {
+        ActionCable.log("Attempted to open WebSocket, but existing socket is " + (this.getState()));
+        throw new Error("Existing connection must be closed before opening");
+      } else {
+        ActionCable.log("Opening WebSocket, current state is " + (this.getState()) + ", subprotocols: " + protocols);
+        if (this.webSocket != null) {
+          this.uninstallEventHandlers();
+        }
+        this.webSocket = new WebSocket(this.consumer.url, protocols);
+        this.installEventHandlers();
+        this.monitor.start();
+        return true;
+      }
+    };
+
+    Connection.prototype.close = function(arg) {
+      var allowReconnect, ref1;
+      allowReconnect = (arg != null ? arg : {
+        allowReconnect: true
+      }).allowReconnect;
+      if (!allowReconnect) {
+        this.monitor.stop();
+      }
+      if (this.isActive()) {
+        return (ref1 = this.webSocket) != null ? ref1.close() : void 0;
+      }
+    };
+
+    Connection.prototype.reopen = function() {
+      var error, error1;
+      ActionCable.log("Reopening WebSocket, current state is " + (this.getState()));
+      if (this.isActive()) {
+        try {
+          return this.close();
+        } catch (error1) {
+          error = error1;
+          return ActionCable.log("Failed to reopen WebSocket", error);
+        } finally {
+          ActionCable.log("Reopening WebSocket in " + this.constructor.reopenDelay + "ms");
+          setTimeout(this.open, this.constructor.reopenDelay);
+        }
+      } else {
+        return this.open();
+      }
+    };
+
+    Connection.prototype.getProtocol = function() {
+      var ref1;
+      return (ref1 = this.webSocket) != null ? ref1.protocol : void 0;
+    };
+
+    Connection.prototype.isOpen = function() {
+      return this.isState("open");
+    };
+
+    Connection.prototype.isActive = function() {
+      return this.isState("open", "connecting");
+    };
+
+    Connection.prototype.isProtocolSupported = function() {
+      var ref1;
+      return ref1 = this.getProtocol(), indexOf.call(supportedProtocols, ref1) >= 0;
+    };
+
+    Connection.prototype.isState = function() {
+      var ref1, states;
+      states = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      return ref1 = this.getState(), indexOf.call(states, ref1) >= 0;
+    };
+
+    Connection.prototype.getState = function() {
+      var ref1, state, value;
+      for (state in WebSocket) {
+        value = WebSocket[state];
+        if (value === ((ref1 = this.webSocket) != null ? ref1.readyState : void 0)) {
+          return state.toLowerCase();
+        }
+      }
+      return null;
+    };
+
+    Connection.prototype.installEventHandlers = function() {
+      var eventName, handler;
+      for (eventName in this.events) {
+        handler = this.events[eventName].bind(this);
+        this.webSocket["on" + eventName] = handler;
+      }
+    };
+
+    Connection.prototype.uninstallEventHandlers = function() {
+      var eventName;
+      for (eventName in this.events) {
+        this.webSocket["on" + eventName] = function() {};
+      }
+    };
+
+    Connection.prototype.events = {
+      message: function(event) {
+        var identifier, message, ref1, type;
+        if (!this.isProtocolSupported()) {
+          return;
+        }
+        ref1 = JSON.parse(event.data), identifier = ref1.identifier, message = ref1.message, type = ref1.type;
+        switch (type) {
+          case message_types.welcome:
+            this.monitor.recordConnect();
+            return this.subscriptions.reload();
+          case message_types.ping:
+            return this.monitor.recordPing();
+          case message_types.confirmation:
+            return this.subscriptions.notify(identifier, "connected");
+          case message_types.rejection:
+            return this.subscriptions.reject(identifier);
+          default:
+            return this.subscriptions.notify(identifier, "received", message);
+        }
+      },
+      open: function() {
+        ActionCable.log("WebSocket onopen event, using '" + (this.getProtocol()) + "' subprotocol");
+        this.disconnected = false;
+        if (!this.isProtocolSupported()) {
+          ActionCable.log("Protocol is unsupported. Stopping monitor and disconnecting.");
+          return this.close({
+            allowReconnect: false
+          });
+        }
+      },
+      close: function(event) {
+        ActionCable.log("WebSocket onclose event");
+        if (this.disconnected) {
+          return;
+        }
+        this.disconnected = true;
+        this.monitor.recordDisconnect();
+        return this.subscriptions.notifyAll("disconnected", {
+          willAttemptReconnect: this.monitor.isRunning()
+        });
+      },
+      error: function() {
+        return ActionCable.log("WebSocket onerror event");
+      }
+    };
+
+    return Connection;
+
+  })();
+
+}).call(this);
+(function() {
+  var slice = [].slice;
+
+  ActionCable.Subscriptions = (function() {
+    function Subscriptions(consumer) {
+      this.consumer = consumer;
+      this.subscriptions = [];
+    }
+
+    Subscriptions.prototype.create = function(channelName, mixin) {
+      var channel, params, subscription;
+      channel = channelName;
+      params = typeof channel === "object" ? channel : {
+        channel: channel
+      };
+      subscription = new ActionCable.Subscription(this.consumer, params, mixin);
+      return this.add(subscription);
+    };
+
+    Subscriptions.prototype.add = function(subscription) {
+      this.subscriptions.push(subscription);
+      this.consumer.ensureActiveConnection();
+      this.notify(subscription, "initialized");
+      this.sendCommand(subscription, "subscribe");
+      return subscription;
+    };
+
+    Subscriptions.prototype.remove = function(subscription) {
+      this.forget(subscription);
+      if (!this.findAll(subscription.identifier).length) {
+        this.sendCommand(subscription, "unsubscribe");
+      }
+      return subscription;
+    };
+
+    Subscriptions.prototype.reject = function(identifier) {
+      var i, len, ref, results, subscription;
+      ref = this.findAll(identifier);
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        subscription = ref[i];
+        this.forget(subscription);
+        this.notify(subscription, "rejected");
+        results.push(subscription);
+      }
+      return results;
+    };
+
+    Subscriptions.prototype.forget = function(subscription) {
+      var s;
+      this.subscriptions = (function() {
+        var i, len, ref, results;
+        ref = this.subscriptions;
+        results = [];
+        for (i = 0, len = ref.length; i < len; i++) {
+          s = ref[i];
+          if (s !== subscription) {
+            results.push(s);
+          }
+        }
+        return results;
+      }).call(this);
+      return subscription;
+    };
+
+    Subscriptions.prototype.findAll = function(identifier) {
+      var i, len, ref, results, s;
+      ref = this.subscriptions;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        s = ref[i];
+        if (s.identifier === identifier) {
+          results.push(s);
+        }
+      }
+      return results;
+    };
+
+    Subscriptions.prototype.reload = function() {
+      var i, len, ref, results, subscription;
+      ref = this.subscriptions;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        subscription = ref[i];
+        results.push(this.sendCommand(subscription, "subscribe"));
+      }
+      return results;
+    };
+
+    Subscriptions.prototype.notifyAll = function() {
+      var args, callbackName, i, len, ref, results, subscription;
+      callbackName = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+      ref = this.subscriptions;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        subscription = ref[i];
+        results.push(this.notify.apply(this, [subscription, callbackName].concat(slice.call(args))));
+      }
+      return results;
+    };
+
+    Subscriptions.prototype.notify = function() {
+      var args, callbackName, i, len, results, subscription, subscriptions;
+      subscription = arguments[0], callbackName = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+      if (typeof subscription === "string") {
+        subscriptions = this.findAll(subscription);
+      } else {
+        subscriptions = [subscription];
+      }
+      results = [];
+      for (i = 0, len = subscriptions.length; i < len; i++) {
+        subscription = subscriptions[i];
+        results.push(typeof subscription[callbackName] === "function" ? subscription[callbackName].apply(subscription, args) : void 0);
+      }
+      return results;
+    };
+
+    Subscriptions.prototype.sendCommand = function(subscription, command) {
+      var identifier;
+      identifier = subscription.identifier;
+      return this.consumer.send({
+        command: command,
+        identifier: identifier
+      });
+    };
+
+    return Subscriptions;
+
+  })();
+
+}).call(this);
+(function() {
+  ActionCable.Subscription = (function() {
+    var extend;
+
+    function Subscription(consumer, params, mixin) {
+      this.consumer = consumer;
+      if (params == null) {
+        params = {};
+      }
+      this.identifier = JSON.stringify(params);
+      extend(this, mixin);
+    }
+
+    Subscription.prototype.perform = function(action, data) {
+      if (data == null) {
+        data = {};
+      }
+      data.action = action;
+      return this.send(data);
+    };
+
+    Subscription.prototype.send = function(data) {
+      return this.consumer.send({
+        command: "message",
+        identifier: this.identifier,
+        data: JSON.stringify(data)
+      });
+    };
+
+    Subscription.prototype.unsubscribe = function() {
+      return this.consumer.subscriptions.remove(this);
+    };
+
+    extend = function(object, properties) {
+      var key, value;
+      if (properties != null) {
+        for (key in properties) {
+          value = properties[key];
+          object[key] = value;
+        }
+      }
+      return object;
+    };
+
+    return Subscription;
+
+  })();
+
+}).call(this);
+(function() {
+  ActionCable.Consumer = (function() {
+    function Consumer(url) {
+      this.url = url;
+      this.subscriptions = new ActionCable.Subscriptions(this);
+      this.connection = new ActionCable.Connection(this);
+    }
+
+    Consumer.prototype.send = function(data) {
+      return this.connection.send(data);
+    };
+
+    Consumer.prototype.connect = function() {
+      return this.connection.open();
+    };
+
+    Consumer.prototype.disconnect = function() {
+      return this.connection.close({
+        allowReconnect: false
+      });
+    };
+
+    Consumer.prototype.ensureActiveConnection = function() {
+      if (!this.connection.isActive()) {
+        return this.connection.open();
+      }
+    };
+
+    return Consumer;
+
+  })();
+
+}).call(this);
+// Action Cable provides the framework to deal with WebSockets in Rails.
+// You can generate new channels where WebSocket features live using the rails generate channel command.
+//
+
+
+
+
+(function() {
+  this.App || (this.App = {});
+
+  App.cable = ActionCable.createConsumer();
+
+}).call(this);
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
 ;
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 
 
 
 
-;
+
+$('.shipping-form').hide();
+
+$('#use_billing').click(function() {
+ $('.shipping-form').toggle(300);
+});
