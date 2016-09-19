@@ -6,7 +6,6 @@ class RatingsController < ApplicationController
     if @rating.save
       redirect_to @book, notice: t('notices.rating_create')
     else
-      flash = "Invalid review!"
       redirect_to add_rating_book_path(@book), danger: "Invalid review!"
     end
   end

@@ -13,11 +13,7 @@ class AddressesController < ApplicationController
       @user.update(billing_address: create_address)
     end
 
-    if @user.billing_address.valid?
-      flash[:notice] = t('notices.billing_update')
-    else
-      flash[:error] = @user.billing_address.errors.full_messages.join(', ')
-    end
+    show_notice(@user.billing_address, t('notices.billing_update'))
     redirect_to edit_address_path(@user)
   end
 
@@ -28,15 +24,19 @@ class AddressesController < ApplicationController
       @user.update(shipping_address: create_address)
     end
 
-    if @user.shipping_address.valid?
-      flash[:notice] = t('notices.shipping_update')
-    else 
-      flash[:error] = @user.shipping_address.errors.full_messages.join(', ')
-    end
+    show_notice(@user.shipping_address, t('notices.shipping_update'))
     redirect_to edit_address_path(@user)
   end
 
   private 
+    def show_notice(form, success_message)
+      if form.valid?
+        flash[:notice] = success_message
+      else 
+        flash[:error] = form.errors.full_messages.join(', ')
+      end
+    end
+
     def address_params
       params.require(:address).permit(:firstname, :lastname, :street, :city, :country, :zipcode, :phone)
     end
