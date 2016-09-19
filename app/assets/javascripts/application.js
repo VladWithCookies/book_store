@@ -5,6 +5,7 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
 
+alert('asd')
 $(document).ready(function() {
   $('.shipping-form').hide();
 
