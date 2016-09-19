@@ -30,6 +30,10 @@ group :development, :test do
   gem "ffaker"
 end
 
+group :production do
+  gem "rails_12factor"
+end
+
 group :test do
   gem "coveralls"
   #gem "database_cleaner", [">= 1.2", "!= 1.4.0", "!= 1.5.0"]

@@ -14,7 +14,6 @@ module Store
     I18n.available_locales = [:en, :ru]
     config.assets.compile = true
     config.assets.enabled = true
-    
 
     config.autoload_paths += %W(#{config.root}/app)   
     config.active_record.raise_in_transactional_callbacks = true
