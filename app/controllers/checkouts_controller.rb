@@ -100,10 +100,10 @@ class CheckoutsController < ApplicationController
 
     def generate_flash
       @billing_errors = @billing_address.errors.full_messages.join(', ')
-      if params[:use_billing]
-        flash[:error] =  @billing_errors
+      flash[:error] = if params[:use_billing]
+        @billing_errors
       else
-        flash[:error] = [@billing_errors, @shipping_address.errors.full_messages.join(', ')]
+        [@billing_errors, @shipping_address.errors.full_messages.join(', ')]
       end
     end
 end

@@ -37,13 +37,7 @@
           %b= t('text.shipment')
           %tr
             %td
-              - case @order.shipping
-                - when 5
-                  ="UPS Ground"
-                - when 10
-                  ="UPS Two Day"
-                - when 15
-                  ="Ups One Day"
+              = shipping_method(@order)
 
       .col-md-3 
         %table 

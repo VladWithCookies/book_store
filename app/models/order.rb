@@ -80,9 +80,4 @@ class Order < ApplicationRecord
     update_columns(order_total: total)
     total
   end
-
-  def self.which(state, user)
-    where(user: user, state: state)
-  end
-
 end

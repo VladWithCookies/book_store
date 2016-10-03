@@ -20,8 +20,14 @@ feature 'checkout' do
   end
 
   scenario 'user fill invalid billing and shipping address' do
+    fill_in_invalid_address
     click_on('SAVE')
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("Street can't be blank")
+    expect(page).to have_content("City can't be blank")
+    expect(page).to have_content("Phone is too short (minimum is 10 characters)")
+    expect(page).to have_content("Zipcode is invalid")
+    expect(page).to have_content("Firstname can't be blank")
+    expect(page).to have_content("Lastname can't be blank")
   end
 
   scenario 'user fill credit card info' do
@@ -42,7 +48,8 @@ feature 'checkout' do
 
     click_on('SAVE AND CONTINUE')
 
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("Number can't be blank")
+    expect(page).to have_content("Cvv can't be blank")
   end
 
   scenario 'user choose shipment method' do 

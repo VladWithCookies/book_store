@@ -23,6 +23,11 @@ module AcceptenceHelper
     select Time.now.year
   end
 
+  def fill_in_invalid_address
+    fill_in "Zip", with: '123', match: :prefer_exact
+    fill_in "Phone", with: '123', match: :prefer_exact 
+  end
+
   def add_to_cart(book)
     visit(book_path(book))
     click_on('ADD TO CART')

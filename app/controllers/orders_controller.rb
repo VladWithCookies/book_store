@@ -3,9 +3,9 @@ class OrdersController < ApplicationController
   
   def index
     @order = current_order
-    @orders_processing = Order.which('in_queue', current_user)
-    @orders_delivery = Order.which('in_delivery', current_user)
-    @orders_delivered = Order.which('delivered', current_user)
+    @orders_processing = current_user.orders.in_queue
+    @orders_delivery = current_user.orders.in_delivery
+    @orders_delivered = current_user.orders.delivered
   end
 
   def show
