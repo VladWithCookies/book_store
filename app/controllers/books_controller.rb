@@ -12,10 +12,6 @@ class BooksController < ApplicationController
     @order_item = OrderItem.new
   end
 
-  def add_rating 
-    @rating = Rating.new
-  end
-
   def home
     @items = OrderItem.most_popular(3)
     @order_item = OrderItem.new

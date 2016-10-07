@@ -9,17 +9,17 @@ Rails.application.routes.draw do
   scope path: "/:locale", locale:  /en|ru/, defaults: { locale: 'en' } do
     root "books#home"
 
-    resources :ratings
+    resources :ratings, only: [:create]
     resources :orders
     resources :order_items
-
+ 
     resources :addresses do
       post :update_billing, on: :member
       post :update_shipping, on: :member
     end
 
     resources :books do
-      get :add_rating, on: :member
+      resources :ratings, only: [:new]
     end
 
     resources :profiles do 
@@ -45,6 +45,6 @@ Rails.application.routes.draw do
 
     post "/add_coupon" => "order_items#add_coupon"
 
-    post "update_all" => "order_items#update_all"
+    post "update" => "order_items#update"
   end
 end

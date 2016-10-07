@@ -6,8 +6,13 @@ class RatingsController < ApplicationController
     if @rating.save
       redirect_to @book, notice: t('notices.rating_create')
     else
-      redirect_to add_rating_book_path(@book), danger: "Invalid review!"
+      redirect_to new_book_rating_path(@book), danger: "Invalid review!"
     end
+  end
+
+  def new
+    @book = Book.find_by(id: params[:book_id])
+    @rating = Rating.new
   end
 
   private

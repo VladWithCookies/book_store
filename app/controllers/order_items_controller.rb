@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_filter :get_order, only: [:index, :create, :update_all]
+  before_filter :get_order, only: [:index, :create, :update]
   
   def index
     @order_items = @order.order_items
@@ -24,7 +24,7 @@ class OrderItemsController < ApplicationController
     redirect_to cart_path
   end
 
-  def update_all
+  def update
     return if @order.order_items.empty?
     params[:quantity].each do |item_id, quantity|
       @order.order_items.find_by_id(item_id).update(:quantity => quantity)

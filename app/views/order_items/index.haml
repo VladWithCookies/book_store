@@ -1,7 +1,7 @@
 = render "layouts/nav_bar"
 
 .wrapper
-  =form_tag(update_all_path, controller: 'order_items', action: :update_all, method: :post) do
+  =form_tag(update_path, controller: 'order_items', action: :update, method: :post) do
     %table.table
       %th= t('th.book')
       %th= t('th.price')
