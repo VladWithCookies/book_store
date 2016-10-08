@@ -27,11 +27,24 @@ RSpec.describe RatingsController, :type => :controller do
         }.to change(Rating, :count).by(0)
       end
 
-      it 'redirect to book show add rating path' do 
+      it 'redirect to new rating path' do 
         post :create, params: { rating: { book_id: 1, text: "", user_id: 1, rating: 4}, locale: :en }
-        expect(response).to redirect_to(add_rating_book_path(book))
+        expect(response).to redirect_to(new_book_rating_path(book))
       end
     end
 
   end
+
+  describe 'GET #new' do
+    before { get :new, params: { locale: :en } }
+
+    it 'assigns @rating' do
+      expect(assigns(:rating)).not_to be_nil
+    end
+
+    it 'render add_rating view' do
+      expect(response).to render_template :new
+    end
+  end
+
 end

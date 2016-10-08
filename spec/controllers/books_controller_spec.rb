@@ -41,24 +41,4 @@ RSpec.describe BooksController, :type => :controller do
     end
   end
 
-  describe 'GET #add_rating' do
-    before { get :add_rating, params: { id: book.id, locale: :en } }
-
-    it 'assigns @rating' do
-      expect(assigns(:rating)).not_to be_nil
-    end
-
-    it 'render add_rating view' do
-      expect(response).to render_template :add_rating
-    end
-  end
-
-  describe 'GET #home' do 
-    before { get :home, { locale: :en } }
-
-    it 'render home view' do
-      expect(response).to render_template :home
-    end
-  end
-
 end
