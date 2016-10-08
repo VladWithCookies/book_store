@@ -10,7 +10,7 @@ class Ability
       can :manage, :all
     elsif user
       can :read, Order, user_id: user.id
-      can :add_rating, Book
+      can :new, Rating
       can :manage, Checkout
     end
 
