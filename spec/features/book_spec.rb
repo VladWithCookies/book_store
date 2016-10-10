@@ -45,7 +45,7 @@ feature 'book' do
       fill_in('Review text', with: '')
       click_on('Create Rating')
 
-      expect(page).to have_current_path(add_rating_book_path(book))
+      expect(page).to have_current_path(new_book_rating_path(book))
       expect(page).to have_content "Invalid review"
     end
     

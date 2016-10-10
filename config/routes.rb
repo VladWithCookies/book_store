@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: "callbacks" }
   get "/" => "pages#home"
   scope path: "/:locale", locale:  /en|ru/, defaults: { locale: 'en' } do
-    root "books#home"
+    root "pages#home"
 
     resources :ratings, only: [:create]
     resources :orders

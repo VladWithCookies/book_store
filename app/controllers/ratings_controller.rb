@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   
   def create
     @book = Book.find_by(id: rating_params[:book_id])
