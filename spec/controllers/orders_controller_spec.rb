@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, :type => :controller do
-  let(:order) { FactoryGirl.create(:order) }
-  sign_in_user
+  let(:user)  { FactoryGirl.create(:user)}
+  let(:order) { FactoryGirl.create(:order, user: user) }
+
+  before { sign_in user }
 
   describe "GET #index" do 
     before { get :index, { locale: :en } }
