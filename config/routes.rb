@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       patch :update_password, on: :member
     end
 
-    get "categories/:category" => "categories#category"
+    get "categories/:category" => "categories#show"
 
     get "/cart" => "order_items#index"
     delete "/cart/empty" => "order_items#empty_cart"
