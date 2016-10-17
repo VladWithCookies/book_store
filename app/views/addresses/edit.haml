@@ -6,27 +6,27 @@
       .address-form
         %h2= t('header.billing_address')
         =form_for @address_form, url: { action: :update_billing } do |f|
-          =render "layouts/address_form", f: f, address: @user.billing_address
+          =render "layouts/address_form", f: f, address: current_user.billing_address
           %button.btn.btn-default= t('button.save')
 
     .col-md-6
       .address-form
         %h2= t('header.shipping_address')
         =form_for @address_form, url: { action: :update_shipping } do |f|
-          =render "layouts/address_form", f: f, address: @user.shipping_address
+          =render "layouts/address_form", f: f, address: current_user.shipping_address
           %button.btn.btn-default= t('button.save')
   .row
     .col-md-6
       .email-form
         %h2= t('header.email')
-        =form_for @user, url: { controller: :profiles, action: :update } do |f|
+        =form_for current_user, url: { controller: :profiles, action: :update } do |f|
           =f.email_field :email
           %button.btn.btn-default= t('button.save')
 
     .col-md-6
       .password-form
         %h2= t('header.password')
-        =form_for @user, url: { controller: :profiles, action: :update_password } do |f|
+        =form_for current_user, url: { controller: :profiles, action: :update_password } do |f|
           =f.label :current_password, t('label.old_password')
           =f.password_field :current_password
           =f.label :password, t('label.new_password')
@@ -35,5 +35,5 @@
 
   .remove-acc-form
     %h2= t('header.remove')
-    = button_to(t('button.cancel_acc'), registration_path(@user), 
+    = button_to(t('button.cancel_acc'), registration_path(current_user), 
                   class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete)
