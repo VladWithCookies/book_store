@@ -30,6 +30,8 @@ en:
     signup: "Sign up"
     sign_with: "Sign in with"
     remember_me: "Remember me"
+    lang: "LANGUAGE"
+    admin: "Admin"
     
   label:
     review_text: "Review text"
@@ -85,8 +87,8 @@ en:
     item_total: "ITEM TOTAL"
     number: "NUMBER"
     completed_at: "COMPLETED AT"
-
-
+    discount: "DISCOUNT"
+    
   placeholder:
     coupon_code: "COUPON CODE"
     firstname: "Firstname"
@@ -103,3 +105,14 @@ en:
     payment: "PAYMENT"
     confirm: "CONFIRM"
     complete: "COMPLETE"
+
+  notices:
+    rating_create: "Review created and waiting for admin approval!"
+    billing_update: "Billing address was successfully updated!"
+    shipping_update: "Shipping address was successfully updated!"
+    fields_required: "All fields are required!"
+    password_update: "Password was successfully updated!"
+    email_update: "Emial was successfully updated!"
+    coupon_added: "Coupon added!"
+    cart_empty: "Cart is empty!"
+    invalid_coupon: "Invalid coupon!"

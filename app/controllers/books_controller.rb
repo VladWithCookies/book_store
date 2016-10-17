@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  load_and_authorize_resource only: [:add_rating]
   before_filter :get_books, only: [:show, :add_rating]
 
   def index
@@ -8,16 +7,7 @@ class BooksController < ApplicationController
   end
 
   def show   
-    @ratings = Rating.ratings_for_book(params[:id])
-    @order_item = OrderItem.new
-  end
-
-  def add_rating 
-    @rating = Rating.new
-  end
-
-  def home
-    @items = Book.most_popular(3)
+    @ratings = Rating.ratings_for_book(params[:id]).decorate
     @order_item = OrderItem.new
   end
 

@@ -20,19 +20,19 @@
         .col-md-4.col-sm-6
           .thumbnail
             = link_to book_path(book) do
-              %img{:src => "#{book.image}", :alt => ""}
+              %img{ src: "#{book.image}", alt: "" }
                 %h4= book.title
-                %b= "$#{book.price}"
+                %b= number_to_currency(book.price)
 
     .col-md-3
       %h4.category-header 
         =t("header.shop_by_categories")
       .list-group
         - @categories.each do |category|         
-          %a.list-group-item{:href => "/categories/#{category.title}"}= category.title
+          %a.list-group-item{ href: "/#{I18n.locale}/categories/#{category.title}" }= category.title
 
   .pagination-container
-    = paginate @books, :theme => 'twitter-bootstrap-3'
+    = paginate @books, theme: 'twitter-bootstrap-3'
 
 
 

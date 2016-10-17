@@ -6,29 +6,29 @@
       %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
-        %li{:role => "presentation"}
-          %a{:href => "/checkout/address"}= t('pills.address')
-        %li.active{:role => "presentation"}
-          %a{:href => "/checkout/delivery"}= t('pills.delivery')
+        %li{ role: "presentation"}
+          %a{ href: checkout_address_path}= t('pills.address')
+        %li.active{ role: "presentation"}
+          %a{ href: ""}= t('pills.delivery')
+        %li.disabled{ role: "presentation"}
+          %a{ href: ""}= t('pills.payment')
+        %li.disabled{ role: "presentation"}
+          %a{ href: ""}= t('pills.confirm')
         %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.payment')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.confirm')
-        %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.complete')
+          %a{ href: ""}= t('pills.complete')
 
   .row
     .col-md-8
       .delivery-form
-        =form_tag "/checkout/delivery", method: "post" do
+        =form_tag checkout_delivery_path, method: "post" do
           =radio_button_tag :shipping_price, 5, active: true
-          %label UPS Ground +$5.00
+          =label :shipping_price, 'UPS Ground +$5.00'
           %br
           =radio_button_tag :shipping_price, 10
-          %label UPS Two Day +$10.00
+          =label :shipping_price, 'UPS Two Day +$10.00'
           %br
           =radio_button_tag :shipping_price, 15
-          %label UPS One Day +$15.00
+          =label :shipping_price, 'UPS One Day +$15.00'
           %br
           %button.btn.btn-default= t('button.save_and_continue')
     .col-md-4

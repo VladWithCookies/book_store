@@ -37,13 +37,7 @@
           %b= t('text.shipment')
           %tr
             %td
-              - case @order.shipping
-                - when 5
-                  ="UPS Ground"
-                - when 10
-                  ="UPS Two Day"
-                - when 10
-                  ="Ups One Day"
+              = shipping_method(@order)
 
       .col-md-3 
         %table 
@@ -55,5 +49,5 @@
 
     =render "layouts/order_table"
 
-    %a{:href => "/books", :class => "btn btn-default btn-default"}
+    %a{ href: books_path, class: "btn btn-default btn-default"}
       =t('button.go_back')

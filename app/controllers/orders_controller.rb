@@ -1,9 +1,11 @@
 class OrdersController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @order = current_order
-    @orders_processing = Order.where(user: current_user, state: 'in_queue')
-    @orders_delivery = Order.where(user: current_user, state: 'in_delivery')
-    @orders_delivered = Order.where(user: current_user, state: 'delivered')
+    @orders_processing = current_user.orders.in_queue
+    @orders_delivery = current_user.orders.in_delivery
+    @orders_delivered = current_user.orders.delivered
   end
 
   def show

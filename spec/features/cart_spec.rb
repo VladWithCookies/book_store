@@ -3,6 +3,7 @@ require 'capybara/rspec'
 
 feature 'cart' do 
   given!(:book) { create(:book) }
+  given!(:user) { create(:user) }
 
   background do
     visit(book_path(book))
@@ -12,5 +13,17 @@ feature 'cart' do
   scenario 'user can remove book from cart' do
     click_on('Remove')
     expect(page).to_not have_content(book.title)
+  end 
+
+  scenario 'registered user can make checkout' do
+    sign_in user
+    visit(cart_path)
+    click_on('CHECKOUT')
+    expect(page).to have_current_path('/en/checkout/address')
+  end
+  
+  scenario 'guess user cant make checkout' do
+    click_on('CHECKOUT')
+    expect(page).to have_current_path("/users/sign_in?locale=en")
   end
 end

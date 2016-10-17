@@ -15,14 +15,14 @@ feature 'sign in' do
     fill_in 'Password', with: '123456'
     click_on 'Log in'
 
-    expect(page).to have_current_path(new_user_session_path)
+    expect(page).to have_current_path("/users/sign_in?locale=en")
   end
 
   scenario 'user logout' do 
     sign_in(user)
 
     click_on('Logout')
-    expect(page).to have_content('Login')
+    expect(page).to have_content('Log in')
   end
 
 end

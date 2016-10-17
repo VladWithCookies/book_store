@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  def category
+  def show
     @category_title = params[:category]
     @books = Book.books_by_category(params[:category]).page(params[:page]).per(6)
     @categories = Category.all

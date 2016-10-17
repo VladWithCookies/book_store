@@ -7,7 +7,7 @@ RSpec.describe CategoriesController, :type => :controller do
   let(:book) { FactoryGirl.create(:book, categories: [category])}
 
   describe 'GET #category' do
-    before { get :category, params: { category: category.title } }
+    before { get :show, params: { category: category.title, locale: :en } }
 
     it "assigns @books" do 
       expect(assigns(:books)).to match_array([book])

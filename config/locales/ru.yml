@@ -30,7 +30,8 @@ ru:
     signup: "Зарегистрироваться"
     sign_with: "Войти через"
     remember_me: "Запомнит меня "
-
+    lang: "ЯЗЫК"
+    admin: "Админочка"
   label:
     review_text: "Текст отзыва"
     new_password: "Новый пароль"
@@ -85,6 +86,7 @@ ru:
     item_total: "КНИГИ ИТОГО"
     number: "НОМЕР"
     completed_at: "ДАТА ОКОНЧАНИЯ"
+    discount: "СКИДКА"
 
   placeholder:
     coupon_code: "КОД КУПОНА"
@@ -102,3 +104,25 @@ ru:
     payment: "ОПЛАТА"
     confirm: "ПОДТВЕРДИТЬ"
     complete: "ЗАКОНЧИТЬ"
+
+  notices:
+    rating_create: "Отзыв оставлен и ждет одобрения админа!"
+    billing_update: "Адрес оплаты успешно обновлен!"
+    shipping_update: "Адрес доставки успешно обновлен!"
+    fields_required: "Все поля нужно заполнить!"
+    password_update: "Пароль успешно обновлен!"
+    email_update: "Електронная почта успешно обновлена!"
+    coupon_added: "Купон заюзан!"
+    cart_empty: "Корзина пустая!"
+    invalid_coupon: "Недействительный купон!"
+
+  devise:
+    sessions:
+      user:
+        signed_out: "Вы вылогинились!"
+        signed_in: "Вы залогинились!"
+        signed_up: "Вы зарегались!"
+
+    registrations:
+      user:
+        destroyed: "Вы удалили свой аккаунт"

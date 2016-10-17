@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
-  before_filter :get_order, only: [:index, :create, :update_all]
-
+  before_filter :get_order, only: [:index, :create, :update]
+  
   def index
     @order_items = @order.order_items
     @coupon = Coupon.new
@@ -24,7 +24,8 @@ class OrderItemsController < ApplicationController
     redirect_to cart_path
   end
 
-  def update_all
+  def update
+    return if @order.order_items.empty?
     params[:quantity].each do |item_id, quantity|
       @order.order_items.find_by_id(item_id).update(:quantity => quantity)
     end
@@ -33,12 +34,16 @@ class OrderItemsController < ApplicationController
     redirect_to order_items_path
   end
 
-  def add_coupon
-    current_order.add_coupon(params[:coupon_code])
-  end
-
   private 
     def get_order
       @order = current_order
+    end
+
+    def add_coupon      
+      if current_order.add_coupon(params[:coupon_code])
+        flash[:notice] = t('notices.coupon_added') 
+      else
+        flash[:danger] = t('notices.invalid_coupon')
+      end
     end
 end

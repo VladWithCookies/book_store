@@ -30,7 +30,7 @@ feature 'sign up' do
 
       click_on('Sign up')
       click_on('Sign in with Facebook')
-      expect(page).to have_content('Logout')
+      expect(page).to have_content('Successfully authenticated from Facebook account')
     end
   end
 end

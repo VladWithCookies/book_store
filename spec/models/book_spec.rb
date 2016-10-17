@@ -26,8 +26,4 @@ describe Book do
       should have_and_belong_to_many(:categories)
     end
   end
-
-  context ".most_popular" do
-    it "return most popular books"
-  end
 end

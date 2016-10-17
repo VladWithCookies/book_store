@@ -6,16 +6,16 @@
       %h3= t('header.checkout')
     .col-md-10
       %ul.nav.nav-pills
-        %li{:role => "presentation"}
-          %a{:href => "/checkout/address"}= t('pills.address')
-        %li{:role => "presentation"}
-          %a{:href => "/checkout/delivery"}= t('pills.delivery')
-        %li{:role => "presentation"}
-          %a{:href => "/checkout/payment"}= t('pills.payment')
-        %li.active{:role => "presentation"}
-          %a{:href => "/checkout/confirm"}= t('pills.confirm')
+        %li{ role: "presentation"}
+          %a{ href: checkout_address_path }= t('pills.address')
+        %li{ role: "presentation"}
+          %a{ href: checkout_delivery_path }= t('pills.delivery')
+        %li{ role: "presentation"}
+          %a{ href: checkout_payment_path }= t('pills.payment')
+        %li.active{ role: "presentation"}
+          %a{ href: ""}= t('pills.confirm')
         %li.disabled{:role => "presentation"}
-          %a{:href => ""}= t('pills.complete')
+          %a{ href: ""}= t('pills.complete')
   
   %h3= t('header.confirm')
   .confirm
@@ -23,7 +23,7 @@
       .col-md-3
         %table
           %b= t('text.shipping')
-          %a{:href => "/checkout/address"} (edit)
+          %a{ href: checkout_address_path } (edit)
           %tr
             %td= @shipping_address.full_name
           %tr
@@ -38,7 +38,7 @@
       .col-md-3
         %table
           %b= t('text.billing')
-          %a{:href => "/checkout/address"} (edit)
+          %a{ href: checkout_address_path } (edit)
           %tr
             %td= @billing_address.full_name
           %tr
@@ -53,21 +53,15 @@
       .col-md-3 
         %table 
           %b= t('text.shipment')
-          %a{:href => "/checkout/delivery"} (edit)
+          %a{ href: checkout_delivery_path } (edit)
           %tr
             %td
-              - case @order.shipping
-                - when 5
-                  ="UPS Ground"
-                - when 10
-                  ="UPS Two Day"
-                - when 10
-                  ="Ups One Day"
+              = shipping_method(@order)
 
       .col-md-3 
         %table 
           %b= t('text.payment_info')
-          %a{:href => "/checkout/payment"} (edit)
+          %a{ href: checkout_payment_path } (edit)
           %tr
             %td= @credit_card.cvv_hidden
           %tr
@@ -76,5 +70,5 @@
     = render "layouts/order_table"
 
 
-    %a{:href => "/checkout/complete", :class => "btn btn-default btn-default"}
+    %a{ href: checkout_complete_path, class: "btn btn-default btn-default"}
       =t('button.place_order')

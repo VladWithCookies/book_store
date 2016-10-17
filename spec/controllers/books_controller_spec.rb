@@ -7,8 +7,10 @@ RSpec.describe BooksController, :type => :controller do
   let(:categories) { FactoryGirl.create_list(:category, 3)}
   let(:ratings) { FactoryGirl.create_list(:rating, 3)}
 
+  sign_in_user
+
   describe 'GET #index' do 
-    before { get :index }
+    before { get :index, { locale: :en } }
 
     it "return list of books" do 
       expect(assigns(:books)).to match_array(books)
@@ -19,15 +21,19 @@ RSpec.describe BooksController, :type => :controller do
     end
 
     it "render index view" do 
-       expect(response).to render_template :index
+      expect(response).to render_template :index
     end
   end
 
   describe 'GET #show' do
-    before { get :show, params: { id: book.id } }
+    before { get :show, params: { id: book.id, locale: :en } }
 
     it 'assigns @book' do
       expect(assigns(:book)).not_to be_nil
+    end
+
+    it 'assigns @order_item' do
+      expect(assigns(:order_item)).not_to be_nil
     end
 
     it "render show view" do 

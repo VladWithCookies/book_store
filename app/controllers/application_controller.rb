@@ -1,9 +1,17 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_order
   add_flash_types :success, :warning, :danger, :info
+
+  before_action :set_locale
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+  
+  def default_url_options(options={})
+    { :locale => I18n.locale }
+  end
 
   def current_order 
     @current_order = Order.find_by(id: session[:order_id])

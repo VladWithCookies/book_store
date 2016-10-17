@@ -1,12 +1,11 @@
 = render "layouts/nav_bar"
-= render "layouts/notices"
 
 .wrapper
   .header 
     =@book.title
   .col-md-3
     .book-cover
-      %img{:src => "#{@book.image}", :alt => ""}
+      %img{ src: "#{@book.image}", alt: ""}
   .col-md-9
     .row
       .col-md-9
@@ -14,23 +13,26 @@
       .col-md-3
         .order-form
           =form_for @order_item, url: {action: "create", controller: "order_items"} do |f|
-            =f.hidden_field(:book_id, value: @book.id)
-            =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
-            %button.btn.btn-default 
-              =t('button.add_to_cart')
+            .row
+              .col-md-4
+                =f.hidden_field(:book_id, value: @book.id)
+                =f.number_field(:quantity, class: "form-control", min: 1, value: 1)
+              .col-md-8
+                %button.btn.btn-default 
+                  =t('button.add_to_cart')
 
     .book-decription= @book.description
   .col-md-12
     .reviews
       %h4
         =t('header.reviews')
-      = link_to t('text.add_review'), add_rating_book_path
+      = link_to t('text.add_review'), new_book_rating_path(@book)
       -@ratings.each do |rating|
         .rating
-          -rating.rating.times do 
+          - rating.rate.times do 
             %span.glyphicon.glyphicon-star          
           .rating-date
-            =rating.created_at
+            =rating.formated_date
           .rating-author
             ="by #{rating.user.email}"
           .rating-text

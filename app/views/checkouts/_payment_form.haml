@@ -1,0 +1,9 @@
+=f.hidden_field :user_id, value: current_user.id
+=f.text_field :number, placeholder: t('placeholder.card_number')
+
+%p= "#{t('text.expiration_date')}:"
+=f.select :expiration_month, Date::MONTHNAMES[1..12]
+=f.select :expiration_year, Time.now.year.. 8.years.from_now.year
+
+=f.text_field :cvv, placeholder: t('placeholder.card_code') 
+%button.btn.btn-default= t('button.save_and_continue')
